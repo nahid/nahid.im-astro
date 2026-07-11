@@ -1,0 +1,40 @@
+---
+// Social links as a ruled row of typewriter labels (no icon fonts / no JS).
+import { SOCIALS } from '../consts';
+---
+
+<ul class="social">
+	{
+		SOCIALS.map((s) => (
+			<li>
+				<a class="social__link" href={s.href} rel="me noopener" target="_blank">
+					{s.label}
+				</a>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.social {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sp-2) var(--sp-4);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.social__link {
+		font-family: var(--font-display);
+		font-size: var(--fs-label);
+		text-transform: uppercase;
+		letter-spacing: var(--letterspace-label);
+		text-decoration: none;
+		border-bottom: var(--rule-hair);
+		padding-bottom: 2px;
+	}
+	.social__link:hover {
+		color: var(--accent);
+		border-bottom-color: var(--accent);
+	}
+</style>

@@ -1,0 +1,52 @@
+---
+// Home bio block: portrait (grayscale) beside name/role/blurb.
+import { BIO } from '../consts';
+---
+
+<div class="bio">
+	<img class="bio__photo" src={BIO.photo} width="180" height="180" alt={BIO.name} />
+	<div class="bio__body">
+		<p class="bio__name">{BIO.name}</p>
+		<p class="bio__role label">{BIO.role}</p>
+		<p class="bio__location meta">{BIO.location}</p>
+		<p class="bio__blurb" lang="bn">{BIO.blurb}</p>
+	</div>
+</div>
+
+<style>
+	.bio {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--sp-5);
+		align-items: start;
+	}
+	.bio__photo {
+		width: 180px;
+		height: 180px;
+		object-fit: cover;
+		filter: grayscale(1) contrast(1.05);
+		border: var(--rule-thin);
+		background: var(--paper-shade);
+	}
+	.bio__name {
+		font-family: var(--font-display);
+		font-size: var(--fs-h2);
+		margin: 0 0 var(--sp-1);
+	}
+	.bio__role {
+		margin: 0 0 var(--sp-1);
+	}
+	.bio__location {
+		margin: 0 0 var(--sp-3);
+	}
+	.bio__blurb {
+		margin: 0;
+		max-width: var(--measure);
+	}
+	@media (max-width: 34rem) {
+		.bio {
+			grid-template-columns: 1fr;
+			justify-items: start;
+		}
+	}
+</style>

@@ -1,0 +1,27 @@
+---
+// Labelled section head with flanking rules (§0). Styling lives in global.css
+// (.section-head) so the pattern stays consistent everywhere it's used.
+interface Props {
+	label: string;
+	/** Bengali labels get the Bengali face and no letter-spacing tricks (§5). */
+	lang?: 'bn' | 'en';
+	/** Optional link on the label (e.g. "All Diaries →"). */
+	href?: string;
+}
+
+const { label, lang = 'en', href } = Astro.props;
+---
+
+<div class="section-head">
+	{
+		href ? (
+			<a class="section-head__label" lang={lang} href={href}>
+				{label}
+			</a>
+		) : (
+			<span class="section-head__label" lang={lang}>
+				{label}
+			</span>
+		)
+	}
+</div>

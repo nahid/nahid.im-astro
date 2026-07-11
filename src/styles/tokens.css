@@ -1,0 +1,58 @@
+/* Design tokens — the single source of truth for palette, type, and rules.
+   Components must read these variables; never hardcode a hex or a raw px (§5). */
+
+:root {
+	/* — Palette (§0) — */
+	--paper: #f2ece0;
+	--paper-shade: #ece4d5; /* faint panel fill, kept close to paper */
+	--ink: #1c1a17;
+	--faded: #6b6459;
+	--rule: #2a2722;
+	--accent: #7a1f12; /* oxblood */
+
+	/* — Type families — */
+	--font-display: 'Special Elite', 'Courier New', monospace; /* chrome: masthead, labels, nav */
+	--font-mono: 'Cutive Mono', 'Courier New', monospace; /* Latin body + code */
+	--font-bengali: 'Noto Serif Bengali', Georgia, 'Times New Roman', serif;
+
+	/* Default (Latin) body face. Set per-lang below and on [lang] elements. */
+	--font-body: var(--font-mono);
+
+	/* — Type scale (rem, newspaper-ish) — */
+	--fs-folio: 0.7rem;
+	--fs-meta: 0.78rem;
+	--fs-label: 0.82rem;
+	--fs-body: 1rem;
+	--fs-lede: 1.15rem;
+	--fs-h3: 1.3rem;
+	--fs-h2: 1.7rem;
+	--fs-h1: 2.4rem;
+	--fs-masthead: clamp(2.6rem, 8vw, 5rem);
+
+	/* Latin vs Bengali rhythm (§3). Bengali needs more air and a size bump. */
+	--lh-latin: 1.7;
+	--lh-bengali: 1.95;
+	--bengali-scale: 1.08;
+
+	/* — Spacing scale — */
+	--sp-1: 0.25rem;
+	--sp-2: 0.5rem;
+	--sp-3: 0.75rem;
+	--sp-4: 1rem;
+	--sp-5: 1.5rem;
+	--sp-6: 2rem;
+	--sp-7: 3rem;
+	--sp-8: 4rem;
+
+	/* — Rules / borders — */
+	--rule-hair: 1px solid var(--rule);
+	--rule-thin: 1px solid var(--ink);
+	--rule-thick: 3px solid var(--ink);
+	--letterspace-label: 0.18em; /* Latin labels only — never on Bengali */
+
+	/* — Layout — */
+	--sheet-max: 72rem; /* broadsheet content width */
+	--measure: 34rem; /* comfortable single-column reading measure */
+	--gutter: clamp(1rem, 4vw, 2.5rem);
+	--focus-ring: 2px solid var(--accent);
+}

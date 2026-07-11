@@ -1,0 +1,46 @@
+---
+// Top folio strip: volume/number on the left, tagline centered, "est." on the right.
+import { SITE } from '../consts';
+
+interface Props {
+	/** Volume/number line; defaults to a derived running number. */
+	volume?: string;
+}
+
+const year = 2026; // build-time stamp; keep in sync when the design ships
+const vol = Astro.props.volume ?? `Vol. ${year - SITE.established} · No. ${year}`;
+---
+
+<div class="folio">
+	<span class="folio__item">{vol}</span>
+	<span class="folio__item folio__item--mid">{SITE.tagline}</span>
+	<span class="folio__item folio__item--end">Est. {SITE.established}</span>
+</div>
+
+<style>
+	.folio {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: var(--sp-3);
+		font-family: var(--font-display);
+		font-size: var(--fs-folio);
+		text-transform: uppercase;
+		letter-spacing: var(--letterspace-label);
+		color: var(--faded);
+		padding-bottom: var(--sp-2);
+		border-bottom: var(--rule-hair);
+	}
+	.folio__item--mid {
+		flex: 1;
+		text-align: center;
+	}
+	.folio__item--end {
+		text-align: right;
+	}
+	@media (max-width: 30rem) {
+		.folio__item--mid {
+			display: none;
+		}
+	}
+</style>

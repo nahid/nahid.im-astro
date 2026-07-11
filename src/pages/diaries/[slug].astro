@@ -1,0 +1,30 @@
+---
+// Single dispatch: /diaries/{slug}/. Slug = the post's file id (ASCII, §3).
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import Post from '../../layouts/Post.astro';
+import { getPublishedPosts } from '../../utils/posts';
+
+export const getStaticPaths = (async () => {
+	const posts = await getPublishedPosts(); // already newest-first
+	return posts.map((post, i) => ({
+		params: { slug: post.id },
+		props: {
+			post,
+			// Newest-first order: "next" (older) is further down the list.
+			prev: i > 0 ? { slug: posts[i - 1].id, title: posts[i - 1].data.title } : null,
+			next:
+				i < posts.length - 1
+					? { slug: posts[i + 1].id, title: posts[i + 1].data.title }
+					: null,
+		},
+	}));
+}) satisfies GetStaticPaths;
+
+const { post, prev, next } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Post post={post} prev={prev} next={next}>
+	<Content />
+</Post>

@@ -1,0 +1,62 @@
+---
+// The nameplate: kicker → THE ALIEN DISPATCH → dateline bar.
+// The sitewide dateline is Bengali (site is Bengali-first, §3 4b).
+import { SITE } from '../consts';
+import { formatDate } from '../utils/format';
+
+const today = formatDate(new Date(), 'bn');
+---
+
+<header class="masthead">
+	<p class="masthead__kicker">{SITE.kicker}</p>
+	<a class="masthead__nameplate" href="/" aria-label={`${SITE.masthead} — home`}>
+		{SITE.masthead}
+	</a>
+	<div class="masthead__dateline">
+		<span class="rule" aria-hidden="true"></span>
+		<time lang="bn" datetime={new Date().toISOString().slice(0, 10)}>{today}</time>
+		<span class="rule" aria-hidden="true"></span>
+	</div>
+</header>
+
+<style>
+	.masthead {
+		text-align: center;
+		padding-top: var(--sp-4);
+	}
+	.masthead__kicker {
+		margin: 0 0 var(--sp-2);
+		font-family: var(--font-display);
+		font-size: var(--fs-label);
+		text-transform: uppercase;
+		letter-spacing: 0.32em;
+		color: var(--faded);
+	}
+	.masthead__nameplate {
+		display: block;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: var(--fs-masthead);
+		line-height: 0.95;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.masthead__nameplate:hover {
+		color: var(--ink);
+	}
+	.masthead__dateline {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		gap: var(--sp-4);
+		margin-top: var(--sp-3);
+		font-size: var(--fs-meta);
+		color: var(--faded);
+	}
+	.masthead__dateline .rule {
+		border-top: 3px double var(--ink);
+		height: 3px;
+	}
+</style>

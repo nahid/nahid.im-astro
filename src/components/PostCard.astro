@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { categoryLabel } from '../utils/categories';
+import { formatDate } from '../utils/format';
+import { t } from '../utils/strings';
+
+interface Props {
+	post: CollectionEntry<'diaries'>;
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const lang = data.lang;
+const href = `/diaries/${post.id}/`;
+---
+
+<article class="card" lang={lang}>
+	<a class="card__cat label" lang={lang} href={`/diaries/category/${data.category}/`}>
+		{categoryLabel(data.category, lang)}
+	</a>
+	<h3 class="card__title">
+		<a href={href}>{data.title}</a>
+	</h3>
+	<p class="card__excerpt">{data.description}</p>
+	<p class="card__meta meta">
+		<time datetime={data.pubDate.toISOString().slice(0, 10)}>
+			{formatDate(data.pubDate, lang)}
+		</time>
+		<span aria-hidden="true"> · </span>
+		<a href={href}>{t('readMore', lang)}</a>
+	</p>
+</article>
+
+<style>
+	.card {
+		padding-block: var(--sp-4);
+	}
+	.card__cat {
+		display: inline-block;
+		margin-bottom: var(--sp-2);
+		text-decoration: none;
+	}
+	.card__cat:hover {
+		color: var(--accent);
+	}
+	.card__title {
+		font-size: var(--fs-h3);
+		margin: 0 0 var(--sp-2);
+	}
+	.card__title a {
+		text-decoration: none;
+	}
+	.card__title a:hover {
+		text-decoration: underline;
+		text-decoration-color: var(--accent);
+	}
+	.card__excerpt {
+		margin: 0 0 var(--sp-2);
+		max-width: var(--measure);
+	}
+	.card__meta {
+		margin: 0;
+	}
+</style>

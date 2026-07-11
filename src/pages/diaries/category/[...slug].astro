@@ -1,0 +1,61 @@
+---
+// Category archives: /diaries/category/{slug}/ — nested slugs preserved from WP.
+// Parent categories include their descendants' posts (§3 item 3).
+import type { GetStaticPaths } from 'astro';
+import Base from '../../../layouts/Base.astro';
+import Folio from '../../../components/Folio.astro';
+import Masthead from '../../../components/Masthead.astro';
+import Nav from '../../../components/Nav.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import PostCard from '../../../components/PostCard.astro';
+import Footer from '../../../components/Footer.astro';
+import { allCategorySlugs, categoryLabel, descendants } from '../../../utils/categories';
+import { getPublishedPosts } from '../../../utils/posts';
+
+export const getStaticPaths = (async () => {
+	const posts = await getPublishedPosts();
+	return allCategorySlugs().map((slug) => {
+		const include = new Set(descendants(slug));
+		return {
+			params: { slug },
+			props: { slug, posts: posts.filter((p) => include.has(p.data.category)) },
+		};
+	});
+}) satisfies GetStaticPaths;
+
+const { slug, posts } = Astro.props;
+const labelBn = categoryLabel(slug, 'bn');
+const labelEn = categoryLabel(slug, 'en');
+---
+
+<Base title={labelEn} lang="bn">
+	<Folio />
+	<Masthead />
+	<Nav />
+
+	<main>
+		<SectionHead label={labelBn} lang="bn" />
+		{
+			posts.length > 0 ? (
+				<div class="archive">
+					{posts.map((post) => (
+						<PostCard post={post} />
+					))}
+				</div>
+			) : (
+				<p class="meta" lang="bn">এই বিভাগে এখনো কোনো ডায়েরি নেই।</p>
+			)
+		}
+	</main>
+
+	<Footer />
+</Base>
+
+<style>
+	.archive > :global(.card) {
+		border-top: var(--rule-hair);
+	}
+	.archive > :global(.card:last-child) {
+		border-bottom: var(--rule-hair);
+	}
+</style>

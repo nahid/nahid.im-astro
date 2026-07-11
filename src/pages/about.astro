@@ -1,63 +1,77 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+// About page. Long-form copy will grow during migration; Phase 1 ships a
+// Bengali-first lede so the typography is reviewable.
+import Base from '../layouts/Base.astro';
+import Folio from '../components/Folio.astro';
+import Masthead from '../components/Masthead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import SectionHead from '../components/SectionHead.astro';
+import SocialBar from '../components/SocialBar.astro';
+import { BIO } from '../consts';
+import { t } from '../utils/strings';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<Base title="About" lang="bn">
+	<Folio />
+	<Masthead />
+	<Nav />
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+	<main class="about" lang="bn">
+		<SectionHead label={t('about', 'bn')} lang="bn" />
+		<div class="about__grid">
+			<img class="about__photo" src={BIO.photo} width="220" height="220" alt={BIO.name} />
+			<div>
+				<h1>{BIO.name}</h1>
+				<p class="about__role label">{BIO.role}</p>
+				<p>
+					আমি নাহিদ বিন আজহার — একজন সফটওয়্যার প্রকৌশলী এবং JoulesLabs-এর সহ‑প্রতিষ্ঠাতা।
+					গত এক দশক ধরে সফটওয়্যার তৈরি করছি এবং যারা তা তৈরি করে সেই দলগুলো গড়ে তুলছি।
+				</p>
+				<p>
+					এই ডিসপ্যাচে বেশিরভাগ লেখা বাংলায় — প্রকৌশল, ব্যবসা পরিচালনা, উৎপাদনশীলতা আর
+					মাঝেমধ্যে কিছু পরীক্ষা‑নিরীক্ষা নিয়ে। পুরোনো লেটারপ্রেস দৈনিকের মেজাজে সাজানো,
+					তবে লেখা সমসাময়িক।
+				</p>
+			</div>
+		</div>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+		<SectionHead label={t('elsewhere', 'bn')} lang="bn" />
+		<SocialBar />
+	</main>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+	<Footer />
+</Base>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+<style>
+	.about {
+		margin-top: var(--sp-4);
+	}
+	.about__grid {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--sp-6);
+		align-items: start;
+		max-width: var(--sheet-max);
+	}
+	.about__photo {
+		width: 220px;
+		height: 220px;
+		object-fit: cover;
+		filter: grayscale(1) contrast(1.05);
+		border: var(--rule-thin);
+		background: var(--paper-shade);
+	}
+	.about__role {
+		margin-top: 0;
+	}
+	.about__grid p {
+		max-width: var(--measure);
+		text-align: justify;
+	}
+	@media (max-width: 40rem) {
+		.about__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -1,0 +1,48 @@
+---
+// Newspaper-styled 404 (§3 item 5).
+import Base from '../layouts/Base.astro';
+import Folio from '../components/Folio.astro';
+import Masthead from '../components/Masthead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { t } from '../utils/strings';
+---
+
+<Base title="Story Not Found" lang="bn">
+	<Folio />
+	<Masthead />
+	<Nav />
+
+	<main class="notfound">
+		<p class="notfound__code label">404</p>
+		<h1 class="notfound__title" lang="en">Story Not Found</h1>
+		<p class="notfound__sub" lang="en">
+			The correspondent has no dispatch at this address.
+		</p>
+		<hr class="rule-double" />
+		<p lang="bn">{t('notFoundBody', 'bn')}</p>
+		<p><a href="/" lang="bn">{t('backHome', 'bn')}</a></p>
+	</main>
+
+	<Footer />
+</Base>
+
+<style>
+	.notfound {
+		max-width: var(--measure);
+		margin: var(--sp-7) auto;
+		text-align: center;
+	}
+	.notfound__code {
+		font-size: var(--fs-h2);
+		color: var(--accent);
+	}
+	.notfound__title {
+		font-size: var(--fs-h1);
+		margin: var(--sp-2) 0;
+	}
+	.notfound__sub {
+		color: var(--faded);
+		font-style: italic;
+	}
+</style>

@@ -1,0 +1,101 @@
+---
+// Contact page. The form endpoint is wired to a provider in Phase 6; Phase 1
+// ships the styled, JS-free markup with a honeypot.
+import Base from '../layouts/Base.astro';
+import Folio from '../components/Folio.astro';
+import Masthead from '../components/Masthead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { t } from '../utils/strings';
+---
+
+<Base title="Contact" lang="bn">
+	<Folio />
+	<Masthead />
+	<Nav />
+
+	<main class="contact" lang="bn">
+		<SectionHead label={t('contact', 'bn')} lang="bn" />
+		<p class="contact__lede">
+			একটি চিঠি পাঠান — প্রতিটি বার্তাই পড়া হয়।
+		</p>
+
+		<form class="letter" action="#" method="post">
+			<label class="letter__field">
+				<span class="letter__label label" lang="bn">নাম</span>
+				<input type="text" name="name" required />
+			</label>
+			<label class="letter__field">
+				<span class="letter__label label" lang="bn">ইমেইল</span>
+				<input type="email" name="email" required />
+			</label>
+			<label class="letter__field">
+				<span class="letter__label label" lang="bn">বার্তা</span>
+				<textarea name="message" rows="6" required></textarea>
+			</label>
+			<!-- Honeypot: leave blank (Phase 6). -->
+			<input class="letter__hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+			<button class="letter__btn" type="submit" lang="bn">পাঠান</button>
+		</form>
+	</main>
+
+	<Footer />
+</Base>
+
+<style>
+	.contact {
+		max-width: var(--measure);
+	}
+	.contact__lede {
+		max-width: var(--measure);
+	}
+	.letter {
+		display: grid;
+		gap: var(--sp-4);
+		border: var(--rule-thin);
+		padding: var(--sp-5);
+	}
+	.letter__field {
+		display: grid;
+		gap: var(--sp-2);
+	}
+	.letter__label {
+		color: var(--faded);
+	}
+	.letter input,
+	.letter textarea {
+		font-family: inherit;
+		font-size: var(--fs-body);
+		color: var(--ink);
+		background: var(--paper);
+		border: var(--rule-hair);
+		border-radius: 0;
+		padding: var(--sp-2) var(--sp-3);
+	}
+	.letter textarea {
+		resize: vertical;
+	}
+	.letter__btn {
+		justify-self: start;
+		padding: var(--sp-2) var(--sp-5);
+		font-family: var(--font-bengali);
+		font-weight: 700;
+		font-size: var(--fs-body);
+		color: var(--paper);
+		background: var(--ink);
+		border: var(--rule-thin);
+		border-radius: 0;
+		cursor: pointer;
+	}
+	.letter__btn:hover {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+	.letter__hp {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+	}
+</style>

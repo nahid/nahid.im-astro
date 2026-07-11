@@ -1,0 +1,65 @@
+---
+// Bengali type specimen (Phase 1 item 2b): compare the three candidate faces at
+// body size on paper, then pick the winner. Dev-only — 404s in production and is
+// filtered out of the sitemap (astro.config.mjs).
+import Base from '../../layouts/Base.astro';
+
+if (import.meta.env.PROD) {
+	return Astro.rewrite('/404');
+}
+
+// A real Bangla paragraph exercising conjuncts and punctuation.
+const sample =
+	'পুরোনো লেটারপ্রেস দৈনিকের মেজাজে সাজানো এই পাতা। ক্ষমতা, জ্ঞান আর যন্ত্রের ' +
+	'গল্প — ন্ত্র, ক্ষ, জ্ঞ যুক্তাক্ষর ঠিকঠাক বসছে কি না দেখুন। বাক্যের শেষে দাঁড়ি ।';
+
+const faces = [
+	{ name: 'Noto Serif Bengali (shipping)', css: "'Noto Serif Bengali', serif" },
+	{ name: 'Tiro Bangla', css: "'Tiro Bangla', serif" },
+	{ name: 'Baloo Da 2', css: "'Baloo Da 2', sans-serif" },
+];
+---
+
+<style>
+	@import '/fonts/fonts-specimen.css';
+</style>
+
+<Base title="Type Specimen (dev)" lang="bn">
+	<h1 lang="en">Bengali Type Specimen</h1>
+	<p class="meta" lang="en">
+		Dev only. Conjuncts to check: ক্ষ · জ্ঞ · ন্ত্র · দাঁড়ি (।). Pick the face that reads most
+		like old newsprint at body size.
+	</p>
+
+	{
+		faces.map((f) => (
+			<section class="spec">
+				<p class="label" lang="en">{f.name}</p>
+				<p class="spec__body" lang="bn" style={`font-family: ${f.css};`}>
+					{sample}
+				</p>
+				<p class="spec__head" lang="bn" style={`font-family: ${f.css};`}>
+					শিরোনাম পরীক্ষা — যুক্তাক্ষরে বোল্ড
+				</p>
+			</section>
+		))
+	}
+</Base>
+
+<style>
+	.spec {
+		border-top: var(--rule-thin);
+		padding: var(--sp-5) 0;
+	}
+	.spec__body {
+		font-size: var(--fs-body);
+		line-height: var(--lh-bengali);
+		max-width: var(--measure);
+		text-align: justify;
+	}
+	.spec__head {
+		font-size: var(--fs-h2);
+		font-weight: 700;
+		margin-top: var(--sp-3);
+	}
+</style>

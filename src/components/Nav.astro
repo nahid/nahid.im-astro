@@ -1,0 +1,70 @@
+---
+// Primary nav. UI chrome is Latin/Special Elite by design (§0), so labels are
+// English set in the typewriter face; the Bengali register is carried by content.
+import { NAV } from '../consts';
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) =>
+	href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<nav class="nav" aria-label="Primary">
+	<ul class="nav__list">
+		{
+			NAV.map((item) => (
+				<li>
+					<a
+						href={item.href}
+						class="nav__link"
+						aria-current={isCurrent(item.href) ? 'page' : undefined}
+					>
+						{item.label}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<style>
+	.nav {
+		border-top: var(--rule-thin);
+		border-bottom: 3px double var(--ink);
+		margin-top: var(--sp-4);
+	}
+	.nav__list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.nav__link {
+		display: block;
+		padding: var(--sp-3) var(--sp-4);
+		font-family: var(--font-display);
+		font-size: var(--fs-label);
+		text-transform: uppercase;
+		letter-spacing: var(--letterspace-label);
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.nav__list li + li .nav__link {
+		border-left: var(--rule-hair);
+	}
+	.nav__link:hover {
+		color: var(--accent);
+	}
+	.nav__link[aria-current='page'] {
+		color: var(--accent);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+	@media (max-width: 30rem) {
+		.nav__link {
+			padding: var(--sp-2) var(--sp-3);
+		}
+	}
+</style>
