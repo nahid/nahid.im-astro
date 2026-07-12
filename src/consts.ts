@@ -32,7 +32,7 @@ export const BIO = {
 	role: 'Software architect · CTO & co-founder, JoulesLabs',
 	location: 'Dhaka, Bangladesh',
 	blurb:
-		"Software engineer turned entrepreneur — twelve years in the industry, now building SaaS products as CTO & co-founder of JoulesLabs. Most of these dispatches are in Bangla — notes on engineering, running a company, and staying curious.",
+		"An alien engineer filing from planet Earth — twelve years in the field, now building SaaS products as CTO & co-founder of JoulesLabs. These dispatches, mostly in Bangla, are transmissions on engineering, running a company, and staying curious in the void.",
 	/** Portrait lives in public/images/; grayscale is applied in CSS, not baked in.
 	 *  Placeholder until the real photo is migrated (Phase 2). */
 	photo: '/images/portrait-placeholder.svg',
@@ -40,9 +40,9 @@ export const BIO = {
 
 /** Home "achievements" column — plain editable list, newest/most notable first. */
 export const ACHIEVEMENTS = [
-	{ year: 2014, text: 'Co-founded JoulesLabs — a software studio based in Dhaka.' },
-	{ year: 2019, text: 'Led delivery of large-scale Laravel and PHP platforms.' },
-	{ year: 2023, text: 'Building and mentoring engineering teams across timezones.' },
+	{ year: 2014, text: 'Established the mothership — co-founded JoulesLabs, a software studio broadcasting from Dhaka.' },
+	{ year: 2019, text: 'Piloted delivery of large-scale Laravel and PHP platforms across the network.' },
+	{ year: 2023, text: 'Assembling and mentoring engineering crews across timezones and orbits.' },
 ] as const;
 
 /** Social links for the SocialBar. Order = display order. */
