@@ -121,13 +121,21 @@ const article = {
 		font-size: var(--fs-meta);
 		color: var(--faded);
 		padding-bottom: var(--sp-3);
-		border-bottom: 3px double var(--ink);
+		border-bottom: 3px double var(--rule);
 		margin-bottom: var(--sp-5);
 	}
 
 	.prose {
 		font-size: 0.9em;
 		text-align: justify;
+	}
+	/* Code blocks: a fixed rem size + tight line-height. Needed because the
+	   sitewide :lang(bn) rule otherwise inflates <pre>/<code> with the Bengali
+	   size bump and airy line-height, compounding into oversized code. */
+	.prose :global(pre),
+	.prose :global(pre code) {
+		font-size: 0.9rem;
+		line-height: 1.0 !important;
 	}
 	/* Latin body: Cutive Mono, drop cap on the first paragraph. */
 	.prose--en :global(> p:first-of-type::first-letter) {

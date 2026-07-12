@@ -7,7 +7,7 @@
 	--paper-shade: #ece4d5; /* faint panel fill, kept close to paper */
 	--ink: #1c1a17;
 	--faded: #6b6459;
-	--rule: #2a2722;
+	--rule: #948a7a; /* warm gray — all rules/borders read lighter than ink */
 	--accent: #7a1f12; /* oxblood */
 
 	/* — Type families — */
@@ -46,8 +46,8 @@
 
 	/* — Rules / borders — */
 	--rule-hair: 1px solid var(--rule);
-	--rule-thin: 1px solid var(--ink);
-	--rule-thick: 3px solid var(--ink);
+	--rule-thin: 1px solid var(--rule);
+	--rule-thick: 3px solid var(--rule);
 	--letterspace-label: 0.18em; /* Latin labels only — never on Bengali */
 
 	/* — Layout — */

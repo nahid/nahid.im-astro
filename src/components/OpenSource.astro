@@ -74,14 +74,15 @@ function formatStars(n: number): string {
 	.oss__card:hover .oss__name {
 		color: var(--accent);
 	}
-	/* Language sits as a small ruled tag beside the repo name. line-height:1 +
-	   even block padding keeps the box tight; text-indent balances the trailing
-	   space that letter-spacing adds after the last glyph. */
+	/* Language sits beside the repo name as a flat gray "paint" chip. The mono
+	   caps have no descenders, so they ride high in the line box — the smaller
+	   bottom padding trims that empty descent so the caps sit optically centred.
+	   text-indent balances the trailing space letter-spacing adds after the P. */
 	.oss__lang {
 		flex: none;
-		color: var(--faded);
-		padding: var(--sp-1) var(--sp-2);
-		border: var(--rule-hair);
+		color: var(--paper);
+		background: var(--faded);
+		padding: 0.4em 0.55em 0.16em;
 		line-height: 1;
 		text-indent: var(--letterspace-label);
 	}
