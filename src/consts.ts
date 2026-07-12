@@ -3,7 +3,7 @@
 
 export const SITE = {
 	/** Masthead nameplate — set in Special Elite caps by the design. */
-	masthead: 'The Alien Dispatch',
+	masthead: 'Nahid | The Alien',
 	/** Human owner / byline. */
 	author: 'Nahid Bin Azhar',
 	/** <title> suffix and RSS/OG site name. */
@@ -11,8 +11,8 @@ export const SITE = {
 	description:
 		'Dispatches on software, business, and the occasional experiment — by Nahid Bin Azhar.',
 	/** Folio strip furniture. */
-	kicker: 'Bangladesh Edition',
-	tagline: 'Notes from a engineering philosopher',
+	kicker: 'Multiverse Edition',
+	tagline: 'The Alien Dispatch',
 	established: 1988,
 	/** Default OG locale; per-post pages override from the post lang. */
 	locale: 'bn_BD',

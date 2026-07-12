@@ -48,7 +48,8 @@ const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : unde
 		{
 			data.heroImage && (
 				<figure>
-					<img src={data.heroImage} alt={data.title} />
+					<img src={data.heroImage} alt={data.heroImageAlt ?? data.title} />
+					{data.heroImageAlt && <figcaption>{data.heroImageAlt}</figcaption>}
 				</figure>
 			)
 		}
@@ -90,7 +91,7 @@ const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : unde
 
 <style>
 	.post {
-		max-width: var(--measure);
+		max-width: 50rem;
 		margin-inline: auto;
 		margin-top: var(--sp-6);
 	}
@@ -113,6 +114,7 @@ const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : unde
 	}
 
 	.prose {
+		font-size: 0.9em;
 		text-align: justify;
 	}
 	/* Latin body: Cutive Mono, drop cap on the first paragraph. */
@@ -139,7 +141,7 @@ const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : unde
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: var(--sp-4);
-		max-width: var(--measure);
+		max-width: 42rem;
 		margin: var(--sp-7) auto 0;
 		padding-top: var(--sp-4);
 		border-top: var(--rule-thin);

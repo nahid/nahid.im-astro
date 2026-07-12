@@ -19,8 +19,8 @@ const vol = Astro.props.volume ?? `Vol. ${year - SITE.established} · No. ${year
 
 <style>
 	.folio {
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
 		align-items: baseline;
 		gap: var(--sp-3);
 		font-family: var(--font-display);
@@ -32,7 +32,6 @@ const vol = Astro.props.volume ?? `Vol. ${year - SITE.established} · No. ${year
 		border-bottom: var(--rule-hair);
 	}
 	.folio__item--mid {
-		flex: 1;
 		text-align: center;
 	}
 	.folio__item--end {

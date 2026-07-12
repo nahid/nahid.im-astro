@@ -4,7 +4,9 @@ import { BIO } from '../consts';
 ---
 
 <div class="bio">
-	<img class="bio__photo" src={BIO.photo} width="180" height="180" alt={BIO.name} />
+	<div class="bio__mount">
+		<img class="bio__photo" src={BIO.photo} width="170" height="170" alt={BIO.name} />
+	</div>
 	<div class="bio__body">
 		<p class="bio__name">{BIO.name}</p>
 		<p class="bio__role label">{BIO.role}</p>
@@ -17,36 +19,60 @@ import { BIO } from '../consts';
 	.bio {
 		display: grid;
 		grid-template-columns: auto 1fr;
-		gap: var(--sp-5);
+		gap: var(--sp-6);
 		align-items: start;
 	}
-	.bio__photo {
-		width: 180px;
-		height: 180px;
-		object-fit: cover;
-		filter: grayscale(1) contrast(1.05);
+	/* Engraved-portrait mount: a matted frame, like an old letterpress cut. */
+	.bio__mount {
+		padding: var(--sp-2);
 		border: var(--rule-thin);
 		background: var(--paper-shade);
+		width: max-content;
+	}
+	.bio__photo {
+		display: block;
+		width: 170px;
+		height: 170px;
+		object-fit: cover;
+		filter: grayscale(1) contrast(1.05);
+		border: var(--rule-hair);
 	}
 	.bio__name {
 		font-family: var(--font-display);
-		font-size: var(--fs-h2);
-		margin: 0 0 var(--sp-1);
+		font-size: var(--fs-h1);
+		line-height: 1.1;
+		margin: 0 0 var(--sp-2);
 	}
 	.bio__role {
-		margin: 0 0 var(--sp-1);
+		margin: 0;
 	}
 	.bio__location {
-		margin: 0 0 var(--sp-3);
+		margin: var(--sp-1) 0 var(--sp-3);
+		padding-bottom: var(--sp-3);
+		border-bottom: 3px double var(--ink);
 	}
 	.bio__blurb {
 		margin: 0;
 		max-width: var(--measure);
 	}
+	/* Drop cap opens the blurb, echoing the article-page treatment (§3). */
+	.bio__blurb::first-letter {
+		float: left;
+		font-family: var(--font-display);
+		font-size: 2.6em;
+		line-height: 0.8;
+		padding: 0.05em 0.1em 0 0;
+		color: var(--accent);
+	}
 	@media (max-width: 34rem) {
 		.bio {
 			grid-template-columns: 1fr;
-			justify-items: start;
+			justify-items: center;
+			text-align: center;
+		}
+		.bio__body {
+			text-align: left;
+			width: 100%;
 		}
 	}
 </style>

@@ -27,6 +27,8 @@ const diaries = defineCollection({
 		tags: z.array(z.string()).default([]),
 		// Path under public/images/, e.g. /images/foo.jpg. ASCII only.
 		heroImage: z.string().optional(),
+		// Alt text + italic caption for heroImage. Falls back to title if omitted.
+		heroImageAlt: z.string().optional(),
 		draft: z.boolean().default(false),
 		// Most posts are Bengali; English posts must opt in with lang: 'en'.
 		lang: z.enum(['bn', 'en']).default('bn'),
