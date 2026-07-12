@@ -7,6 +7,8 @@ import Masthead from '../components/Masthead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SectionHead from '../components/SectionHead.astro';
+import SocialBar from '../components/SocialBar.astro';
+import { BIO } from '../consts';
 import { t } from '../utils/strings';
 ---
 
@@ -18,26 +20,44 @@ import { t } from '../utils/strings';
 	<main class="contact" lang="en">
 		<SectionHead label={t('contact', 'en')} lang="en" />
 		<p class="contact__lede">
-			Send a letter — every message is read.
+			Transmit a dispatch — every signal reaches the desk, and every signal is read.
 		</p>
 
-		<form class="letter" action="#" method="post">
-			<label class="letter__field">
-				<span class="letter__label label">Name</span>
-				<input type="text" name="name" required />
-			</label>
-			<label class="letter__field">
-				<span class="letter__label label">Email</span>
-				<input type="email" name="email" required />
-			</label>
-			<label class="letter__field">
-				<span class="letter__label label">Message</span>
-				<textarea name="message" rows="6" required></textarea>
-			</label>
-			<!-- Honeypot: leave blank (Phase 6). -->
-			<input class="letter__hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
-			<button class="letter__btn" type="submit">Send</button>
-		</form>
+		<div class="contact__grid">
+			<form class="letter" action="#" method="post">
+				<label class="letter__field">
+					<span class="letter__label label">Who goes there</span>
+					<input type="text" name="name" placeholder="Your name, earthling" required />
+				</label>
+				<label class="letter__field">
+					<span class="letter__label label">Return frequency</span>
+					<input type="email" name="email" placeholder="where the reply beams back" required />
+				</label>
+				<label class="letter__field">
+					<span class="letter__label label">The transmission</span>
+					<textarea name="message" rows="6" placeholder="Speak plainly. The signal carries across the void." required></textarea>
+				</label>
+				<!-- Honeypot: leave blank (Phase 6). -->
+				<input class="letter__hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+				<button class="letter__btn" type="submit">Transmit</button>
+			</form>
+
+			<aside class="contact__aside">
+				<p class="contact__aside-kicker label">Wire Room</p>
+				<p class="contact__aside-quote">
+					“All signals in, all signals read.”
+				</p>
+				<p class="contact__aside-text">
+					A letter is the slow way in. For anything faster, the usual frequencies
+					are open below.
+				</p>
+				<SocialBar />
+				<p class="contact__aside-meta meta">
+					Dispatched from {BIO.location} — an alien engineer, reading every wire
+					personally.
+				</p>
+			</aside>
+		</div>
 	</main>
 
 	<Footer />
@@ -45,10 +65,17 @@ import { t } from '../utils/strings';
 
 <style>
 	.contact {
-		max-width: var(--measure);
+		max-width: var(--sheet-max);
 	}
 	.contact__lede {
 		max-width: var(--measure);
+	}
+	.contact__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--sp-7);
+		align-items: start;
+		margin-top: var(--sp-5);
 	}
 	.letter {
 		display: grid;
@@ -72,6 +99,17 @@ import { t } from '../utils/strings';
 		border: var(--rule-hair);
 		border-radius: 0;
 		padding: var(--sp-2) var(--sp-3);
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	}
+	.letter input:hover,
+	.letter textarea:hover {
+		border-color: var(--ink);
+	}
+	.letter input:focus-visible,
+	.letter textarea:focus-visible {
+		outline: none;
+		border-color: var(--accent);
+		box-shadow: 0 0 0 1px var(--accent);
 	}
 	.letter textarea {
 		resize: vertical;
@@ -87,10 +125,49 @@ import { t } from '../utils/strings';
 		border: var(--rule-thin);
 		border-radius: 0;
 		cursor: pointer;
+		transition: background-color 0.15s ease, border-color 0.15s ease;
 	}
 	.letter__btn:hover {
 		background: var(--accent);
 		border-color: var(--accent);
+	}
+	.letter__btn:focus-visible {
+		outline: var(--focus-ring);
+		outline-offset: 2px;
+	}
+	.contact__aside {
+		border-left: var(--rule-hair);
+		padding-left: var(--sp-5);
+	}
+	.contact__aside-kicker {
+		margin: 0 0 var(--sp-2);
+	}
+	.contact__aside-quote {
+		font-family: var(--font-display);
+		font-size: var(--fs-h3);
+		line-height: 1.3;
+		margin: 0 0 var(--sp-3);
+		color: var(--accent);
+	}
+	.contact__aside-text {
+		margin: 0 0 var(--sp-4);
+		color: var(--faded);
+	}
+	.contact__aside-meta {
+		margin: var(--sp-4) 0 0;
+		padding-top: var(--sp-3);
+		border-top: var(--rule-hair);
+	}
+	@media (max-width: 48rem) {
+		.contact__grid {
+			grid-template-columns: 1fr;
+		}
+		.contact__aside {
+			border-left: none;
+			padding-left: 0;
+			padding-top: var(--sp-5);
+			border-top: var(--rule-hair);
+		}
 	}
 	.letter__hp {
 		position: absolute;
