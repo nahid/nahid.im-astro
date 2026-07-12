@@ -26,9 +26,10 @@ export const getStaticPaths = (async () => {
 const { slug, posts } = Astro.props;
 const labelBn = categoryLabel(slug, 'bn');
 const labelEn = categoryLabel(slug, 'en');
+const categoryDesc = `Dispatches by Nahid Bin Azhar filed under ${labelEn}.`;
 ---
 
-<Base title={labelEn} lang="en">
+<Base title={labelEn} description={categoryDesc} lang="en">
 	<Folio />
 	<Masthead />
 	<Nav />

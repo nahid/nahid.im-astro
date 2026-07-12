@@ -42,6 +42,7 @@ const today = formatDate(new Date(), 'en');
 		letter-spacing: 0.02em;
 		text-decoration: none;
 		color: var(--ink);
+		overflow-wrap: break-word;
 	}
 	.masthead__nameplate:hover {
 		color: var(--ink);
@@ -58,5 +59,13 @@ const today = formatDate(new Date(), 'en');
 	.masthead__dateline .rule {
 		border-top: 3px double var(--ink);
 		height: 3px;
+	}
+	/* Small phones: the wide kicker tracking is the likeliest source of
+	   horizontal overflow — ease it and let the string wrap. */
+	@media (max-width: 24rem) {
+		.masthead__kicker {
+			letter-spacing: 0.2em;
+			overflow-wrap: break-word;
+		}
 	}
 </style>

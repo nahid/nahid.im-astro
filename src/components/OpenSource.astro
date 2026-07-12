@@ -1,0 +1,101 @@
+---
+// Home "open source" section — a grid of project clippings, each a link to the
+// repo. Data lives in consts (OPEN_SOURCE); star counts are hand-updated.
+import { OPEN_SOURCE } from '../consts';
+
+/** 1622 → "1.6k", 871 → "871". Keeps the meta compact and typographic. */
+function formatStars(n: number): string {
+	return n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n);
+}
+---
+
+<ul class="oss">
+	{
+		OPEN_SOURCE.map((p) => (
+			<li>
+				<a class="oss__card" href={p.url} rel="me noopener" target="_blank">
+					<span class="oss__head">
+						<span class="oss__title">
+							<span class="oss__name">{p.name}</span>
+							<span class="oss__lang label">{p.language}</span>
+						</span>
+						<span class="oss__stars meta" aria-label={`${p.stars} stars`}>
+							<span aria-hidden="true">★</span> {formatStars(p.stars)}
+						</span>
+					</span>
+					<span class="oss__desc">{p.description}</span>
+				</a>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.oss {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--sp-4);
+		max-width: var(--sheet-max);
+	}
+	.oss__card {
+		display: grid;
+		gap: var(--sp-2);
+		height: 100%;
+		padding: var(--sp-4);
+		border: var(--rule-hair);
+		text-decoration: none;
+		color: var(--ink);
+		transition: border-color 0.15s ease;
+	}
+	.oss__card:hover {
+		border-color: var(--ink);
+	}
+	.oss__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: var(--sp-3);
+	}
+	.oss__title {
+		display: flex;
+		align-items: center;
+		gap: var(--sp-3);
+		min-width: 0;
+		flex-wrap: wrap;
+	}
+	.oss__name {
+		font-family: var(--font-display);
+		font-size: var(--fs-h3);
+		line-height: 1.1;
+	}
+	.oss__card:hover .oss__name {
+		color: var(--accent);
+	}
+	/* Language sits as a small ruled tag beside the repo name. line-height:1 +
+	   even block padding keeps the box tight; text-indent balances the trailing
+	   space that letter-spacing adds after the last glyph. */
+	.oss__lang {
+		flex: none;
+		color: var(--faded);
+		padding: var(--sp-1) var(--sp-2);
+		border: var(--rule-hair);
+		line-height: 1;
+		text-indent: var(--letterspace-label);
+	}
+	.oss__stars {
+		flex: none;
+		color: var(--accent);
+	}
+	.oss__desc {
+		color: var(--faded);
+	}
+	/* Broadsheet collapses to a single column of clippings on narrow screens. */
+	@media (max-width: 40rem) {
+		.oss {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

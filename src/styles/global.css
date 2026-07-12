@@ -154,6 +154,14 @@ figcaption {
 	color: var(--faded);
 }
 
+/* Wide tables in post content scroll inside themselves instead of forcing the
+   whole broadsheet to scroll horizontally on narrow screens. */
+.prose table {
+	display: block;
+	width: 100%;
+	overflow-x: auto;
+}
+
 /* — Section head: label flanked by rules (§0). — */
 .section-head {
 	display: grid;

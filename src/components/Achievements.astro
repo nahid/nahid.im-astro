@@ -44,4 +44,16 @@ import { ACHIEVEMENTS } from '../consts';
 		margin: 0;
 		padding-left: var(--sp-4);
 	}
+	/* Small phones: reclaim width for the text by narrowing the year gutter. */
+	@media (max-width: 30rem) {
+		.ach__row {
+			grid-template-columns: 3rem 1fr;
+		}
+		.ach__year {
+			padding-right: var(--sp-3);
+		}
+		.ach__text {
+			padding-left: var(--sp-3);
+		}
+	}
 </style>

@@ -19,9 +19,20 @@ export const getStaticPaths = (async ({ paginate }: { paginate: PaginateFunction
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
+
+// Page ≥2 gets its own title/description so paginated pages aren't duplicate content.
+const pageSuffix = page.currentPage > 1 ? ` — Page ${page.currentPage}` : '';
+const archiveTitle = `${t('allDiaries', 'en')}${pageSuffix}`;
+const archiveDesc = `${t('diariesDesc', 'en')}${pageSuffix}`;
 ---
 
-<Base title={t('allDiaries', 'en')} lang="en">
+<Base
+	title={archiveTitle}
+	description={archiveDesc}
+	lang="en"
+	prevUrl={page.url.prev}
+	nextUrl={page.url.next}
+>
 	<Folio />
 	<Masthead />
 	<Nav />

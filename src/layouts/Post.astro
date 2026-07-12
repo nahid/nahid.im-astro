@@ -10,6 +10,7 @@ import Footer from '../components/Footer.astro';
 import { categoryLabel } from '../utils/categories';
 import { formatDate, formatNumber, readingMinutes } from '../utils/format';
 import { t } from '../utils/strings';
+import { SITE } from '../consts';
 
 interface Props {
 	post: CollectionEntry<'diaries'>;
@@ -22,9 +23,20 @@ const { data } = post;
 const lang = data.lang;
 const minutes = readingMinutes(post.body ?? '', lang);
 const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : undefined;
+const article = {
+	publishedTime: data.pubDate.toISOString(),
+	modifiedTime: data.updatedDate?.toISOString(),
+	author: SITE.author,
+};
 ---
 
-<Base title={data.title} description={data.description} lang={lang} ogImage={ogImage}>
+<Base
+	title={data.title}
+	description={data.description}
+	lang={lang}
+	ogImage={ogImage}
+	article={article}
+>
 	<Folio />
 	<Masthead />
 	<Nav />
@@ -159,5 +171,15 @@ const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : unde
 	}
 	.post-nav__end a:hover .post-nav__title {
 		color: var(--accent);
+	}
+	/* Small screens: two title columns get too narrow — stack them. */
+	@media (max-width: 34rem) {
+		.post-nav {
+			grid-template-columns: 1fr;
+			gap: var(--sp-4);
+		}
+		.post-nav__end--right {
+			text-align: left;
+		}
 	}
 </style>

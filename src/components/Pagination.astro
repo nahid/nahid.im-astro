@@ -68,4 +68,11 @@ const { prevUrl, nextUrl, current, total, lang = 'en' } = Astro.props;
 		letter-spacing: 0;
 		text-transform: none;
 	}
+	/* Small phones: tighten tracking and gap so the labels don't wrap awkwardly. */
+	@media (max-width: 24rem) {
+		.pager {
+			gap: var(--sp-2);
+			letter-spacing: 0.08em;
+		}
+	}
 </style>

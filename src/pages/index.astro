@@ -8,18 +8,19 @@ import Nav from '../components/Nav.astro';
 import Bio from '../components/Bio.astro';
 import Newsletter from '../components/Newsletter.astro';
 import Achievements from '../components/Achievements.astro';
+import OpenSource from '../components/OpenSource.astro';
 import SocialBar from '../components/SocialBar.astro';
 import SectionHead from '../components/SectionHead.astro';
 import PostCard from '../components/PostCard.astro';
 import Footer from '../components/Footer.astro';
-import { RECENT_COUNT } from '../consts';
+import { RECENT_COUNT, GITHUB_PROFILE } from '../consts';
 import { getPublishedPosts } from '../utils/posts';
 import { t } from '../utils/strings';
 
 const recent = (await getPublishedPosts()).slice(0, RECENT_COUNT);
 ---
 
-<Base lang="en">
+<Base lang="en" description={t('homeDesc', 'en')}>
 	<Folio />
 	<Masthead />
 	<Nav />
@@ -34,6 +35,10 @@ const recent = (await getPublishedPosts()).slice(0, RECENT_COUNT);
 
 		<SectionHead label={t('achievements', 'en')} lang="en" />
 		<Achievements />
+
+		<SectionHead label={t('openSource', 'en')} lang="en" href={GITHUB_PROFILE} />
+		<p class="home__lede">{t('openSourceLede', 'en')}</p>
+		<OpenSource />
 
 		<SectionHead label={t('elsewhere', 'en')} lang="en" />
 		<SocialBar />
@@ -58,6 +63,12 @@ const recent = (await getPublishedPosts()).slice(0, RECENT_COUNT);
 <style>
 	.home {
 		padding-top: var(--sp-5);
+	}
+	/* Sits under a section head as a short intro line (e.g. Open Source). */
+	.home__lede {
+		max-width: var(--measure);
+		margin: 0 0 var(--sp-5);
+		color: var(--faded);
 	}
 	.lede-grid {
 		display: grid;
