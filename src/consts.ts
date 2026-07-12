@@ -29,10 +29,10 @@ export const NAV = [
 /** Short bio shown on the homepage and About lede. */
 export const BIO = {
 	name: 'Nahid Bin Azhar',
-	role: 'Software engineer · CTO & co-founder, JoulesLabs',
+	role: 'Software architect · CTO & co-founder, JoulesLabs',
 	location: 'Dhaka, Bangladesh',
 	blurb:
-		'I build software and the teams that ship it. Most of these dispatches are in Bangla — notes on engineering, running a company, and staying curious.',
+		"Software engineer turned entrepreneur — twelve years in the industry, now building SaaS products as CTO & co-founder of JoulesLabs. Most of these dispatches are in Bangla — notes on engineering, running a company, and staying curious.",
 	/** Portrait lives in public/images/; grayscale is applied in CSS, not baked in.
 	 *  Placeholder until the real photo is migrated (Phase 2). */
 	photo: '/images/portrait-placeholder.svg',
