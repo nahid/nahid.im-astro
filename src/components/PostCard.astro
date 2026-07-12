@@ -15,8 +15,8 @@ const href = `/diaries/${post.id}/`;
 ---
 
 <article class="card" lang={lang}>
-	<a class="card__cat label" lang={lang} href={`/diaries/category/${data.category}/`}>
-		{categoryLabel(data.category, lang)}
+	<a class="card__cat label" href={`/diaries/category/${data.category}/`}>
+		{categoryLabel(data.category, 'en')}
 	</a>
 	<h3 class="card__title">
 		<a href={href}>{data.title}</a>
@@ -24,10 +24,10 @@ const href = `/diaries/${post.id}/`;
 	<p class="card__excerpt">{data.description}</p>
 	<p class="card__meta meta">
 		<time datetime={data.pubDate.toISOString().slice(0, 10)}>
-			{formatDate(data.pubDate, lang)}
+			{formatDate(data.pubDate, 'en')}
 		</time>
 		<span aria-hidden="true"> · </span>
-		<a href={href}>{t('readMore', lang)}</a>
+		<a href={href}>{t('readMore', 'en')}</a>
 	</p>
 </article>
 

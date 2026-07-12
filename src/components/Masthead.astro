@@ -4,7 +4,7 @@
 import { SITE } from '../consts';
 import { formatDate } from '../utils/format';
 
-const today = formatDate(new Date(), 'bn');
+const today = formatDate(new Date(), 'en');
 ---
 
 <header class="masthead">
@@ -14,7 +14,7 @@ const today = formatDate(new Date(), 'bn');
 	</a>
 	<div class="masthead__dateline">
 		<span class="rule" aria-hidden="true"></span>
-		<time lang="bn" datetime={new Date().toISOString().slice(0, 10)}>{today}</time>
+		<time datetime={new Date().toISOString().slice(0, 10)}>{today}</time>
 		<span class="rule" aria-hidden="true"></span>
 	</div>
 </header>

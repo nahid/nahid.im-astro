@@ -8,20 +8,19 @@ import Footer from '../components/Footer.astro';
 import { t } from '../utils/strings';
 ---
 
-<Base title="Story Not Found" lang="bn">
+<Base title="Story Not Found" lang="en">
 	<Folio />
 	<Masthead />
 	<Nav />
 
 	<main class="notfound">
 		<p class="notfound__code label">404</p>
-		<h1 class="notfound__title" lang="en">Story Not Found</h1>
-		<p class="notfound__sub" lang="en">
+		<h1 class="notfound__title">Story Not Found</h1>
+		<p class="notfound__sub">
 			The correspondent has no dispatch at this address.
 		</p>
 		<hr class="rule-double" />
-		<p lang="bn">{t('notFoundBody', 'bn')}</p>
-		<p><a href="/" lang="bn">{t('backHome', 'bn')}</a></p>
+		<p><a href="/">{t('backHome', 'en')}</a></p>
 	</main>
 
 	<Footer />

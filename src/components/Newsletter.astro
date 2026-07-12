@@ -3,7 +3,7 @@
 // wired to a provider in Phase 6; the markup is static and JS-free until then.
 import { t } from '../utils/strings';
 
-const lang = 'bn' as const;
+const lang = 'en' as const;
 ---
 
 <form class="coupon" action="#" method="post" aria-labelledby="sub-heading">
@@ -32,7 +32,7 @@ const lang = 'bn' as const;
 	}
 	.coupon__title {
 		margin: 0 0 var(--sp-3);
-		font-family: var(--font-bengali);
+		font-family: var(--font-display);
 		font-weight: 700;
 		font-size: var(--fs-h3);
 	}
@@ -54,7 +54,7 @@ const lang = 'bn' as const;
 	}
 	.coupon__btn {
 		padding: var(--sp-2) var(--sp-4);
-		font-family: var(--font-bengali);
+		font-family: var(--font-display);
 		font-weight: 700;
 		font-size: var(--fs-body);
 		color: var(--paper);

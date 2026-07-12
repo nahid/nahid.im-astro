@@ -11,9 +11,9 @@ export const SITE = {
 	description:
 		'Dispatches on software, business, and the occasional experiment — by Nahid Bin Azhar.',
 	/** Folio strip furniture. */
-	kicker: 'Dhaka Edition',
-	tagline: 'Notes from a working engineer',
-	established: 2014,
+	kicker: 'Bangladesh Edition',
+	tagline: 'Notes from a engineering philosopher',
+	established: 1988,
 	/** Default OG locale; per-post pages override from the post lang. */
 	locale: 'bn_BD',
 } as const;
@@ -48,10 +48,10 @@ export const ACHIEVEMENTS = [
 /** Social links for the SocialBar. Order = display order. */
 export const SOCIALS = [
 	{ label: 'GitHub', href: 'https://github.com/nahid' },
-	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/nahid' },
-	{ label: 'Twitter / X', href: 'https://twitter.com/nahid' },
-	{ label: 'Facebook', href: 'https://www.facebook.com/nahid' },
-	{ label: 'Threads', href: 'https://www.threads.net/@nahid' },
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/nahidophia' },
+	{ label: 'Twitter / X', href: 'https://twitter.com/nahidophia' },
+	{ label: 'Facebook', href: 'https://www.facebook.com/nahidophia' },
+	{ label: 'Threads', href: 'https://www.threads.net/@nahidophia' },
 ] as const;
 
 /** How many posts the homepage "Latest dispatches" section shows. */

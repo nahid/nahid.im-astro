@@ -19,12 +19,12 @@ import { t } from '../utils/strings';
 const recent = (await getPublishedPosts()).slice(0, RECENT_COUNT);
 ---
 
-<Base lang="bn">
+<Base lang="en">
 	<Folio />
 	<Masthead />
 	<Nav />
 
-	<main>
+	<main class="home">
 		<div class="lede-grid">
 			<Bio />
 			<aside class="lede-grid__aside">
@@ -32,13 +32,13 @@ const recent = (await getPublishedPosts()).slice(0, RECENT_COUNT);
 			</aside>
 		</div>
 
-		<SectionHead label={t('achievements', 'bn')} lang="bn" />
+		<SectionHead label={t('achievements', 'en')} lang="en" />
 		<Achievements />
 
-		<SectionHead label={t('elsewhere', 'bn')} lang="bn" />
+		<SectionHead label={t('elsewhere', 'en')} lang="en" />
 		<SocialBar />
 
-		<SectionHead label={t('latestDispatches', 'bn')} lang="bn" href="/diaries/" />
+		<SectionHead label={t('latestDispatches', 'en')} lang="en" href="/diaries/" />
 		{
 			recent.length > 0 ? (
 				<div class="latest">
@@ -47,7 +47,7 @@ const recent = (await getPublishedPosts()).slice(0, RECENT_COUNT);
 					))}
 				</div>
 			) : (
-				<p class="meta" lang="bn">এখনো কোনো ডায়েরি প্রকাশিত হয়নি।</p>
+				<p class="meta">No dispatches published yet.</p>
 			)
 		}
 	</main>
@@ -56,11 +56,13 @@ const recent = (await getPublishedPosts()).slice(0, RECENT_COUNT);
 </Base>
 
 <style>
+	.home {
+		padding-top: var(--sp-5);
+	}
 	.lede-grid {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: var(--sp-6);
-		margin-top: var(--sp-6);
 	}
 	@media (min-width: 48rem) {
 		.lede-grid {
@@ -77,16 +79,21 @@ const recent = (await getPublishedPosts()).slice(0, RECENT_COUNT);
 		display: grid;
 		gap: 0;
 	}
-	.latest > :global(.card) + :global(.card) {
+	.latest > :global(.card) {
 		border-top: var(--rule-hair);
+	}
+	.latest > :global(.card:first-child) {
+		border-top: none;
 	}
 	@media (min-width: 48rem) {
 		.latest {
 			grid-template-columns: 1fr 1fr;
 			column-gap: var(--sp-6);
 		}
-		.latest > :global(.card) {
-			border-top: var(--rule-hair);
+		/* Second card sits in the first row on desktop's 2-col grid, so it
+		   shouldn't get a top rule either — only .card:first-child would. */
+		.latest > :global(.card:nth-child(2)) {
+			border-top: none;
 		}
 	}
 </style>

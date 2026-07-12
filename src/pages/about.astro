@@ -12,31 +12,31 @@ import { BIO } from '../consts';
 import { t } from '../utils/strings';
 ---
 
-<Base title="About" lang="bn">
+<Base title="About" lang="en">
 	<Folio />
 	<Masthead />
 	<Nav />
 
-	<main class="about" lang="bn">
-		<SectionHead label={t('about', 'bn')} lang="bn" />
+	<main class="about" lang="en">
+		<SectionHead label={t('about', 'en')} lang="en" />
 		<div class="about__grid">
 			<img class="about__photo" src={BIO.photo} width="220" height="220" alt={BIO.name} />
 			<div>
 				<h1>{BIO.name}</h1>
 				<p class="about__role label">{BIO.role}</p>
 				<p>
-					আমি নাহিদ বিন আজহার — একজন সফটওয়্যার প্রকৌশলী এবং JoulesLabs-এর সহ‑প্রতিষ্ঠাতা।
-					গত এক দশক ধরে সফটওয়্যার তৈরি করছি এবং যারা তা তৈরি করে সেই দলগুলো গড়ে তুলছি।
+					I am Nahid Bin Azhar — a software engineer and co-founder of JoulesLabs.
+					I have spent the last decade building software and the teams that ship it.
 				</p>
 				<p>
-					এই ডিসপ্যাচে বেশিরভাগ লেখা বাংলায় — প্রকৌশল, ব্যবসা পরিচালনা, উৎপাদনশীলতা আর
-					মাঝেমধ্যে কিছু পরীক্ষা‑নিরীক্ষা নিয়ে। পুরোনো লেটারপ্রেস দৈনিকের মেজাজে সাজানো,
-					তবে লেখা সমসাময়িক।
+					Most of the writing here is in Bengali — engineering, business operations,
+					productivity, and the occasional experiment. The aesthetic is old letterpress
+					daily; the writing is contemporary.
 				</p>
 			</div>
 		</div>
 
-		<SectionHead label={t('elsewhere', 'bn')} lang="bn" />
+		<SectionHead label={t('elsewhere', 'en')} lang="en" />
 		<SocialBar />
 	</main>
 

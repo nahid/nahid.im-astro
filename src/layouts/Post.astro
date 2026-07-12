@@ -30,19 +30,19 @@ const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : unde
 	<Nav />
 
 	<article class="post" lang={lang}>
-		<p class="post__eyebrow label" lang={lang}>
-			<a href={`/diaries/category/${data.category}/`}>{categoryLabel(data.category, lang)}</a>
+		<p class="post__eyebrow label">
+			<a href={`/diaries/category/${data.category}/`}>{categoryLabel(data.category, 'en')}</a>
 		</p>
 		<h1 class="post__headline">{data.title}</h1>
 
 		<div class="post__byline">
-			<span>{t('byline', lang)}</span>
+			<span>{t('byline', 'en')}</span>
 			<span aria-hidden="true"> · </span>
 			<time datetime={data.pubDate.toISOString().slice(0, 10)}>
-				{formatDate(data.pubDate, lang)}
+				{formatDate(data.pubDate, 'en')}
 			</time>
 			<span aria-hidden="true"> · </span>
-			<span>{formatNumber(minutes, lang)} {t('minRead', lang)}</span>
+			<span>{formatNumber(minutes, 'en')} {t('minRead', 'en')}</span>
 		</div>
 
 		{
@@ -64,8 +64,8 @@ const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : unde
 				<span class="post-nav__end">
 					{prev && (
 						<a href={`/diaries/${prev.slug}/`}>
-							<span class="label" lang={lang}>
-								{t('prevPost', lang)}
+							<span class="label">
+								{t('prevPost', 'en')}
 							</span>
 							<span class="post-nav__title">{prev.title}</span>
 						</a>
@@ -74,8 +74,8 @@ const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : unde
 				<span class="post-nav__end post-nav__end--right">
 					{next && (
 						<a href={`/diaries/${next.slug}/`}>
-							<span class="label" lang={lang}>
-								{t('nextPost', lang)}
+							<span class="label">
+								{t('nextPost', 'en')}
 							</span>
 							<span class="post-nav__title">{next.title}</span>
 						</a>

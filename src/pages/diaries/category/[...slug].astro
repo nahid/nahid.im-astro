@@ -28,13 +28,13 @@ const labelBn = categoryLabel(slug, 'bn');
 const labelEn = categoryLabel(slug, 'en');
 ---
 
-<Base title={labelEn} lang="bn">
+<Base title={labelEn} lang="en">
 	<Folio />
 	<Masthead />
 	<Nav />
 
 	<main>
-		<SectionHead label={labelBn} lang="bn" />
+		<SectionHead label={labelEn} lang="en" />
 		{
 			posts.length > 0 ? (
 				<div class="archive">
@@ -43,7 +43,7 @@ const labelEn = categoryLabel(slug, 'en');
 					))}
 				</div>
 			) : (
-				<p class="meta" lang="bn">এই বিভাগে এখনো কোনো ডায়েরি নেই।</p>
+				<p class="meta">No dispatches in this category yet.</p>
 			)
 		}
 	</main>

@@ -21,13 +21,13 @@ export const getStaticPaths = (async ({ paginate }: { paginate: PaginateFunction
 const { page } = Astro.props;
 ---
 
-<Base title={t('allDiaries', 'en')} lang="bn">
+<Base title={t('allDiaries', 'en')} lang="en">
 	<Folio />
 	<Masthead />
 	<Nav />
 
 	<main>
-		<SectionHead label={t('allDiaries', 'bn')} lang="bn" />
+		<SectionHead label={t('allDiaries', 'en')} lang="en" />
 		<div class="archive">
 			{page.data.map((post) => <PostCard post={post} />)}
 		</div>
@@ -36,7 +36,7 @@ const { page } = Astro.props;
 			nextUrl={page.url.next}
 			current={page.currentPage}
 			total={page.lastPage}
-			lang="bn"
+			lang="en"
 		/>
 	</main>
 

@@ -10,33 +10,33 @@ import SectionHead from '../components/SectionHead.astro';
 import { t } from '../utils/strings';
 ---
 
-<Base title="Contact" lang="bn">
+<Base title="Contact" lang="en">
 	<Folio />
 	<Masthead />
 	<Nav />
 
-	<main class="contact" lang="bn">
-		<SectionHead label={t('contact', 'bn')} lang="bn" />
+	<main class="contact" lang="en">
+		<SectionHead label={t('contact', 'en')} lang="en" />
 		<p class="contact__lede">
-			একটি চিঠি পাঠান — প্রতিটি বার্তাই পড়া হয়।
+			Send a letter — every message is read.
 		</p>
 
 		<form class="letter" action="#" method="post">
 			<label class="letter__field">
-				<span class="letter__label label" lang="bn">নাম</span>
+				<span class="letter__label label">Name</span>
 				<input type="text" name="name" required />
 			</label>
 			<label class="letter__field">
-				<span class="letter__label label" lang="bn">ইমেইল</span>
+				<span class="letter__label label">Email</span>
 				<input type="email" name="email" required />
 			</label>
 			<label class="letter__field">
-				<span class="letter__label label" lang="bn">বার্তা</span>
+				<span class="letter__label label">Message</span>
 				<textarea name="message" rows="6" required></textarea>
 			</label>
 			<!-- Honeypot: leave blank (Phase 6). -->
 			<input class="letter__hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
-			<button class="letter__btn" type="submit" lang="bn">পাঠান</button>
+			<button class="letter__btn" type="submit">Send</button>
 		</form>
 	</main>
 
@@ -79,7 +79,7 @@ import { t } from '../utils/strings';
 	.letter__btn {
 		justify-self: start;
 		padding: var(--sp-2) var(--sp-5);
-		font-family: var(--font-bengali);
+		font-family: var(--font-display);
 		font-weight: 700;
 		font-size: var(--fs-body);
 		color: var(--paper);
