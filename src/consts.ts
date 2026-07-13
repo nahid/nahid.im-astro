@@ -21,6 +21,8 @@ export const SITE = {
 	ogImage: '/images/og-default.png',
 	/** Twitter/X handle for card attribution (matches SOCIALS). */
 	twitterHandle: '@nahidophia',
+	/** Public contact address — mailto: link on /contact, no backend required. */
+	email: 'nahid@jouleslabs.com',
 } as const;
 
 /** Primary navigation. `href` values must match the target site map (§2). */

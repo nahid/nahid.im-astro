@@ -25,8 +25,12 @@ export const STRINGS = {
 	prevPost: { bn: 'পূর্ববর্তী দিনলিপি', en: 'Continued from' },
 	nextPost: { bn: 'পরবর্তী দিনলিপি', en: 'Continues on' },
 	subscribe: { bn: 'ডিসপ্যাচ গ্রাহক হন', en: 'Subscribe to the Dispatch' },
-	emailPlaceholder: { bn: 'আপনার ইমেইল', en: 'your@email' },
-	subscribeCta: { bn: 'গ্রাহক হন', en: 'Subscribe' },
+	subscribeRssBody: {
+		bn: 'নতুন ইমেইল লিস্ট নেই — RSS ফিডে যুক্ত হন, নতুন দিনলিপি প্রকাশের সাথে সাথেই পেয়ে যাবেন।',
+		en: 'No email list here — follow the RSS feed and every new dispatch lands the moment it publishes.',
+	},
+	subscribeCta: { bn: 'RSS ফিড', en: 'Subscribe via RSS' },
+	contactMailCta: { bn: 'ইমেইল করুন', en: 'Send an email' },
 	notFoundTitle: { bn: 'দিনলিপি পাওয়া যায়নি', en: 'Story Not Found' },
 	notFoundBody: {
 		bn: 'এই ঠিকানায় সংবাদদাতার কোনো প্রতিবেদন নেই।',

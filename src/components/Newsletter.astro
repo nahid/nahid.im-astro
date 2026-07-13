@@ -1,29 +1,17 @@
 ---
-// "Subscribe to the Dispatch" coupon box, dashed border. The POST endpoint is
-// wired to a provider in Phase 6; the markup is static and JS-free until then.
+// "Subscribe to the Dispatch" coupon box, dashed border. No email list is
+// run for this static site — the coupon points at the RSS feed instead,
+// which needs no backend and no client JS.
 import { t } from '../utils/strings';
 
 const lang = 'en' as const;
 ---
 
-<form class="coupon" action="#" method="post" aria-labelledby="sub-heading">
-	<p id="sub-heading" class="coupon__title" lang={lang}>{t('subscribe', lang)}</p>
-	<div class="coupon__row">
-		<label class="sr-only" for="sub-email">{t('emailPlaceholder', lang)}</label>
-		<input
-			id="sub-email"
-			class="coupon__input"
-			type="email"
-			name="email"
-			required
-			placeholder={t('emailPlaceholder', lang)}
-			lang={lang}
-		/>
-		<!-- Honeypot: real users leave it blank (§ Phase 6). -->
-		<input class="coupon__hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
-		<button class="coupon__btn" type="submit" lang={lang}>{t('subscribeCta', lang)}</button>
-	</div>
-</form>
+<div class="coupon">
+	<p class="coupon__title" lang={lang}>{t('subscribe', lang)}</p>
+	<p class="coupon__body" lang={lang}>{t('subscribeRssBody', lang)}</p>
+	<a class="coupon__btn" href="/rss.xml" lang={lang}>{t('subscribeCta', lang)}</a>
+</div>
 
 <style>
 	.coupon {
@@ -31,28 +19,17 @@ const lang = 'en' as const;
 		padding: var(--sp-4);
 	}
 	.coupon__title {
-		margin: 0 0 var(--sp-3);
+		margin: 0 0 var(--sp-2);
 		font-family: var(--font-display);
 		font-weight: 700;
 		font-size: var(--fs-h3);
 	}
-	.coupon__row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--sp-2);
-	}
-	.coupon__input {
-		flex: 1 1 12rem;
-		min-width: 0;
-		padding: var(--sp-2) var(--sp-3);
-		font-family: inherit;
-		font-size: var(--fs-body);
-		color: var(--ink);
-		background: var(--paper);
-		border: var(--rule-thin);
-		border-radius: 0;
+	.coupon__body {
+		margin: 0 0 var(--sp-3);
+		color: var(--faded);
 	}
 	.coupon__btn {
+		display: inline-block;
 		padding: var(--sp-2) var(--sp-4);
 		font-family: var(--font-display);
 		font-weight: 700;
@@ -60,17 +37,10 @@ const lang = 'en' as const;
 		color: var(--paper);
 		background: var(--ink);
 		border: var(--rule-thin);
-		border-radius: 0;
-		cursor: pointer;
+		text-decoration: none;
 	}
 	.coupon__btn:hover {
 		background: var(--accent);
 		border-color: var(--accent);
-	}
-	.coupon__hp {
-		position: absolute;
-		left: -9999px;
-		width: 1px;
-		height: 1px;
 	}
 </style>
