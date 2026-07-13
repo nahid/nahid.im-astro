@@ -28,12 +28,20 @@ body {
 /* — Language-aware type (§3). Set lang on <html> and per-article. — */
 :lang(bn) {
 	--font-body: var(--font-bengali);
-	/* Bengali reads smaller at the same px; nudge it up. */
-	font-size: calc(1em * var(--bengali-scale));
 	/* Never break Bengali mid-conjunct. */
 	word-break: normal;
 	overflow-wrap: break-word;
 	hyphens: none;
+}
+/* Bengali reads smaller at the same px; nudge it up — exactly once, at the
+   language root. :lang() matches every element in the subtree, not just the root,
+   and a font-size in em compounds against its parent: with <html lang="bn"> and
+   <article lang="bn">, an unguarded rule scaled a link inside a list by 1.08^5
+   (html>article>ul>li>a) ≈ 1.5x, and multiplied Shiki's nested token spans too.
+   :not(:lang(bn) *) drops every element that already has a Bengali ancestor, so
+   the bump lands once and the rest of the tree just inherits the computed px. */
+:lang(bn):not(:lang(bn) *) {
+	font-size: calc(1em * var(--bengali-scale));
 }
 
 /* The face has to follow the *element's* language, not just the page's.
@@ -43,7 +51,9 @@ body {
    keeps <html>'s Latin face — and Cutive Mono has no Bengali glyphs, so the
    excerpt renders as tofu boxes.
    :where() pins specificity to zero, so component rules that name a face
-   (.label, .nav__link, code/pre) still win over it. */
+   (.label, .nav__link, code/pre) still win over it. Note these rules match every
+   descendant element too, not just the language root — see the code-span rule
+   below for what that costs. */
 :where(:lang(bn)) {
 	font-family: var(--font-bengali);
 }
@@ -51,13 +61,51 @@ body {
 	font-family: var(--font-mono);
 }
 
-/* Code always uses the mono stack regardless of surrounding language. */
+/* Code always uses the code face regardless of surrounding language.
+   JetBrains Mono has a much taller x-height than Cutive Mono, so it needs a
+   smaller relative size to sit at the same optical weight as the body text. */
 code,
 pre,
 kbd,
 samp {
-	font-family: var(--font-mono);
-	font-size: 0.9em;
+	font-family: var(--font-code);
+	font-size: 0.82em;
+}
+
+/* Shiki wraps every syntax token in a <span>, and the :lang() rules above match
+   those spans *directly* — a direct match beats a value inherited from <code>,
+   however low its specificity — so tokens inside a Bengali post would render in
+   the Bengali serif face. Re-assert the code face on the descendants; family
+   only, so the 0.82em above is not compounded. */
+code *,
+pre * {
+	font-family: inherit;
+}
+
+/* <pre><code> nests, and an em font-size would compound to ~0.67em. */
+pre code {
+	font-size: 1em;
+}
+
+/* Inline code reads as a slug of type set into the line: the same panel fill and
+   hair rule as a code block, but tight enough not to disturb the leading. The
+   padding is in em so the chip tracks the code face's own size, and the vertical
+   padding stays under half the line's leading so consecutive lines can't touch.
+   :not(pre) keeps this off block code, which already has its own panel. */
+:not(pre) > code {
+	/* Optically, not nominally, smaller: JetBrains Mono's x-height runs so much
+	   taller than the body faces that the 0.82em above still sets a chip that
+	   reads level with the prose. 0.75em is where it drops below the line. */
+	font-size: 0.75em;
+	padding: 0.1em 0.3em;
+	/* Not --rule-hair: at this size a warm-gray hairline is the darkest edge in
+	   the paragraph and the chip starts shouting over the prose. A deeper shade
+	   of the fill itself defines the box and stays inside the type. */
+	border: 1px solid var(--paper-shade-edge);
+	background: var(--paper-shade);
+	/* A long identifier must break with the line rather than push the sheet
+	   sideways (§5, 375px). */
+	overflow-wrap: break-word;
 }
 
 pre {

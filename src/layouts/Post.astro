@@ -141,12 +141,13 @@ const article = {
 		font-size: 0.9em;
 		text-align: justify;
 	}
-	/* Code blocks: a fixed rem size + a line-height that resists the sitewide
-	   :lang(bn) rule, which would otherwise inflate <pre>/<code> with the Bengali
-	   size bump and airy leading. 1.5 is the floor that still clears descenders. */
+	/* Code blocks: a fixed rem size, so the block reads the same in a Bengali post
+	   as in an English one, plus a line-height tight enough to resist the Bengali
+	   leading. 1.5 is the floor that still clears descenders.
+	   0.85rem, not 0.9: JetBrains Mono's x-height runs taller than the body face. */
 	.prose :global(pre),
 	.prose :global(pre code) {
-		font-size: 0.9rem;
+		font-size: 0.85rem;
 		line-height: 1.5;
 	}
 	/* Latin body: Cutive Mono, drop cap on the first paragraph. */

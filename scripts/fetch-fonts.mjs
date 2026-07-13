@@ -20,6 +20,7 @@ const FAMILIES = [
 	{ slug: 'special-elite', ship: true, url: 'https://fonts.googleapis.com/css2?family=Special+Elite&display=swap' },
 	{ slug: 'cutive-mono', ship: true, url: 'https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap' },
 	{ slug: 'noto-serif-bengali', ship: true, url: 'https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&display=swap' },
+	{ slug: 'jetbrains-mono', ship: true, url: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap' },
 	// Specimen-only alternatives (Phase 1 item 2b) — evaluated, not shipped.
 	{ slug: 'tiro-bangla', ship: false, url: 'https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap' },
 	{ slug: 'baloo-da-2', ship: false, url: 'https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;700&display=swap' },

@@ -5,6 +5,8 @@
 	/* — Palette (§0) — */
 	--paper: #f2ece0;
 	--paper-shade: #ece4d5; /* faint panel fill, kept close to paper */
+	--paper-shade-edge: #dcd2bd; /* the same fill, a step deeper — edges a --paper-shade panel
+	                                without the weight of a --rule hairline */
 	--desk: #d9d1c1; /* the surface the paper sheet sits on */
 	--ink: #1c1a17;
 	--faded: #6b6459;
@@ -13,7 +15,8 @@
 
 	/* — Type families — */
 	--font-display: 'Special Elite', 'Courier New', monospace; /* chrome: masthead, labels, nav */
-	--font-mono: 'Cutive Mono', 'Courier New', monospace; /* Latin body + code */
+	--font-mono: 'Cutive Mono', 'Courier New', monospace; /* Latin body */
+	--font-code: 'JetBrains Mono', 'Cutive Mono', 'Courier New', monospace; /* code snippets */
 	--font-bengali: 'Noto Serif Bengali', Georgia, 'Times New Roman', serif;
 
 	/* Default (Latin) body face. Set per-lang below and on [lang] elements. */
