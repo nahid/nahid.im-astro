@@ -37,7 +37,7 @@ enum Status: int
 
 আমি যদি একেবারে বেসিক ধারনার কথা বলি সেটা হচ্ছে Enum হচ্ছে একটি Key Value পেয়ার। এখন আমাদের সফটওয়্যার ডেভলপমেন্টের সময় এমন অনেকগুলো সিনারিও আসে যেখানে আপনাকে কিছু প্রিডিভাইন্ড ভ্যালু নিয়ে কাজ করতে হয়, যে ভ্যালুগুলো একটি নির্দিষ্ট অর্থবহন করে। যেমন: উপরের উদাহরনে দেখা যাচ্ছে `Approved` এর ভ্যালু হচ্ছে 1. এখন আমরা যদি এটিকে হার্ডকোড হিসেবে প্রোগ্রামে লিখি সেখানে কিছু সমস্যা রয়েছে। নিচের উদাহরন দেখলে বোঝা যাবে।
 
-```
+```php
 if ($comment->status === 1) {
     // do something
 }
@@ -45,7 +45,7 @@ if ($comment->status === 1) {
 
 এখানে আমরা হার্ডকোড ভ্যালু ব্যবহার করেছি, এবং এভাবে যদি আমরা আমাদের এপ্লিকেশনের বহু জায়গায় কোড লিখি সেটাকে পরবর্তিতে রিফ্যাক্টর করা দুরুহ হয়ে পরবে। অর্থাৎ প্রোগ্রামে কোনো কারনে যদি আমাদের Approved এর ভ্যালু 1 এর পরিবর্তে 3 করার প্রয়োজন হয় তবে আমাদের সকল জায়গায় মেনুয়ালি গিয়ে সেটাকে পরিবর্তন করতে হবে, কিন্তু আমরা যদি নিচের মতো করে কোড লিখতাম তাহলে আমরা শুধু Enum ফাইলে `Approved` এর ভ্যালু পরিবর্তন করে দিলেই চলতো।
 
-```
+```php
 if ($comment->status === Status::APPROVED) {
     // do something
 }
@@ -53,7 +53,7 @@ if ($comment->status === Status::APPROVED) {
 
 উপরের উদাহরনটি হচ্ছে একটি বেসিক ধারনা, এই কাজটি করার জন্য আপনাকে Enum ব্যবহারের প্রয়োজন পরবে না বরং আপনি সাধারন Class Constant দিয়েই এই সমস্যার সমধান করত পারবেন। অর্থাৎ আমরা `Status` কে Enum হিসেবে ব্যবহার না করে একটি ক্লাস কিংবা ইন্টারফেস বানিয়ে কাজটি করে ফেলতে পারতাম নিচের মতো।
 
-```
+```php
 interface Status
 {
     const PENDING = 0;
@@ -68,7 +68,7 @@ interface Status
 
 ধরুন আপনি DateTime নিয়ে কাজ করছেন। সেখানে আপনি সপ্তাহের দিনগুলোকে Saturday থেকে Friday পর্যন্ত 1 থেকে 7 ভ্যালু দিয়ে ডিফাইন করলেন। এবার একটি মেথড তৈরী করলেন যার নাম হলো `checkWeekend(int $day)`.
 
-```
+```php
 public function checkWeekend(int $day): bool
 {
     if ($day === 1 || $day === 7) {
@@ -81,7 +81,7 @@ public function checkWeekend(int $day): bool
 
 অথবা আমরা এটিকে Class Constant দিয়েও চেক করতে পারতাম নিচের মতো
 
-```
+```php
 public function checkWeekend(int $day): bool
 {
     if ($day === WeekDay::SATURDAY || $day === WeekDay::FRIDAY) {
@@ -94,7 +94,7 @@ public function checkWeekend(int $day): bool
 
 উপরের দুটো উদাহরনই সুন্দরভাবে কাজ করবে কিন্তু সমস্যা অন্য জায়গায়। দেখুন আমাদের মেথডের প্যারামিটার `integer` ভ্যালু এক্সেপ্ট করে। অর্থাৎ আমি যদি এর প্যারামিটার হিসেবে 100 কিংবা 2590 যাই দেই না কেন সে এটাকে গ্রহন করবে একটি ভ্যালিড প্যারামিটার ভ্যালু হিসেবে। কারন এসকল ভ্যালুই `integer`. কিন্তু আমরা চাই আমাদের মেথড প্যারামিটারে শুধু Week Day গুলোই সাপোর্ট করবে অর্থাৎ 1 থেকে 7 এর মধ্যকার ভ্যালু। এর বাহিরে আমরা যদি কিছু দেই তাহলে সেটা গ্রহন করবে না, এক্সেপশন দিবে। এই কাজটি আমরা সাধারনভাবে করতে পারি না (সাধারন টাইপ, Constant কিংবা Class Constant দিয়ে)। তাহলে উপায়? হ্যা এই সমস্যাটিরই মূলত Enum সমাধান দিয়েছে। আমরা যদি `WeekDay` নামে একটি Enum তৈরী করি এবং আমাদের মেথডের প্যারামিটার টাইপ হিসেবে `WeekDay` বলে দেই তাহলেই সমস্যার সমাধান। চলুন দেখি:
 
-```
+```php
 // Declare enum
 enum WeekDay: int 
 {
@@ -108,7 +108,7 @@ enum WeekDay: int
 }
 ```
 
-```
+```php
 // Declare a method with parameter $day
 public function checkWeekend(WeekDay $day): bool
 {
@@ -138,7 +138,7 @@ public function checkWeekend(WeekDay $day): bool
 
 মডার্ন অনেকগুলো ল্যাংগুয়েজই Enum Method সাপোর্ট করে, তারই ধারাবাহিকতা যেহেতু PHP'র Enum নতুন একটি ফিচার তাই PHP'তেও এই দারুন ফিচারটি যুক্ত হয়েছে। Enum Method মূলত Enum এর ডিফল্ট বিহেবিয়ারকে আরও এক্সটেন্ড করার সুযোগ দেয়। ধরুন আমাদের উপরের যে Enum'টি আছে সেখানে আমরা Week Day কে ম্যাপ করেছি। এখন যদি আমরা এরকম কিছু চাই যে `WeekDay` Enum এর কারেন্ট যে ইন্সট্যান্স রয়েছে সেটির সাপেক্ষে আমাদের উইক ডে'র শর্ট নাম রিটার করবে। চলুন নিচের প্রোগ্রামটি দেখে বিষয়টি ক্লিয়ার হই।
 
-```
+```php
 enum WeekDay: int 
 {
     case SATURDAY   = 1;
@@ -167,7 +167,7 @@ enum WeekDay: int
 
 খেয়াল করে দেখুন উপরের উদাহরনে আমরা `shortDay()` নামে একটি মেথড ডিকলেয়ার করেছি `WeekDay` Enum'য়ে। এখানে কারেন্ট ইনস্ট্যান্সের উপর ভিত্তি করে সে আমাদের উইকডে'র সংক্ষিপ্ত নাম রিটার্ন করছে।
 
-```
+```php
 function getWeekDayShortName(WeekDay $day): string
 {
     return $day->shortDay();
@@ -182,7 +182,7 @@ echo getWeekDayShortName($day);
 
 এছাড়াও PHP Enum `interface`'কে implement সাপোর্ট করে এবং `trait` ব্যবহার করা যায়। আমরা নিচের উদাহরন থেকে দুটো ধারনা পরিষ্কার করবো।
 
-```
+```php
 interface HasCollection
 {
     public function names(): array;
@@ -216,7 +216,7 @@ enum Status: int implements HasCollection
 
 অনেক সময়েই আমাদের প্রয়োজন পরে Enum এর Key ও Value নিয়ে কাজ করার। সেক্ষেত্রে Enum এর অবজেক্ট থেকে আপনি বর্তমান Instance'য়ের key value নিচের মতো করে ব্যবহার করতে পারেন।
 
-```
+```php
 $day = WeekDay::tryFrom(7);
 echo $day->value; // return 7
 echo $day->name; // return FRIDAY
@@ -224,7 +224,7 @@ echo $day->name; // return FRIDAY
 
 আপনি চাইলে Enum এর `case` গুলোও ব্যবহার করতে পারেন
 
-```
+```php
 Status::cases();
 
 // List of cases
@@ -241,7 +241,7 @@ Status::cases();
 
 তাই Enum এর প্রত্যেকটি case মূলত Enum এর ইন্সট্যান্স রিটার্ন করে কিন্তু এর Key ভ্যালু হিসেবে কারেন্ট `case` এর Key Value থাকে। এজন্য এর প্রত্যেকটি কেস এর জন্য অবজেক্ট হচ্ছে একই Enum এর কিন্ত এর কেস ভিন্ন। তাই দুটো আলাদা আলাদা case এর জন্য এর অবজেক্ট রিসোর্স ভিন্ন হবে। নিচের উদাহরন দেখলে আশাকরি বিষয়টা পরিষ্কার হবে।
 
-```
+```php
 $friday = WeekDay::FRIDAY;
 $monday = WeekDay::MONDAY;
 $anotherFriday = WeekDay::FRIDAY;
