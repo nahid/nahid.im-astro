@@ -138,6 +138,19 @@ import { t } from '../utils/strings';
 	@media (max-width: 40rem) {
 		.about__grid {
 			grid-template-columns: 1fr;
+			justify-items: center;
+			text-align: center;
+		}
+		.about__photo {
+			margin: 0 auto;
+		}
+		.about__body {
+			text-align: left;
+			width: 100%;
+		}
+		.about__body h1,
+		.about__role {
+			text-align: center;
 		}
 		/* Justified text needs a wide-enough column to avoid rivers; a phone
 		   column is not one. */
