@@ -1,0 +1,19 @@
+# Cloudflare Pages redirects. Source of truth: the old WordPress sitemaps
+# (post-sitemap / page-sitemap / category-sitemap), crawled at cutover.
+#
+# Every post URL is preserved as-is — the content files are named after their
+# original WP slugs — so there is deliberately nothing here for /diaries/{slug}.
+# Only the URLs whose *shape* changed need a 301.
+
+# WordPress nested categories -> flat categories.
+/diaries/category/software-development/php        /diaries/category/php              301
+/diaries/category/software-development/laravel    /diaries/category/laravel          301
+/diaries/category/software-development/programming /diaries/category/programming     301
+/diaries/category/software-development/tips       /diaries/category/tips             301
+/diaries/category/whats-new/whats-new-in-php      /diaries/category/whats-new-in-php 301
+
+# WP feed URLs -> the Astro feed.
+/feed           /rss.xml   301
+/feed/          /rss.xml   301
+/comments/feed  /rss.xml   301
+/rss            /rss.xml   301
