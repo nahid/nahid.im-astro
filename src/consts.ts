@@ -45,9 +45,9 @@ export const BIO = {
 
 /** Home "achievements" column — plain editable list, newest/most notable first. */
 export const ACHIEVEMENTS = [
-	{ year: 2014, text: 'Established the mothership — co-founded JoulesLabs, a software studio broadcasting from Dhaka.' },
-	{ year: 2019, text: 'Piloted delivery of large-scale Laravel and PHP platforms across the network.' },
-	{ year: 2023, text: 'Assembling and mentoring engineering crews across timezones and orbits.' },
+	{ year: '2017', text: 'Won the PHPClasses Innovation Award twice, for practical PHP solutions built for the developer community.' },
+	{ year: '2019', text: 'Won the BASIS National ICT Award as part of the team behind an innovative SaaS application.' },
+	{ year: '2026', text: 'Ranked the #1 PHP open source contributor in Bangladesh since 2019, by contributions to the PHP ecosystem.' },
 ] as const;
 
 /** Open-source projects surfaced on the home page. Newest/most notable first;

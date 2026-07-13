@@ -15,11 +15,16 @@ import { ACHIEVEMENTS } from '../consts';
 </ul>
 
 <style>
+	/* Two columns on wide screens so the ledger fills the sheet width instead
+	   of stopping at --measure and leaving the right half blank. */
 	.ach {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		max-width: var(--measure);
+		max-width: var(--sheet-max);
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: var(--sp-6);
 	}
 	.ach__row {
 		display: grid;
@@ -28,7 +33,7 @@ import { ACHIEVEMENTS } from '../consts';
 		padding: var(--sp-3) 0;
 		border-top: var(--rule-hair);
 	}
-	.ach__row:first-child {
+	.ach__row:nth-child(-n + 2) {
 		border-top: none;
 	}
 	.ach__year {
@@ -39,10 +44,23 @@ import { ACHIEVEMENTS } from '../consts';
 		padding-right: var(--sp-4);
 		border-right: var(--rule-hair);
 		line-height: var(--lh-latin);
+		white-space: nowrap;
 	}
 	.ach__text {
 		margin: 0;
 		padding-left: var(--sp-4);
+	}
+	/* Broadsheet collapses to one column; restore the first-row border reset. */
+	@media (max-width: 40rem) {
+		.ach {
+			grid-template-columns: 1fr;
+		}
+		.ach__row:nth-child(-n + 2) {
+			border-top: var(--rule-hair);
+		}
+		.ach__row:first-child {
+			border-top: none;
+		}
 	}
 	/* Small phones: reclaim width for the text by narrowing the year gutter. */
 	@media (max-width: 30rem) {

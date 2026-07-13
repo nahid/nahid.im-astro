@@ -36,12 +36,17 @@ const href = `/diaries/${post.id}/`;
 		padding-block: var(--sp-4);
 	}
 	.card__cat {
-		display: inline-block;
-		margin-bottom: var(--sp-2);
+		flex: none;
+		color: var(--paper);
+		background: var(--faded);
+		padding: 0.56em 0.55em 0.16em;
+		line-height: 1;
+		text-indent: var(--letterspace-label);
 		text-decoration: none;
 	}
 	.card__cat:hover {
 		color: var(--accent);
+		text-decoration: underline;
 	}
 	.card__title {
 		font-size: var(--fs-h3);

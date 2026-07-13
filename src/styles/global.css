@@ -26,7 +26,6 @@ body {
 /* — Language-aware type (§3). Set lang on <html> and per-article. — */
 :lang(bn) {
 	--font-body: var(--font-bengali);
-	line-height: var(--lh-bengali);
 	/* Bengali reads smaller at the same px; nudge it up. */
 	font-size: calc(1em * var(--bengali-scale));
 	/* Never break Bengali mid-conjunct. */
@@ -183,6 +182,26 @@ figcaption {
 		display: block;
 		overflow-x: auto;
 	}
+}
+
+/* Post-content quotes: oxblood rule on the lead edge, tinted panel, no
+   default browser indent. Bengali skips italics — the Bengali serif has no
+   real italic cut, so faux-slant just distorts the glyphs. */
+.prose blockquote {
+	margin: var(--sp-5) 0;
+	padding: var(--sp-3) var(--sp-4);
+	border-inline-start: 3px solid var(--accent);
+	background: var(--paper-shade);
+	color: var(--faded);
+}
+.prose blockquote p {
+	margin: 0 0 var(--sp-2);
+}
+.prose blockquote p:last-child {
+	margin-bottom: 0;
+}
+:lang(en) .prose blockquote {
+	font-style: italic;
 }
 
 /* — Section head: label flanked by rules (§0). — */
