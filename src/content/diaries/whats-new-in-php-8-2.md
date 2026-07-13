@@ -43,7 +43,7 @@ PHP 8.1 ইতিমধ্যেই `readonly` প্রোপার্টির
 
 #### PHP 8.1: readonly property
 
-```
+```php
 class UserResponse
 {
     public function __construct(
@@ -57,7 +57,7 @@ class UserResponse
 
 উপরের এই একই কাজটি PHP 8.2 তে আরও সহজ করে দিয়েছে, আমরা নিচের উদাহরনটি দেখি
 
-```
+```php
 readonly class UserResponse
 {
     public function __construct(
@@ -71,7 +71,7 @@ readonly class UserResponse
 
 `readonly` ক্লাস ব্যবহার করলে এই ক্লাসের ইন্সট্যান্সে কোনো ডায়নামিক প্রোপারটি কল করা যাবে না।
 
-```
+```php
 $user = new UserResponse();
 $user->undefined = 'unknown';
 
@@ -88,7 +88,7 @@ $user->undefined = 'unknown';
 
 PHP 8.2'তে তিনটি নতুন টাইপ যুক্ত হয়েছে `null`, `false` এবং `true`. অর্থাৎ আপনি `boolean` ছাড়াও `true` এবং. `false`'কে ইন্ডিভিজুয়াল টাইপ হিসেবে ডিকলেয়ার করতে পারবেন। PHP'র কিছু বিল্টইন ফাংশান আছে যারা শুধু `true` কিংবা `false` রিটার্ন করে অন্য কোনো টাইপের সাথে। যেমন `file_get_contents(string $string): string|false`. এই ফাংশানটি `string` রিটার্ন করে যদি সাকসেস হয়, অন্যথায় `false` রিটার্ন করে।
 
-```
+```php
 function count_collection(array $collection): int|false
 {
     if (!is_array($collection)) {
@@ -103,7 +103,7 @@ function count_collection(array $collection): int|false
 
 PHP 8.2'তে `mysqli_execute_query` ফাংশান ও `mysqli::execute_query` মেথড নতুনকরে যুক্ত হয়েছে। যদিও দুটোই একই কাজ করে শুধু একটি হচ্ছে প্রোসিডিউরাল ওয়েতে এবং অন্যটি হচ্ছে অবজেক্ট অরিয়েন্টেড ওয়েতে। এই মেথড বা ফাংশানের মাধ্যমে আপনি একই সাথে পূর্বের `prepare`, `bind`, `execute` ও `get_result` এর কাজ করতে পারবেন। মেথডটি কাজকে খুবই সহজ করে দিয়েছে কিন্তু এটি খুবই পাওয়ারফুল।
 
-```
+```php
 $query = 'SELECT id, username, name FROM users WHERE id = ? AND status = ?';
 $statement = $connection->prepare($query);
 $statement->bind_param('si', $id, $status);
@@ -113,7 +113,7 @@ $user = $statement->get_result();
 
 উপরের কোডটি PHP 8.2 এর পূর্বের ভার্সনের, এবার আমরা নতুন ফাংশানটি ব্যবহার করে একই কাজটি করে দেখি
 
-```
+```php
 $query = 'SELECT id, username, name FROM users WHERE id = ? AND status = ?';
 $user = $mysql->execute_query($query, [$id, $status]);
 ```
@@ -122,7 +122,7 @@ $user = $mysql->execute_query($query, [$id, $status]);
 
 এই ভার্সনে নতুন অবজেক্ট অরিয়েন্টেড [random number generation extension](https://www.php.net/manual/en/book.random.php) যুক্ত হয়েছে, যেখানে পূর্বের অনেকগুলো random number এর সমস্যার সমাধান করা হয়েছে। নতুন এই ফিচারের পারফরম্যান্স খুবই ভালো, সিকিউর, সহজে মেইনটেইন যোগ্য এবং এটি আগের মতো Global State এর উপরে নির্ভরশীল না, ফলে এর ইন্টার্নাল কমপ্লেক্সিটি অনেকখানি কমে গিয়েছে। নতুন এই এক্সটেনশন random number জেনারেশনের জন্য একাধিক মডার্ন Randomizer Engine সাপোর্ট করে।
 
-```
+```php
 $engine = new Random\Engine\Secure();
 
 $randomizer = new Random\Randomizer($engine);
@@ -131,7 +131,7 @@ $randomizer->getInt(1, 100);
 
 উপরের উদাহরনে `Secure()` Randomizer Engine ব্যবহার করা হয়েছে। আপনি চাইলে সাপোর্টেড যেকোনো ইঞ্জিন ব্যবহার করতে পারবেন। সেক্ষেত্রে আপনাকে `Randomizer()` এর প্যারামিটারে ইঞ্জিন পরিবর্তন করে দিলেই হবে, যেমন:
 
-```
+```php
 $engine = new Random\Engine\Mt19937(1234);
 
 $randomizer = new Random\Randomizer($engine);
@@ -142,7 +142,7 @@ $randomizer->getInt(1, 100);
 
 এটি চমৎকার একটি সংযোজন PHP 8.2 ভার্সনের। এটি PHP 8.0 এর Union Types এবং PHP 8.1 এর Intersection Types এর একটি কমবাইন্ড রুপ। এর পূর্বে এর দুটোকে একত্রে ব্যবহার করা যেতনা।
 
-```
+```php
 class JsonData
 {
     public function keys((Countable&iterable)|null $data)
@@ -158,7 +158,7 @@ class JsonData
 
 এটি আরেকটি অনন্য সংযোজন PHP 8.2 ভার্সনের। Backtrace হচ্ছে এমন একটি প্রক্রিয়া যেটি প্রোগ্রামকে Debug করতে সাহায্য করে। এটি মূলত প্রোগ্রামে কখন কোন অংশে কি করতে গিয়ে প্রোগ্রামটি ব্রেক করেছে সেটি লগ করে, ফলে অনেক সময়ই Sensetive ডাটা সেখানে চলে আসে যেটি এক্সপোজ হওয়া উচিৎ নয়।
 
-```
+```php
 function db_connect(string $database, string $user, string $password, string $host = 'localhost')
 {
     $dsn = "mysql:dbname=$database;host=$host";
@@ -172,7 +172,7 @@ $db = db_connect('mydb', 'root', 'password');
 
 উপরের কোডে যদি কোনো exception হয় তবে নিচের মতো করে একটি ইরর দেখাবে
 
-```
+```log
 PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/test.php:3
 Stack trace: #0 /var/www/html/test.php(3): PDO->__construct('mysql:host=loca...', 'root', 'password')
 #1 {main}
@@ -180,7 +180,7 @@ Stack trace: #0 /var/www/html/test.php(3): PDO->__construct('mysql:host=loca...'
 
 এখানে দেখা যাচ্ছে database password আমাদের একটি সেনসেটিভ ডাটা যেটি এক্সপোজ হয়ে গেছে। অথচ এটি প্রকাশ পাওয়াটি নিরাপদ নয়। এই ফিচারটি আপনাকে backtrace থেকে সেনসেটিভ ডাটা hide করার সুযোগ দিয়ে কোনো এক্সটার্নাল টুল ব্যবহার ছাড়াই।
 
-```
+```php
 function db_connect(string $database, string $user, #[\SensitiveParameter] string $password, string $host = 'localhost')
 {
     $dsn = "mysql:dbname=$database;host=$host";
@@ -192,7 +192,7 @@ function db_connect(string $database, string $user, #[\SensitiveParameter] strin
 $db = db_connect('mydb', 'root', 'password');
 ```
 
-```
+```log
 PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/test.php:3
 Stack trace: #0 /var/www/html/test.php(3): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue))
 #1 {main}
@@ -204,7 +204,7 @@ Stack trace: #0 /var/www/html/test.php(3): PDO->__construct('mysql:host=loca...'
 
 PHP'র এই ভার্সনের পূর্বে `traits`'য়ে constant যুক্ত করা যেতো না, এখন PHP 8.2 থেকে আপনি traits'য়ে constant যুক্ত করতে পারবেন।
 
-```
+```php
 trait SlugableTitle
 {
     const SLUGABLE_TITLE = 'title';
@@ -218,13 +218,13 @@ trait SlugableTitle
 
 আপনি traits constant'কে কখনও এর নাম ধরে কল করতে পারবেন না।
 
-```
+```php
 echo SlugableTitle::SLUGABLE_TITLE;
 ```
 
 উপরের কোডটিতে ইরর হবে, কিন্তু যে class trait ব্যবহার করবে আপনি চাইলে সেই ক্লাসের নাম ধরে এর constant'কে কল করতে পারবেন।
 
-```
+```php
 class Post
 {
     use SlugableTitle;
@@ -239,7 +239,7 @@ echo Post::SLUGABLE_TITLE;
 
 যারা এতোদিন PHP'র ডায়নামিক প্রোপার্টি নিয়ে নানান সমালোচনা করতেন তাদের জন্য সুখবর, PHP 8.2 থেকে Dynamic Property ফিচারটি **deprecated** করে দেয়া হয়েছে এবং PHP 9.0 থেকে এটি Error জেনারেট করবে। PHP কমুনিটির এটি দারুন একটি ইনিশিয়েটিভ, এটি PHP'কে এর ডাইনামিক বিহেবিয়ার থেকে অনেকটা বের করে নিয়ে আসবে। এর কিছু অসুবিধা রয়েছে, যেমন: ডেভলপার এক্সপেরিয়েন্স কমাবে।
 
-```
+```php
 class User{
     public string $name;
 }
@@ -254,7 +254,7 @@ $user->email = 'my@email.com';
 
 তবে আপনি যদি `__get` এবং `__set` ইমপ্লিমেন্ট করে তবে ডাইনামিক প্রোপার্টি ব্যবহার করতে পারবেন।
 
-```
+```php
 class User{
     protected array $props = [];
 
@@ -272,7 +272,7 @@ $user->email = 'my@email.com';
 
 এরপরেও যদি এমন হয় যে আপনার প্রোজেক্টে ডাইনামিক প্রোপার্টিতে ভরপুর এবং আপনি চাচ্ছেন না আপনার প্রোজেক্টে এই ধরনে নোটিস প্রদর্শন করুন তাহলে এর চমৎকার একটি সমাধান রয়েছে। আপনি `[AllowDynamicProperties]` এট্রিবিউটকে ঐ ক্লাসে বলে দিতে পারবেন, এতে করে PHP ঐ ক্লাসের জন্য Dynamic Property'র decprication নোটিস দেখানো বন্ধ করবে।
 
-```
+```php
 #[AllowDynamicProperties]
 class User
 {
@@ -291,7 +291,7 @@ $user->email = 'my@email.com';
 
 এই ভার্সনের আরেকটি পরিবর্তন হচ্ছে Partially Supported Callable'কে ডেপ্রিকেট করা। অর্থাৎ যেসকল `callable`'কে `call_user_func($callable)` দ্বারা কল করা হয় সেগুলোই হচ্ছে Partially Supported Callables, এদেরকে ডিরেক্ট `$callable()` হিসেবে কল করা যায় না। যেসকল Callables'কে ডেপ্রিকেট করা হয়েছে সেগুলো হচ্ছে:
 
-```
+```php
 "self::method"
 "parent::method"
 "static::method"
@@ -312,7 +312,7 @@ $user->email = 'my@email.com';
 
 PHP সবসময়েই নানান ভাবে String'য়ে Variable embed করার সুযোগ দিয়ে এসেছে। এর পূর্বে PHP'তে নিম্ন উপায়ে স্ট্রিং'য়ে ভেরিয়েবল এমবেড করা যেত:
 
-```
+```php
 echo "Hello $name";
 echo "Hello {$name}";
 echo "Hello ${name}";
@@ -320,7 +320,7 @@ echo "Hello ${name}";
 
 PHP 8.2 থেকে `"Hello ${name}"` এই পদ্ধতিতে স্ট্রিং'য়ে ভেরিয়েবল এমবেড করা ডেপ্রিকেট করে দিচ্ছে এবং PHP 9.0 থেকে এটি Exception Throw করবে। কিন্তু নিচের দেয়া জনপ্রিয় দুটি পদ্ধতিতে এখনও স্ট্রিং এমবেড করা যাবে।
 
-```
+```php
 echo "Hello $name";
 echo "Hello {$name}";
 ```

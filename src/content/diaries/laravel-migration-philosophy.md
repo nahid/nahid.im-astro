@@ -82,7 +82,7 @@ php artisan migrate
 
 তো, এবার যদি আমরা আমাদের ডাটাবেসে লারাভেল মাইগ্রেশন দিয়ে রোলব্যাক করি তবে কি হয় একটু দেখি।
 
-```
+```bash
 php artisan migrate:rollback
 ```
 
