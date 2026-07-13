@@ -5,6 +5,7 @@
 	/* — Palette (§0) — */
 	--paper: #f2ece0;
 	--paper-shade: #ece4d5; /* faint panel fill, kept close to paper */
+	--desk: #d9d1c1; /* the surface the paper sheet sits on */
 	--ink: #1c1a17;
 	--faded: #6b6459;
 	--rule: #948a7a; /* warm gray — all rules/borders read lighter than ink */
@@ -27,7 +28,9 @@
 	--fs-h3: 1.3rem;
 	--fs-h2: 1.7rem;
 	--fs-h1: 2.4rem;
-	--fs-masthead: clamp(2.6rem, 8vw, 5rem);
+	/* Min is sized so "NAHID | THE ALIEN" still fits one line inside the 375px
+	   sheet (17 mono chars against a ~343px measure). */
+	--fs-masthead: clamp(1.9rem, 7.5vw, 5rem);
 
 	/* Latin vs Bengali rhythm (§3). Bengali needs more air and a size bump. */
 	--lh-latin: 1.7;

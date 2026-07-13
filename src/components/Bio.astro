@@ -11,7 +11,11 @@ import { BIO } from '../consts';
 		<p class="bio__name">{BIO.name}</p>
 		<p class="bio__role label">{BIO.role}</p>
 		<p class="bio__location meta">{BIO.location}</p>
-		<p class="bio__blurb">{BIO.blurb}</p>
+		<div class="bio__blurb">
+			{BIO.blurb.map((para) => (
+				<p>{para}</p>
+			))}
+		</div>
 	</div>
 </div>
 
@@ -52,17 +56,31 @@ import { BIO } from '../consts';
 		border-bottom: 3px double var(--rule);
 	}
 	.bio__blurb {
-		margin: 0;
 		max-width: var(--measure);
 	}
-	/* Drop cap opens the blurb, echoing the article-page treatment (§3). */
-	.bio__blurb::first-letter {
+	.bio__blurb p {
+		margin: 0 0 var(--sp-3);
+	}
+	.bio__blurb p:last-child {
+		margin-bottom: 0;
+	}
+	/* Drop cap opens the blurb, echoing the article-page treatment (§3). It has to
+	   hang off the first paragraph, not the container — ::first-letter on a block
+	   with block children never matches. */
+	.bio__blurb p:first-child::first-letter {
 		float: left;
 		font-family: var(--font-display);
 		font-size: 2.6em;
 		line-height: 0.8;
 		padding: 0.05em 0.1em 0 0;
 		color: var(--accent);
+	}
+	/* "Still exploring. Still learning. Still building." — a sign-off, set like one. */
+	.bio__blurb p:last-child {
+		font-family: var(--font-display);
+		color: var(--accent);
+		padding-top: var(--sp-3);
+		border-top: var(--rule-hair);
 	}
 	@media (max-width: 34rem) {
 		.bio {

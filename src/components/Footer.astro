@@ -2,7 +2,7 @@
 // Colophon footer: double rule, byline, copyright, feed link.
 import { SITE } from '../consts';
 
-const year = 2026; // build-time stamp
+const year = new Date().getFullYear(); // build-time stamp; advances on rebuild
 ---
 
 <footer class="footer">
@@ -10,7 +10,7 @@ const year = 2026; // build-time stamp
 	<div class="footer__row">
 		<p class="footer__mast">{SITE.masthead}</p>
 		<p class="footer__meta meta">
-			© {SITE.established}–{year} {SITE.author} ·
+			© {SITE.established}–{year} {SITE.author} ·{' '}
 			<a href="/rss.xml">RSS</a>
 		</p>
 	</div>

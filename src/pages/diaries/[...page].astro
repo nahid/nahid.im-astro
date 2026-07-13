@@ -37,7 +37,7 @@ const archiveDesc = `${t('diariesDesc', 'en')}${pageSuffix}`;
 	<Masthead />
 	<Nav />
 
-	<main>
+	<main id="main">
 		<SectionHead label={t('allDiaries', 'en')} lang="en" />
 		<div class="archive">
 			{page.data.map((post) => <PostCard post={post} />)}

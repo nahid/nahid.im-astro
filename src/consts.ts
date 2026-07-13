@@ -38,8 +38,15 @@ export const BIO = {
 	name: 'Nahid Bin Azhar',
 	role: 'Software architect · CTO & co-founder, JoulesLabs',
 	location: 'Dhaka, Bangladesh',
-	blurb:
-		"An alien engineer filing from planet Earth — twelve years in the field, now building SaaS products as CTO & co-founder of JoulesLabs. These dispatches, mostly in Bangla, are transmissions on engineering, running a company, and staying curious in the void.",
+	/** One entry per paragraph — Bio.astro renders each as its own <p>. Keep it a
+	 *  list, not one string with newlines: HTML collapses \n, so a single string
+	 *  would set the whole bio as one block. */
+	blurb: [
+		'I’m Nahid Bin Azhar - a software engineer, CTO & Co-founder at JoulesLabs, and an alien exploring the universe of technology.',
+		'I build products, experiment with AI, contribute to open source, and solve real-world problems through code. My spaceship runs on curiosity, creativity, and a mission to create technology people genuinely love.',
+	
+		'Still exploring. Still learning. Still building.',
+	],
 	/** Portrait lives in public/images/; grayscale is applied in CSS, not baked in.
 	 *  Migrated from the old WordPress media library. */
 	photo: '/images/nahid-bin-azhar.png',

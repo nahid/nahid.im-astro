@@ -9,6 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "og": "node scripts/make-og.mjs",
+    "favicons": "node scripts/make-favicons.mjs",
     "astro": "astro"
   },
   "dependencies": {

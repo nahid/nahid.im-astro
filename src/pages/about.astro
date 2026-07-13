@@ -17,29 +17,68 @@ import { t } from '../utils/strings';
 	<Masthead />
 	<Nav />
 
-	<main class="about" lang="en">
-		
+	<main id="main" class="about" lang="en">
+		<SectionHead label={t('about', 'en')} lang="en" />
+
 		<div class="about__grid">
 			<img class="about__photo" src={BIO.photo} width="220" height="220" alt={BIO.name} />
-			<div>
+			<div class="about__body">
 				<h1>{BIO.name}</h1>
 				<p class="about__role label">{BIO.role}</p>
-				<p>
-					I am Nahid Bin Azhar — a software engineer turned entrepreneur, and CTO &amp;
-					co-founder of JoulesLabs. Twelve years in the industry now, most of it spent
-					building SaaS products, wiring up Shopify integrations, and lately chasing
-					large language models and RAG systems further than is probably healthy.
+
+				<p class="about__lede">
+					Hi, I&rsquo;m <strong>Nahid Bin Azhar</strong> (also known as{' '}
+					<strong>Mehedi Hasan Nahid</strong>) — a CTO, co-founder, software engineer,
+					and open-source contributor from Bangladesh.
 				</p>
 				<p>
-					I'm one of the more visible PHP contributors coming out of Bangladesh, and I
-					spend a fair bit of time mentoring other developers. Most of the writing here
-					is in Bengali — engineering, business operations, productivity, and the
-					occasional experiment. The aesthetic is old letterpress daily; the writing is
-					contemporary.
+					For more than 12 years, I&rsquo;ve been building software that solves
+					real-world problems. My career began as a software engineer, where I had the
+					opportunity to work across a wide range of technologies, architectures, and
+					industries. Over time, my focus shifted beyond writing code to building
+					products, leading teams, and creating experiences that people genuinely enjoy
+					using.
 				</p>
 				<p>
-					Away from the keyboard, I cook — the same creativity and a dash of curiosity,
-					just with more garlic.
+					Today, I&rsquo;m the <strong>CTO &amp; Co-founder of JoulesLabs</strong>, where
+					we&rsquo;re building SaaS products with a strong focus on Shopify and
+					AI-powered experiences. I enjoy turning complex technical challenges into
+					simple, reliable solutions — whether that means designing scalable backend
+					systems, integrating with external platforms, or applying large language models
+					and retrieval-augmented generation (RAG) to build intelligent, context-aware
+					applications. My passion lies in creating products that customers love while
+					improving the developer experience for the teams building them.
+				</p>
+				<p>
+					Throughout my career, I&rsquo;ve worked with technologies including Laravel,
+					TypeScript, Go, Node.js, Docker, Kubernetes, Redis, PostgreSQL, MySQL, and
+					modern cloud infrastructure. While I enjoy exploring new tools, I believe great
+					software is built on solid engineering principles rather than any particular
+					technology stack.
+				</p>
+				<p>
+					Open source has played a defining role in my journey. I believe the best way to
+					learn is by building, sharing, and collaborating with others. I&rsquo;m proud to
+					be recognized as one of the top PHP open-source contributors in Bangladesh, and
+					I continue to contribute to projects that help developers build better
+					software.
+				</p>
+				<p>
+					In 2019, I was honored to receive the{' '}
+					<strong>BASIS National ICT Award</strong> — a milestone that reinforced my
+					commitment to creating technology with real-world impact.
+				</p>
+				<p>
+					Outside of work, I enjoy mentoring developers, exploring emerging technologies,
+					and continuously learning. I also love cooking — a hobby that reminds me a lot
+					of software engineering: both reward curiosity, experimentation, and careful
+					attention to detail.
+				</p>
+				<p>
+					Whether I&rsquo;m architecting distributed systems, contributing to open
+					source, or building the next product at JoulesLabs, my goal remains the same: to
+					create technology that people genuinely enjoy using, and that makes
+					developers&rsquo; lives a little easier.
 				</p>
 			</div>
 		</div>
@@ -70,16 +109,40 @@ import { t } from '../utils/strings';
 		border: var(--rule-thin);
 		background: var(--paper-shade);
 	}
+	/* Cap the text column. Left at 1fr it runs ~110 characters on a wide screen,
+	   well past a readable measure for a page this long. */
+	.about__body {
+		max-width: 42rem;
+	}
 	.about__role {
 		margin-top: 0;
+		padding-bottom: var(--sp-3);
+		border-bottom: 3px double var(--rule);
 		font-weight: bold;
 	}
 	.about__grid p {
 		text-align: justify;
 	}
+	/* The lede carries the drop cap, echoing the bio and the article pages (§3). */
+	.about__lede::first-letter {
+		float: left;
+		font-family: var(--font-display);
+		font-size: 2.6em;
+		line-height: 0.8;
+		padding: 0.05em 0.1em 0 0;
+		color: var(--accent);
+	}
+	.about__body strong {
+		font-weight: 700;
+	}
 	@media (max-width: 40rem) {
 		.about__grid {
 			grid-template-columns: 1fr;
+		}
+		/* Justified text needs a wide-enough column to avoid rivers; a phone
+		   column is not one. */
+		.about__grid p {
+			text-align: start;
 		}
 	}
 </style>

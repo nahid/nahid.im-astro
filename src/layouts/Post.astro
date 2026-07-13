@@ -41,10 +41,11 @@ const article = {
 	<Masthead />
 	<Nav />
 
+	<main id="main">
 	<article class="post" lang={lang}>
-			<a class="post__eyebrow label" href={`/diaries/category/${data.category}/`}>
-		{categoryLabel(data.category, 'en')}
-	</a>
+		<a class="post__eyebrow label" href={`/diaries/category/${data.category}/`}>
+			{categoryLabel(data.category, 'en')}
+		</a>
 		<h1 class="post__headline">{data.title}</h1>
 
 		<div class="post__byline">
@@ -70,6 +71,7 @@ const article = {
 			<slot />
 		</div>
 	</article>
+	</main>
 
 	{
 		(prev || next) && (
@@ -108,8 +110,10 @@ const article = {
 		margin-top: var(--sp-6);
 	}
 	.post__eyebrow {
+		/* inline-block, or the vertical margin below is dropped and the chip's
+		   background bleeds into the headline's line box. */
+		display: inline-block;
 		margin: 0 0 var(--sp-2);
-		flex: none;
 		color: var(--paper);
 		background: var(--faded);
 		padding: 0.56em 0.55em 0.16em;
@@ -137,13 +141,13 @@ const article = {
 		font-size: 0.9em;
 		text-align: justify;
 	}
-	/* Code blocks: a fixed rem size + tight line-height. Needed because the
-	   sitewide :lang(bn) rule otherwise inflates <pre>/<code> with the Bengali
-	   size bump and airy line-height, compounding into oversized code. */
+	/* Code blocks: a fixed rem size + a line-height that resists the sitewide
+	   :lang(bn) rule, which would otherwise inflate <pre>/<code> with the Bengali
+	   size bump and airy leading. 1.5 is the floor that still clears descenders. */
 	.prose :global(pre),
 	.prose :global(pre code) {
 		font-size: 0.9rem;
-		line-height: 1.2;
+		line-height: 1.5;
 	}
 	/* Latin body: Cutive Mono, drop cap on the first paragraph. */
 	.prose--en :global(> p:first-of-type::first-letter) {
@@ -163,6 +167,11 @@ const article = {
 		/* Bengali hyphenation is poor — never break mid-conjunct. */
 		hyphens: none;
 		word-break: normal;
+		/* And because it cannot hyphenate, justifying it can only pay for the
+		   ragged edge with word-space — which opens rivers through the column.
+		   Bengali sets ragged-right; the Latin columns keep the justified
+		   newspaper measure. */
+		text-align: start;
 	}
 
 	.post-nav {

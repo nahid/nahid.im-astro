@@ -7,7 +7,9 @@ interface Props {
 	volume?: string;
 }
 
-const year = 2026; // build-time stamp; keep in sync when the design ships
+// Stamped at build time, so the volume/number line advances on its own each
+// year instead of needing a hand-edit.
+const year = new Date().getFullYear();
 const vol = Astro.props.volume ?? `Vol. ${year - SITE.established} · No. ${year}`;
 ---
 

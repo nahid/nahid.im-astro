@@ -10,13 +10,15 @@
 
 html {
 	/* The desk the sheet sits on — a shade darker than the paper. */
-	background: #d9d1c1;
+	background: var(--desk);
 	color: var(--ink);
 	font-family: var(--font-body);
 	font-size: 17px;
 	line-height: var(--lh-latin);
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
+	/* The design is paper-only; stop UA dark mode from inverting form controls. */
+	color-scheme: light;
 }
 
 body {
@@ -34,6 +36,21 @@ body {
 	hyphens: none;
 }
 
+/* The face has to follow the *element's* language, not just the page's.
+   Redefining --font-body above is not enough: font-family inherits its already
+   computed value from <html>, so nothing re-reads the variable further down the
+   tree. Without these rules a Bengali card sitting on an English archive page
+   keeps <html>'s Latin face — and Cutive Mono has no Bengali glyphs, so the
+   excerpt renders as tofu boxes.
+   :where() pins specificity to zero, so component rules that name a face
+   (.label, .nav__link, code/pre) still win over it. */
+:where(:lang(bn)) {
+	font-family: var(--font-bengali);
+}
+:where(:lang(en)) {
+	font-family: var(--font-mono);
+}
+
 /* Code always uses the mono stack regardless of surrounding language. */
 code,
 pre,
@@ -49,6 +66,12 @@ pre {
 	border: var(--rule-hair);
 	background: var(--paper-shade);
 	line-height: 1.5;
+}
+/* Shiki writes its theme background as an inline style on .astro-code, which
+   would otherwise punch a white slab through the paper. Repaint it; the token
+   colours from github-light are kept. */
+pre.astro-code {
+	background: var(--paper-shade) !important;
 }
 
 /* — The paper sheet — the only place a shadow is allowed (§0). — */
@@ -151,6 +174,22 @@ figcaption {
 	font-size: var(--fs-meta);
 	font-style: italic;
 	color: var(--faded);
+}
+
+/* Markdown images arrive as a bare <img> inside a <p> (no <figure>), so they
+   miss the figure rules above and, at their intrinsic width, blow out the sheet
+   on a phone. Give them the same treatment and cap them to the column. */
+.prose img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: var(--sp-5) 0;
+	filter: grayscale(1) contrast(1.05);
+	border: var(--rule-thin);
+}
+/* A long URL or code token must not push the sheet sideways either. */
+.prose {
+	overflow-wrap: break-word;
 }
 
 /* Post-content tables: ruled grid, left-aligned (never justified), header band. */
@@ -264,6 +303,27 @@ figcaption {
 	border: 0;
 }
 
+/* Keyboard skip link — hidden until focused, then pinned to the top of the sheet. */
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	z-index: 10;
+	padding: var(--sp-2) var(--sp-4);
+	font-family: var(--font-display);
+	font-size: var(--fs-label);
+	text-transform: uppercase;
+	letter-spacing: var(--letterspace-label);
+	color: var(--paper);
+	background: var(--ink);
+	text-decoration: none;
+}
+.skip-link:focus {
+	left: var(--sp-2);
+	top: var(--sp-2);
+	color: var(--paper);
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
@@ -272,5 +332,54 @@ figcaption {
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.001ms !important;
 		scroll-behavior: auto !important;
+	}
+}
+
+/* — Print: it is a newspaper, so let it actually print like one. — */
+@media print {
+	html {
+		background: #fff;
+		font-size: 12pt;
+	}
+	.sheet {
+		max-width: none;
+		box-shadow: none;
+		background: #fff;
+		background-image: none;
+		padding: 0;
+	}
+	/* Navigation, feeds and social chrome carry nothing onto paper. */
+	.nav,
+	.social,
+	.pager,
+	.skip-link,
+	.coupon,
+	.post-nav {
+		display: none !important;
+	}
+	a {
+		text-decoration: none;
+	}
+	/* Spell out link targets, the way a printed citation would. */
+	.prose a[href^='http']::after {
+		content: ' (' attr(href) ')';
+		font-size: 0.85em;
+		color: #555;
+		word-break: break-all;
+	}
+	.prose img {
+		filter: grayscale(1);
+		max-width: 100%;
+	}
+	h1,
+	h2,
+	h3 {
+		break-after: avoid;
+	}
+	figure,
+	pre,
+	blockquote,
+	tr {
+		break-inside: avoid;
 	}
 }

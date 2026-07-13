@@ -8,12 +8,12 @@ import Footer from '../components/Footer.astro';
 import { t } from '../utils/strings';
 ---
 
-<Base title="Story Not Found" lang="en" description={t('notFoundDesc', 'en')}>
+<Base title="Story Not Found" lang="en" description={t('notFoundDesc', 'en')} noindex>
 	<Folio />
 	<Masthead />
 	<Nav />
 
-	<main class="notfound">
+	<main id="main" class="notfound">
 		<p class="notfound__code label">404</p>
 		<h1 class="notfound__title">Story Not Found</h1>
 		<p class="notfound__sub">

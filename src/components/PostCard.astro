@@ -22,7 +22,7 @@ const href = `/diaries/${post.id}/`;
 		<a href={href}>{data.title}</a>
 	</h3>
 	<p class="card__excerpt">{data.description}</p>
-	<p class="card__meta meta">
+	<p class="card__meta meta" lang="en">
 		<time datetime={data.pubDate.toISOString().slice(0, 10)}>
 			{formatDate(data.pubDate, 'en')}
 		</time>
@@ -36,7 +36,10 @@ const href = `/diaries/${post.id}/`;
 		padding-block: var(--sp-4);
 	}
 	.card__cat {
-		flex: none;
+		/* inline-block, or the padded background bleeds into the title's line box
+		   and the margin below is dropped entirely. */
+		display: inline-block;
+		margin-bottom: var(--sp-2);
 		color: var(--paper);
 		background: var(--faded);
 		padding: 0.56em 0.55em 0.16em;

@@ -19,6 +19,8 @@ interface Props {
 	/** Paginated archives thread these so crawlers get rel=prev/next. */
 	prevUrl?: string;
 	nextUrl?: string;
+	/** Keep this page out of the index (404, dev-only pages). */
+	noindex?: boolean;
 }
 
 const {
@@ -29,6 +31,7 @@ const {
 	article,
 	prevUrl,
 	nextUrl,
+	noindex = false,
 } = Astro.props;
 
 const pageTitle = title ? `${title} — ${SITE.masthead}` : SITE.title;
@@ -89,15 +92,18 @@ const jsonLd: Record<string, unknown> = {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#f2ece0" />
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<!-- Portrait favicons, generated locally by scripts/make-favicons.mjs. -->
 		<link rel="icon" href="/favicon.ico" sizes="any" />
-		<link rel="apple-touch-icon" href="/favicon.svg" />
+		<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+		<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
 		<title>{pageTitle}</title>
 		<meta name="description" content={description} />
 		<meta name="author" content={SITE.author} />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 		<link rel="canonical" href={canonical} />
 		{prevHref && <link rel="prev" href={prevHref} />}
 		{nextHref && <link rel="next" href={nextHref} />}
@@ -120,6 +126,17 @@ const jsonLd: Record<string, unknown> = {
 		<meta property="og:locale" content={ogLocale} />
 		<meta property="og:image" content={ogImageUrl} />
 		<meta property="og:image:alt" content={pageTitle} />
+		{
+			/* Dimensions are only known for the generated default card
+			   (scripts/make-og.mjs); hero images vary, so we stay quiet for those. */
+			!ogImage && (
+				<>
+					<meta property="og:image:type" content="image/png" />
+					<meta property="og:image:width" content="1200" />
+					<meta property="og:image:height" content="630" />
+				</>
+			)
+		}
 		{
 			article && (
 				<>
@@ -144,6 +161,7 @@ const jsonLd: Record<string, unknown> = {
 		<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	</head>
 	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
 		<div class="sheet">
 			<slot />
 		</div>
