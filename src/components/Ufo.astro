@@ -1,0 +1,77 @@
+---
+// The house ornament: a saucer drawn as a letterpress engraving.
+//
+// Inline SVG rather than an <img> — it costs no request, stays crisp at any
+// size, and takes its colour from `currentColor`, so callers set the ink with
+// the palette instead of baking a hex in here (§5: no hardcoded colours).
+// Purely decorative, so it is hidden from assistive tech at every call site.
+//
+// Positioning and opacity belong to the caller. Because Astro scopes styles per
+// component, a parent styling this root element must reach it with :global().
+interface Props {
+	/** Hook for the caller's positioning styles. */
+	class?: string;
+	/** Drop the beam and stars for a tighter, badge-like saucer. */
+	bare?: boolean;
+}
+
+const { class: className, bare = false } = Astro.props;
+---
+
+<svg
+	class={className}
+	viewBox="0 0 400 250"
+	aria-hidden="true"
+	focusable="false"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<g
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		{
+			!bare && (
+				<>
+					{/* abduction beam */}
+					<path d="M150 108 L96 226" />
+					<path d="M250 108 L304 226" />
+					<path d="M132 148 L268 148" stroke-dasharray="7 9" stroke-width="1.5" />
+					<path d="M116 187 L284 187" stroke-dasharray="7 9" stroke-width="1.5" />
+				</>
+			)
+		}
+
+		{/* hull */}
+		<ellipse cx="200" cy="104" rx="112" ry="26" />
+		<path d="M96 96 Q200 46 304 96" />
+		{/* engraved hatching across the hull */}
+		<path d="M120 88 L128 74" stroke-width="1.5" />
+		<path d="M150 79 L156 65" stroke-width="1.5" />
+		<path d="M244 65 L250 79" stroke-width="1.5" />
+		<path d="M272 74 L280 88" stroke-width="1.5" />
+
+		{/* dome */}
+		<path d="M158 74 Q200 20 242 74" />
+		<path d="M176 70 Q200 40 200 34" stroke-width="1.5" />
+
+		{/* portholes */}
+		<circle cx="152" cy="106" r="7" />
+		<circle cx="200" cy="110" r="7" />
+		<circle cx="248" cy="106" r="7" />
+
+		{
+			!bare && (
+				<>
+					{/* stars */}
+					<path d="M46 54 L46 70 M38 62 L54 62" stroke-width="1.5" />
+					<path d="M352 36 L352 50 M345 43 L359 43" stroke-width="1.5" />
+					<path d="M330 150 L330 162 M324 156 L336 156" stroke-width="1.5" />
+					<path d="M64 158 L64 170 M58 164 L70 164" stroke-width="1.5" />
+				</>
+			)
+		}
+	</g>
+</svg>

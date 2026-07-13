@@ -39,7 +39,17 @@ const vol = Astro.props.volume ?? `Vol. ${year - SITE.established} · No. ${year
 	.folio__item--end {
 		text-align: right;
 	}
+	/* The tagline drops here; the strip must also collapse to a genuine two-column
+	   grid, or "est." falls into the middle track and collides with the volume. */
 	@media (max-width: 30rem) {
+		.folio {
+			grid-template-columns: auto auto;
+			justify-content: space-between;
+			letter-spacing: 0.08em;
+		}
+		.folio__item {
+			white-space: nowrap;
+		}
 		.folio__item--mid {
 			display: none;
 		}

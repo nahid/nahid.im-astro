@@ -3,11 +3,14 @@
 // The sitewide dateline is Bengali (site is Bengali-first, §3 4b).
 import { SITE } from '../consts';
 import { formatDate } from '../utils/format';
+import Ufo from './Ufo.astro';
 
 const today = formatDate(new Date(), 'en');
 ---
 
 <header class="masthead">
+	<Ufo class="masthead__ufo" />
+
 	<p class="masthead__kicker">{SITE.kicker}</p>
 	<a class="masthead__nameplate" href="/" aria-label={`${SITE.masthead} — home`}>
 		{SITE.masthead}
@@ -21,8 +24,56 @@ const today = formatDate(new Date(), 'en');
 
 <style>
 	.masthead {
+		position: relative;
 		text-align: center;
-		padding-top: var(--sp-4);
+		/* Extra vertical room so the saucer behind the nameplate reads as a drawing
+		   rather than as a couple of stray arcs clipped at the edges. */
+		padding-top: var(--sp-6);
+		/* The saucer is drawn oversized and bleeds past the nameplate; clip it to
+		   the masthead so it can never push the sheet sideways. */
+		overflow: hidden;
+	}
+	/* Engraving in the right margin, bleeding off the sheet edge — the way a
+	   letterpress paper would run an ornament.
+	   Deliberately NOT centred behind the nameplate: the nameplate is the
+	   heaviest type on the site, so a drawing underneath it is simply occluded —
+	   all that escapes is a few stray strokes, which read as a printing smudge
+	   rather than a saucer. Off to the side it stays legible as an object and the
+	   nameplate keeps its full contrast. */
+	:global(.masthead__ufo) {
+		position: absolute;
+		top: 50%;
+		right: -2rem;
+		z-index: 0;
+		/* Sized off the masthead's own height: the drawing is 4:2.5, so sizing by
+		   viewport width overshot the header and the clip sheared off its dome. */
+		height: 116%;
+		width: auto;
+		transform: translateY(-50%);
+		color: var(--ink);
+		opacity: 0.13;
+		pointer-events: none;
+	}
+	/* Below this the nameplate spans the full sheet, so there is no side margin to
+	   run the ornament in. Shrink it and anchor it to the top-right corner instead,
+	   where it clears the nameplate's cap line and only the kicker's tail passes
+	   under it. */
+	@media (max-width: 48rem) {
+		:global(.masthead__ufo) {
+			top: 0;
+			right: -1.5rem;
+			height: auto;
+			width: 42%;
+			transform: none;
+			opacity: 0.11;
+		}
+	}
+	/* Everything else rides above the drawing. */
+	.masthead__kicker,
+	.masthead__nameplate,
+	.masthead__dateline {
+		position: relative;
+		z-index: 1;
 	}
 	.masthead__kicker {
 		margin: 0 0 var(--sp-2);
