@@ -22,6 +22,27 @@ const today = formatDate(new Date(), 'en');
 	</div>
 </header>
 
+<script>
+	// Update the masthead dateline dynamically to the current local date in English.
+	const timeElement = document.querySelector('.masthead__dateline time');
+	if (timeElement) {
+		const today = new Date();
+		const options: Intl.DateTimeFormatOptions = {
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		};
+		const formatter = new Intl.DateTimeFormat('en-US', options);
+		timeElement.textContent = formatter.format(today);
+
+		const yyyy = today.getFullYear();
+		const mm = String(today.getMonth() + 1).padStart(2, '0');
+		const dd = String(today.getDate()).padStart(2, '0');
+		timeElement.setAttribute('datetime', `${yyyy}-${mm}-${dd}`);
+	}
+</script>
+
 <style>
 	.masthead {
 		position: relative;
