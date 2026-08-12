@@ -31,8 +31,18 @@ import { t } from '../utils/strings';
 					Skip the form — send the transmission straight to the desk. Every
 					message gets a reply.
 				</p>
-				<a class="letter__btn" href={`mailto:${SITE.email}`}>{t('contactMailCta', 'en')}</a>
-				<p class="letter__address meta">{SITE.email}</p>
+				<div class="letter__actions">
+					<a class="letter__btn" href={`mailto:${SITE.email}`}>{t('contactMailCta', 'en')}</a>
+					<button
+						class="letter__btn letter__btn--secondary"
+						id="copy-btn"
+						data-email={SITE.email}
+						data-copied-text={t('contactCopied', 'en')}
+						data-original-text={t('contactCopyCta', 'en')}
+					>
+						{t('contactCopyCta', 'en')}
+					</button>
+				</div>
 			</div>
 
 			<aside class="contact__aside">
@@ -49,6 +59,45 @@ import { t } from '../utils/strings';
 			</aside>
 		</div>
 	</main>
+
+	<script>
+		const copyBtn = document.getElementById('copy-btn');
+		if (copyBtn) {
+			copyBtn.addEventListener('click', async () => {
+				const email = copyBtn.getAttribute('data-email');
+				if (!email) return;
+
+				try {
+					if (navigator.clipboard && navigator.clipboard.writeText) {
+						await navigator.clipboard.writeText(email);
+					} else {
+						// Fallback for older browsers or non-secure contexts
+						const textArea = document.createElement('textarea');
+						textArea.value = email;
+						textArea.style.position = 'fixed';
+						document.body.appendChild(textArea);
+						textArea.focus();
+						textArea.select();
+						document.execCommand('copy');
+						document.body.removeChild(textArea);
+					}
+
+					const copiedText = copyBtn.getAttribute('data-copied-text') || 'Copied!';
+					const originalText = copyBtn.getAttribute('data-original-text') || 'Copy email address';
+
+					copyBtn.textContent = copiedText;
+					copyBtn.classList.add('copied');
+
+					setTimeout(() => {
+						copyBtn.textContent = originalText;
+						copyBtn.classList.remove('copied');
+					}, 2000);
+				} catch (err) {
+					console.error('Failed to copy email: ', err);
+				}
+			});
+		}
+	</script>
 
 	<Footer />
 </Base>
@@ -85,6 +134,11 @@ import { t } from '../utils/strings';
 		margin: 0 0 var(--sp-4);
 		color: var(--faded);
 	}
+	.letter__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sp-3);
+	}
 	.letter__btn {
 		display: inline-block;
 		padding: var(--sp-2) var(--sp-5);
@@ -95,7 +149,7 @@ import { t } from '../utils/strings';
 		background: var(--ink);
 		border: var(--rule-thin);
 		text-decoration: none;
-		transition: background-color 0.15s ease, border-color 0.15s ease;
+		transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 	}
 	.letter__btn:hover {
 		background: var(--accent);
@@ -105,9 +159,15 @@ import { t } from '../utils/strings';
 		outline: var(--focus-ring);
 		outline-offset: 2px;
 	}
-	.letter__address {
-		margin: var(--sp-3) 0 0;
-		color: var(--faded);
+	.letter__btn--secondary {
+		color: var(--ink);
+		background: transparent;
+		cursor: pointer;
+	}
+	.letter__btn--secondary:hover {
+		color: var(--paper);
+		background: var(--accent);
+		border-color: var(--accent);
 	}
 	.contact__aside {
 		border-left: var(--rule-hair);

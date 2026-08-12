@@ -31,6 +31,8 @@ export const STRINGS = {
 	},
 	subscribeCta: { bn: 'RSS ফিড', en: 'Subscribe via RSS' },
 	contactMailCta: { bn: 'ইমেইল করুন', en: 'Send an email' },
+	contactCopyCta: { bn: 'ইমেইল কপি করুন', en: 'Copy email address' },
+	contactCopied: { bn: 'কপি করা হয়েছে!', en: 'Copied!' },
 	notFoundTitle: { bn: 'দিনলিপি পাওয়া যায়নি', en: 'Story Not Found' },
 	notFoundBody: {
 		bn: 'এই ঠিকানায় সংবাদদাতার কোনো প্রতিবেদন নেই।',
