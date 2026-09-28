@@ -18,7 +18,7 @@ export const SITE = {
 	locale: 'bn_BD',
 	/** Default social-share card, used when a page passes no ogImage. Absolute-ised
 	 *  against `site` in Base.astro. Drop the file at public/images/og-default.png. */
-	ogImage: '/images/og-default.png',
+	ogImage: '/images/og-default.webp',
 	/** Twitter/X handle for card attribution (matches SOCIALS). */
 	twitterHandle: '@nahidophia',
 	/** Public contact address — mailto: link on /contact, no backend required. */
@@ -49,7 +49,7 @@ export const BIO = {
 	],
 	/** Portrait lives in public/images/; grayscale is applied in CSS, not baked in.
 	 *  Migrated from the old WordPress media library. */
-	photo: '/images/nahid-bin-azhar.png',
+	photo: '/images/nahid-bin-azhar.webp',
 } as const;
 
 /** Home "achievements" column — plain editable list, newest/most notable first. */

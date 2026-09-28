@@ -16,6 +16,9 @@ export default defineConfig({
 			theme: 'github-light',
 		},
 	},
+	build: {
+		inlineStylesheets: 'always',
+	},
 	// Fonts are self-hosted via public/fonts/fonts.css (@font-face, font-display: swap).
 	integrations: [
 		mdx(),

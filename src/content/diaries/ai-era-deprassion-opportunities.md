@@ -7,7 +7,7 @@ tags:
   - ai
   - career
   - tips
-heroImage: "/images/Gemini_Generated_Image_crhafycrhafycrha.png"
+heroImage: "/images/Gemini_Generated_Image_crhafycrhafycrha.webp"
 heroImageAlt: "AI যুগে লেগাসি অ্যাপ্লিকেশন নিয়ে ব্যানার চিত্র"
 lang: bn
 ---

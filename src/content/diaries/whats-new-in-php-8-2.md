@@ -6,7 +6,7 @@ category: whats-new-in-php
 tags:
   - php
   - released
-heroImage: "/images/Whats-New-In-PHP-8.2-Banner.png"
+heroImage: "/images/Whats-New-In-PHP-8.2-Banner.webp"
 heroImageAlt: "What's New in PHP 8.2 নিয়ে ব্যানার চিত্র"
 lang: bn
 ---

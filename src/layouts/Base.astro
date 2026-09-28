@@ -117,16 +117,26 @@ const jsonLd: Record<string, unknown> = {
 			as="font"
 			type="font/woff2"
 			crossorigin
-			fetchpriority="high"
 		/>
-		<link
-			rel="preload"
-			href="/fonts/noto-serif-bengali-00.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin
-			fetchpriority="high"
-		/>
+		{
+			lang === 'bn' ? (
+				<link
+					rel="preload"
+					href="/fonts/noto-serif-bengali-00.woff2"
+					as="font"
+					type="font/woff2"
+					crossorigin
+				/>
+			) : (
+				<link
+					rel="preload"
+					href="/fonts/cutive-mono-01.woff2"
+					as="font"
+					type="font/woff2"
+					crossorigin
+				/>
+			)
+		}
 
 		<!-- Open Graph -->
 		<meta property="og:type" content={ogType} />

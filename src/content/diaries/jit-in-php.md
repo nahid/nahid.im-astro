@@ -7,7 +7,7 @@ tags:
   - interpreter
   - jit
   - php
-heroImage: "/images/JIT-PHP.png"
+heroImage: "/images/JIT-PHP.webp"
 heroImageAlt: "PHP-তে JIT কম্পাইলার নিয়ে ব্যানার চিত্র"
 lang: bn
 ---

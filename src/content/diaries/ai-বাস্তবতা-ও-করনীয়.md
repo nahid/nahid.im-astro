@@ -8,7 +8,7 @@ tags:
   - career
   - guidance
   - job
-heroImage: "/images/ChatGPT-Image-May-11-2026-05_22_42-PM.png"
+heroImage: "/images/ChatGPT-Image-May-11-2026-05_22_42-PM.webp"
 heroImageAlt: "AI: বাস্তবতা ও করণীয় নিয়ে ব্যানার চিত্র"
 lang: bn
 ---

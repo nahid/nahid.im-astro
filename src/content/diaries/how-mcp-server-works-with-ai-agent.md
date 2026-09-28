@@ -8,7 +8,7 @@ tags:
   - ai-agent
   - mcp
   - mcp-server
-heroImage: "/images/20250629_2114_MCP-Server-Banner_simple_compose_01jyy3zpxmepv8ta9wvqc96ppd.png"
+heroImage: "/images/20250629_2114_MCP-Server-Banner_simple_compose_01jyy3zpxmepv8ta9wvqc96ppd.webp"
 heroImageAlt: "MCP সার্ভার ও AI Agent নিয়ে ব্যানার চিত্র"
 lang: bn
 ---
@@ -25,7 +25,7 @@ lang: bn
 
 একটি MCP সার্ভারের এক বা একাধিক টুলস বা ফাংশন থাকতে পারে। MCP Server মূলত AI Agent এবং এই টুলস গুলোর ভিতরে Middleware হিসেবে কাজ করে।
 
-![](images/⚙️-MCP-Server-কীভাবে-কাজ-করে_-visual-selection-2.png)
+![](images/⚙️-MCP-Server-কীভাবে-কাজ-করে_-visual-selection-2.webp)
 
 **যেমনটা আগেই বলেছি একটা MCP server এর একাধিক টুল থাকতে পারে। প্রতিটি টুলের নিম্নের প্রোপার্টিগুলো থাকবে**
 
@@ -37,7 +37,7 @@ lang: bn
 
 - Output - এই টুল বা ফাংশন কি রিটার্ন করবে সেটা।
 
-![](images/⚙️-MCP-Server-কীভাবে-কাজ-করে_-visual-selection.png)
+![](images/⚙️-MCP-Server-কীভাবে-কাজ-করে_-visual-selection.webp)
 
 নিচে বুঝার সুবিধার্থে একটা স্যাম্পল JSON স্কিমা দেয়া হলো।
 

@@ -7,7 +7,7 @@ tags:
   - ai
   - software-development
   - career
-heroImage: "/images/Gemini_Generated_Image_i3v99xi3v99xi3v9.png"
+heroImage: "/images/Gemini_Generated_Image_i3v99xi3v99xi3v9.webp"
 heroImageAlt: "AI ও সফটওয়্যার ইন্ডাস্ট্রির ভবিষ্যৎ নিয়ে ব্যানার চিত্র"
 lang: bn
 ---
@@ -30,7 +30,7 @@ lang: bn
 
 <figure>
 
-![](images/38641245_2187816977913149_8226977054822760448_n-1024x683.jpg)
+![](images/38641245_2187816977913149_8226977054822760448_n-1024x683.webp)
 
 <figcaption>
 

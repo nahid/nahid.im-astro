@@ -7,7 +7,7 @@ tags:
   - developer
   - lifestyle
   - tips
-heroImage: "/images/productive-developer-blog-banner-v1-1.png"
+heroImage: "/images/productive-developer-blog-banner-v1-1.webp"
 heroImageAlt: "প্রোডাক্টিভ ডেভেলপার হবার উপায় নিয়ে ব্যানার চিত্র"
 lang: bn
 ---

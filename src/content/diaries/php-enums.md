@@ -7,7 +7,7 @@ tags:
   - enum
   - oop
   - php
-heroImage: "/images/Introducewith-PHP-enum.png"
+heroImage: "/images/Introducewith-PHP-enum.webp"
 heroImageAlt: "PHP Enum নিয়ে ব্যানার চিত্র"
 lang: bn
 ---

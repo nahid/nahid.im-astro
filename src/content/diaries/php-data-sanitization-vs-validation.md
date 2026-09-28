@@ -7,7 +7,7 @@ tags:
   - development
   - php
   - tips
-heroImage: "/images/20250604_1640_PHP-Input-Security_simple_compose_01jwx8c37mewz8fg3zq641thd9.png"
+heroImage: "/images/20250604_1640_PHP-Input-Security_simple_compose_01jwx8c37mewz8fg3zq641thd9.webp"
 heroImageAlt: "PHP ডাটা Sanitization ও Validation নিয়ে ব্যানার চিত্র"
 lang: bn
 ---
