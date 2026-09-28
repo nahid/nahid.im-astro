@@ -61,7 +61,7 @@ const article = {
 		{
 			data.heroImage && (
 				<figure>
-					<img src={data.heroImage} alt={data.heroImageAlt ?? data.title} />
+					<img src={data.heroImage} alt={data.heroImageAlt ?? data.title} loading="eager" fetchpriority="high" decoding="async" />
 					{data.heroImageAlt && <figcaption>{data.heroImageAlt}</figcaption>}
 				</figure>
 			)

@@ -1,6 +1,4 @@
-/* Base typography + paper sheet layout. Import order matters: tokens first. */
-@import './tokens.css';
-@import '/fonts/fonts.css';
+/* Base typography + paper sheet layout. Bundled by Astro frontmatter imports in Base layout. */
 
 *,
 *::before,

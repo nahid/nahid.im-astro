@@ -1,4 +1,6 @@
 ---
+import '../styles/tokens.css';
+import '../../public/fonts/fonts.css';
 import '../styles/global.css';
 import { SITE, BIO, SOCIALS } from '../consts';
 
@@ -108,13 +110,22 @@ const jsonLd: Record<string, unknown> = {
 		{prevHref && <link rel="prev" href={prevHref} />}
 		{nextHref && <link rel="next" href={nextHref} />}
 
-		<!-- Bengali body face renders most of every page; preload it. -->
+		<!-- Critical display and body fonts preloaded for fast FCP without render delays. -->
+		<link
+			rel="preload"
+			href="/fonts/special-elite-01.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+			fetchpriority="high"
+		/>
 		<link
 			rel="preload"
 			href="/fonts/noto-serif-bengali-00.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
+			fetchpriority="high"
 		/>
 
 		<!-- Open Graph -->

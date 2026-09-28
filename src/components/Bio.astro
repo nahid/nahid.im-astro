@@ -5,7 +5,7 @@ import { BIO } from '../consts';
 
 <div class="bio">
 	<div class="bio__mount">
-		<img class="bio__photo" src={BIO.photo} width="170" height="170" alt={BIO.name} />
+		<img class="bio__photo" src={BIO.photo} width="170" height="170" alt={BIO.name} loading="eager" fetchpriority="high" decoding="async" />
 	</div>
 	<div class="bio__body">
 		<p class="bio__name">{BIO.name}</p>
