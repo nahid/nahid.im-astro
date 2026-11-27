@@ -11,6 +11,18 @@ tags:
 heroImage: "/images/ChatGPT-Image-May-11-2026-05_22_42-PM.webp"
 heroImageAlt: "AI: বাস্তবতা ও করণীয় নিয়ে ব্যানার চিত্র"
 lang: bn
+
+keyTakeaways:
+  - "Prompt Engineering শেখার মতো স্কিল নয়; Context Engineering মানে Agent-কে কাজের পুরো context দেয়া — সেটা ডোমেইন নলেজ ছাড়া হয় না।"
+  - "AI যুগে Fullstack-এর জায়গায় Allstack দরকার: Design থেকে DevOps পর্যন্ত depth সহ জ্ঞান।"
+  - "নতুনদের জন্য engineering fundamental, programming ও business domain knowledge অপরিহার্য; vibe coding তার আগে নয়।"
+faq:
+  - question: "AI যুগে ডেভেলপারদের কী শিখতে হবে?"
+    answer: "Programming fundamental, domain knowledge, system thinking ও business-technology সমন্বয় — শুধু Prompt Engineering নয়।"
+  - question: "Context Engineering আসলে কী?"
+    answer: "Agent-কে আপনার কাজের পুরো context দেয়া। সেটা দিতে হলে নিজের ডোমেইনে গভীর নলেজ থাকতে হবে।"
+  - question: "AI কি কোড শেখার দরকার শেষ করে দিয়েছে?"
+    answer: "না। ক্যালকুলেটর ম্যাথ শেখা বন্ধ করেনি; AI কোড লিখলেও engineering decision আপনাকেই নিতে হবে।"
 ---
 
 AI এর এই সময়ে এসে একটা বিষয়ে অবাকও হই আবার কষ্টও লাগে যে ইন্ডাস্ট্রিতে কেউই AI নিয়ে সত্যিকার অর্থে ডেভলপারদের কিভাবে কাজ করতে হবে, কিভাবে তারা এই সময়ে নিজেকে গড়ে তুলতে পারবে, চাকরীর ক্ষেত্রে সত্যিকারের ফ্যাক্ট কি, এই সময়ে কি কি সম্ভাবনা তৈরী হচ্ছে এগুলো নিয়ে কথাই হয় না। বরং এক গ্রুপ বলে চাকরী চলে যাবে আর অন্য গ্রুপ বলে চাকরী থাকবে তবে নিজেকে আপডেট করতে হবে। কিন্তু নিজেকে কিভাবে, কি দিয়ে আপডেট করবেন সেটা অলমোস্ট কেউই বলছেন না। আমার আজকের এই লেখাটি মূলত নিজেকে আপডেট কিভাবে ও কি দিয়ে করা যেতে পারে সেটা নিয়ে, সাথে থাকবে এর চ্যালেঞ্জগুলো।

@@ -1,0 +1,45 @@
+---
+import { t } from '../utils/strings';
+
+interface Props {
+	items: string[];
+	lang?: 'bn' | 'en';
+}
+
+const { items, lang = 'bn' } = Astro.props;
+---
+
+{
+	items.length > 0 && (
+		<aside class="takeaways" aria-labelledby="takeaways-label">
+			<p class="takeaways__label label" id="takeaways-label">
+				{t('keyTakeaways', lang)}
+			</p>
+			<ul class="takeaways__list">
+				{items.map((item) => (
+					<li>{item}</li>
+				))}
+			</ul>
+		</aside>
+	)
+}
+
+<style>
+	.takeaways {
+		margin: 0 0 var(--sp-5);
+		padding: var(--sp-4);
+		border: var(--rule-thin);
+		background: var(--paper-shade);
+	}
+	.takeaways__label {
+		margin: 0 0 var(--sp-2);
+		color: var(--accent);
+	}
+	.takeaways__list {
+		margin: 0;
+		padding-left: 1.2em;
+	}
+	.takeaways__list li + li {
+		margin-top: var(--sp-2);
+	}
+</style>

@@ -7,10 +7,15 @@ import Folio from '../components/Folio.astro';
 import Masthead from '../components/Masthead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Faq from '../components/Faq.astro';
+import AuthorCard from '../components/AuthorCard.astro';
 import { categoryLabel } from '../utils/categories';
 import { formatDate, formatNumber, readingMinutes } from '../utils/format';
 import { t } from '../utils/strings';
 import { SITE } from '../consts';
+import { buildBlogPosting } from '../utils/seo';
 
 interface Props {
 	post: CollectionEntry<'diaries'>;
@@ -22,11 +27,45 @@ const { post, prev, next } = Astro.props;
 const { data } = post;
 const lang = data.lang;
 const minutes = readingMinutes(post.body ?? '', lang);
+const wordCount = (post.body ?? '').trim().split(/\s+/).filter(Boolean).length;
+const canonicalPath = `/diaries/${post.id}/`;
 const ogImage = data.heroImage ? new URL(data.heroImage, Astro.site).href : undefined;
-const article = {
+const ogImageUrl = new URL(data.heroImage ?? SITE.ogImage, Astro.site).href;
+const categoryHref = `/diaries/category/${data.category}/`;
+const categoryName = categoryLabel(data.category, 'en');
+const faq = data.faq ?? [];
+const takeaways = data.keyTakeaways ?? [];
+
+const breadcrumbs = [
+	{ name: 'Home', url: '/' },
+	{ name: 'Diaries', url: '/diaries/' },
+	{ name: categoryName, url: categoryHref },
+	{ name: data.title, url: canonicalPath },
+];
+
+const articleJsonLd = buildBlogPosting({
+	site: Astro.site,
+	title: data.title,
+	description: data.description,
+	canonical: new URL(canonicalPath, Astro.site).href,
+	inLanguage: lang === 'bn' ? 'bn-BD' : 'en-US',
 	publishedTime: data.pubDate.toISOString(),
 	modifiedTime: data.updatedDate?.toISOString(),
+	imageUrl: ogImageUrl,
+	imageAlt: data.heroImageAlt ?? data.title,
+	category: categoryName,
+	tags: data.tags,
+	wordCount,
+});
+
+const article = {
+	publishedTime: data.pubDate.toISOString(),
+	modifiedTime: data.updatedDate?.toISOString() ?? data.pubDate.toISOString(),
 	author: SITE.author,
+	section: categoryName,
+	tags: data.tags,
+	wordCount,
+	jsonLd: articleJsonLd,
 };
 ---
 
@@ -35,42 +74,66 @@ const article = {
 	description={data.description}
 	lang={lang}
 	ogImage={ogImage}
+	ogImageAlt={data.heroImageAlt ?? data.title}
 	article={article}
+	faq={faq}
+	breadcrumbs={breadcrumbs}
 >
 	<Folio />
 	<Masthead />
 	<Nav />
 
 	<main id="main">
-	<article class="post" lang={lang}>
-		<a class="post__eyebrow label" href={`/diaries/category/${data.category}/`}>
-			{categoryLabel(data.category, 'en')}
-		</a>
-		<h1 class="post__headline">{data.title}</h1>
+		<article class="post" lang={lang} itemscope itemtype="https://schema.org/BlogPosting">
+			<Breadcrumbs crumbs={breadcrumbs} />
+			<a class="post__eyebrow label" href={categoryHref}>
+				{categoryName}
+			</a>
+			<h1 class="post__headline" itemprop="headline">{data.title}</h1>
 
-		<div class="post__byline">
-			<span>{t('byline', 'en')}</span>
-			<span aria-hidden="true"> · </span>
-			<time datetime={data.pubDate.toISOString().slice(0, 10)}>
-				{formatDate(data.pubDate, 'en')}
-			</time>
-			<span aria-hidden="true"> · </span>
-			<span>{formatNumber(minutes, 'en')} {t('minRead', 'en')}</span>
-		</div>
+			<div class="post__byline">
+				<span>
+					{t('byline', 'en')}
+					<meta itemprop="author" content={SITE.author} />
+				</span>
+				<span aria-hidden="true"> · </span>
+				<time
+					datetime={data.pubDate.toISOString().slice(0, 10)}
+					itemprop="datePublished"
+				>
+					{formatDate(data.pubDate, 'en')}
+				</time>
+				<span aria-hidden="true"> · </span>
+				<span>{formatNumber(minutes, 'en')} {t('minRead', 'en')}</span>
+			</div>
 
-		{
-			data.heroImage && (
-				<figure>
-					<img src={data.heroImage} alt={data.heroImageAlt ?? data.title} width="800" height="450" loading="eager" fetchpriority="high" decoding="async" />
-					{data.heroImageAlt && <figcaption>{data.heroImageAlt}</figcaption>}
-				</figure>
-			)
-		}
+			{
+				data.heroImage && (
+					<figure>
+						<img
+							src={data.heroImage}
+							alt={data.heroImageAlt ?? data.title}
+							width="800"
+							height="450"
+							loading="eager"
+							fetchpriority="high"
+							decoding="async"
+							itemprop="image"
+						/>
+						{data.heroImageAlt && <figcaption>{data.heroImageAlt}</figcaption>}
+					</figure>
+				)
+			}
 
-		<div class={`prose prose--${lang}`}>
-			<slot />
-		</div>
-	</article>
+			<KeyTakeaways items={takeaways} lang={lang} />
+
+			<div class={`prose prose--${lang}`} itemprop="articleBody">
+				<slot />
+			</div>
+
+			<Faq items={faq} lang={lang} />
+			<AuthorCard lang={lang} />
+		</article>
 	</main>
 
 	{
@@ -79,9 +142,7 @@ const article = {
 				<span class="post-nav__end">
 					{prev && (
 						<a href={`/diaries/${prev.slug}/`}>
-							<span class="label">
-								{t('prevPost', 'en')}
-							</span>
+							<span class="label">{t('prevPost', 'en')}</span>
 							<span class="post-nav__title">{prev.title}</span>
 						</a>
 					)}
@@ -89,9 +150,7 @@ const article = {
 				<span class="post-nav__end post-nav__end--right">
 					{next && (
 						<a href={`/diaries/${next.slug}/`}>
-							<span class="label">
-								{t('nextPost', 'en')}
-							</span>
+							<span class="label">{t('nextPost', 'en')}</span>
 							<span class="post-nav__title">{next.title}</span>
 						</a>
 					)}
@@ -107,13 +166,13 @@ const article = {
 	.post {
 		max-width: 50rem;
 		margin-inline: auto;
-		margin-top: var(--sp-6);
+		margin-top: var(--sp-4);
 	}
 	.post__eyebrow {
 		/* inline-block, or the vertical margin below is dropped and the chip's
 		   background bleeds into the headline's line box. */
 		display: inline-block;
-		margin: 0 0 var(--sp-2);
+		margin: var(--sp-3) 0 var(--sp-2);
 		color: var(--paper);
 		background: var(--faded);
 		padding: 0.56em 0.55em 0.16em;

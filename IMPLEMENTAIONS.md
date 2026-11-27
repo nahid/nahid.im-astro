@@ -131,7 +131,11 @@ nahid.im/
 │   │       └── category/[...slug].astro ← category archives (handles nesting)
 │   └── utils/
 │       ├── categories.ts      ← category tree, labels, slugs
-│       └── format.ts          ← newspaper date formatting ("Saturday, July 11, 2026")
+│       ├── format.ts          ← newspaper date formatting ("Saturday, July 11, 2026")
+│       ├── seo.ts             ← Person / BlogPosting / FAQPage / ProfilePage JSON-LD
+│       └── strings.ts         ← bn/en UI copy (incl. takeaways / FAQ / author)
+│   └── pages/
+│       └── llms.txt.ts        ← AEO/GEO machine-readable site map for answer engines
 └── scripts/
     └── migrate/               ← one-off WP export conversion scripts
 ```
@@ -156,8 +160,15 @@ const diaries = defineCollection({
     ]),
     tags: z.array(z.string()).default([]),
     heroImage: z.string().optional(),
+    heroImageAlt: z.string().optional(),
     draft: z.boolean().default(false),
     lang: z.enum(['bn', 'en']).default('bn'),   // most posts are Bengali
+    // AEO / GEO — required in practice for every published post (see AGENTS.md)
+    keyTakeaways: z.array(z.string().min(8).max(220)).max(6).default([]),
+    faq: z.array(z.object({
+      question: z.string().min(8).max(180),
+      answer: z.string().min(24).max(500),
+    })).max(8).default([]),
   }),
 });
 
@@ -265,20 +276,30 @@ prev/next navigation correct; a Bengali post and an English post reviewed
 side by side — correct fonts, line-height, no broken conjuncts, Bengali
 dates/reading-time labels, no `hyphens` applied to Bengali text.
 
-### Phase 4 — SEO, feeds, redirects
-1. `<SEO>` partial in Base.astro: canonical, OG tags (og:image from heroImage
-   or a default masthead card), twitter card, article meta on posts.
+### Phase 4 — SEO, feeds, redirects (+ AEO / GEO)
+1. `<SEO>` in Base.astro: canonical, OG tags (og:image from heroImage
+   or a default masthead card), twitter card, article meta on posts,
+   `rel=author` → `/about/`, robots `max-image-preview:large`.
 2. `rss.xml.ts` with full-content feed — set per-item `language` and channel
    default `bn`; `@astrojs/sitemap` config. (One feed for both languages is
    fine; optionally add a filtered `/rss-en.xml` later.)
-2b. Per-post `og:locale` (`bn_BD` / `en_US`) and correct `<html lang>` —
-   this matters for Bengali-language search ranking.
+2b. Per-post `og:locale` (`bn_BD` / `en_US`) + `og:locale:alternate` and correct
+   `<html lang>` — this matters for Bengali-language search ranking.
 3. Generate `public/_redirects` (Cloudflare Pages format) from redirects.csv —
    301s for any URL that changed, plus `/feed → /rss.xml` (WP feed URL).
-4. JSON-LD: `BlogPosting` on posts, `Person` on home/about.
+4. JSON-LD via `src/utils/seo.ts`: `Person` + `Organization` + `WebSite` on every
+   page; `BlogPosting` + `FAQPage` on posts; `ProfilePage` on About;
+   `BreadcrumbList` on post/archive/about. Stable `@id`s (`#person`, `#website`,
+   `#jouleslabs`).
+5. AEO / GEO (mandatory ongoing — also documented in `AGENTS.md`):
+   - Every diary ships `keyTakeaways` + `faq` frontmatter (visible UI + schema).
+   - Answer-first lede in the body; author card on posts; About facts list.
+   - `/llms.txt` build endpoint; `robots.txt` allows common AI/answer crawlers;
+     `_headers` sets `charset=utf-8` on `/llms.txt`.
 
 **Acceptance:** `npm run build` clean; validate one post URL in an OG debugger;
-every row of redirects.csv covered.
+every row of redirects.csv covered; a post HTML contains BlogPosting + FAQPage;
+`/llms.txt` lists About + diaries; About emits ProfilePage.
 
 ### Phase 5 — Deploy
 1. Push repo to GitHub. Create Cloudflare Pages project, connect repo,
@@ -304,10 +325,11 @@ Lighthouse ≥ 95 across the board (static + no JS should make this easy).
 
 ### Phase 7 — Authoring workflow
 1. `npm run new -- "Post Title"` script: scaffolds a .md with today's date,
-   slugified filename, frontmatter template.
-2. `CLAUDE.md` in repo root documenting: schema fields, category slugs,
-   image conventions, "drafts have `draft: true` and are excluded from builds",
-   deploy = merge to main.
+   slugified filename, frontmatter template **including empty `keyTakeaways` /
+   `faq` stubs the author must fill**.
+2. `AGENTS.md` / `CLAUDE.md` in repo root documenting: schema fields, category
+   slugs, image conventions, SEO/AEO/GEO rules, "drafts have `draft: true` and
+   are excluded from builds", deploy = merge to main.
 3. Optional later: TinaCMS on top of the same Markdown files if visual
    editing is ever wanted. Do not build this now.
 
@@ -326,9 +348,15 @@ Lighthouse ≥ 95 across the board (static + no JS should make this easy).
   post, write it in Bangla. When touching typography, test against a Bengali
   post first, English second. Never apply `hyphens: auto`, `text-transform`,
   `letter-spacing` tricks, or `font-variant: small-caps` to Bengali text.
+  Technical terms stay in English.
 - Bengali UI copy lives in one place (`utils/strings.ts`), not scattered in
   components — makes the bn/en label pairs auditable.
 - Run `npm run build` before every commit; the content schema is the content linter.
+- **SEO / AEO / GEO (mandatory for every article and site page change):** follow
+  the dedicated section in `AGENTS.md`. Every diary needs answer-first lede,
+  filled `keyTakeaways` + `faq`, and must keep Post-layout author/breadcrumb/
+  JSON-LD wiring. About/author entity facts live in `src/consts.ts` + About page
+  together. Do not remove `/llms.txt`, FAQPage, or AI-crawler allows in robots.
 
 ## 6. Suggested Claude Code kickoff prompts
 
@@ -339,6 +367,10 @@ Stop when acceptance criteria are met and show me a diff summary."
 
 Phase 2: "export.xml is in scripts/migrate/. Run the migration per Phase 2,
 show me 3 sample converted posts for review before converting the rest."
+
+New diary: "Read AGENTS.md SEO/AEO/GEO rules. Write a Bengali diary from
+[source], keep the tone, English technical terms, ASCII slug, filled
+keyTakeaways + faq, answer-first lede, hero image if relevant. Build must pass."
 ```
 
 ---

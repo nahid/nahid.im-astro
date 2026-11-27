@@ -10,6 +10,15 @@ tags:
 heroImage: "/images/1_09lcqAWOw_ky_8GOYvCGvA.webp"
 heroImageAlt: "লারাভেল মাইগ্রেশন নিয়ে ব্যানার চিত্র"
 lang: bn
+
+keyTakeaways:
+  - "Laravel Migration শুধু টেবিল বানানোর শর্টকাট নয় — schema পরিবর্তনের ইতিহাস ও টিম ওয়ার্কফ্লো।"
+  - "সঠিক উদ্দেশ্য না বুঝলে Migration ভুলভাবে ব্যবহার হয়; এটা versioned database change।"
+faq:
+  - question: "Laravel Migration কী?"
+    answer: "ডাটাবেস schema পরিবর্তনকে কোড ও version control-এ রাখার Laravel ব্যবস্থা।"
+  - question: "শুধু টেবিল তৈরির জন্য কি?"
+    answer: "না। মূল উদ্দেশ্য reproducible, shareable schema evolution — শুধু CRUD টেবিল জেনারেটর নয়।"
 ---
 
 আলহামদুলিল্লাহ, অনেক অনেক দিন পরে আবারও লিখতে বসলাম। আশাকরি করোনাকালিন সময়ে আল্লাহ সবাইকে সুস্থ রেখেছেন।

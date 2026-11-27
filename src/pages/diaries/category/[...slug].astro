@@ -9,6 +9,8 @@ import Nav from '../../../components/Nav.astro';
 import SectionHead from '../../../components/SectionHead.astro';
 import PostCard from '../../../components/PostCard.astro';
 import Footer from '../../../components/Footer.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { SITE } from '../../../consts';
 import { allCategorySlugs, categoryLabel, descendants } from '../../../utils/categories';
 import { getPublishedPosts } from '../../../utils/posts';
 
@@ -24,17 +26,22 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { slug, posts } = Astro.props;
-const labelBn = categoryLabel(slug, 'bn');
 const labelEn = categoryLabel(slug, 'en');
-const categoryDesc = `Dispatches by Nahid Bin Azhar filed under ${labelEn}.`;
+const categoryDesc = `Dispatches by ${SITE.author} on ${labelEn} — software, AI, and engineering notes from The Alien Dispatch.`;
+const breadcrumbs = [
+	{ name: 'Home', url: '/' },
+	{ name: 'Diaries', url: '/diaries/' },
+	{ name: labelEn, url: `/diaries/category/${slug}/` },
+];
 ---
 
-<Base title={labelEn} description={categoryDesc} lang="en">
+<Base title={labelEn} description={categoryDesc} lang="en" breadcrumbs={breadcrumbs}>
 	<Folio />
 	<Masthead />
 	<Nav />
 
 	<main id="main">
+		<Breadcrumbs crumbs={breadcrumbs} />
 		<SectionHead label={labelEn} lang="en" />
 		{
 			posts.length > 0 ? (

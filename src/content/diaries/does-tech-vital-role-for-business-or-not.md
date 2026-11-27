@@ -10,6 +10,16 @@ tags:
 heroImage: "/images/assets_task_01jz5fa71ge769akn2351fhrn7_1751456860_img_1.webp"
 heroImageAlt: "ব্যবসায় প্রযুক্তির ভূমিকা নিয়ে ব্যানার চিত্র"
 lang: bn
+
+keyTakeaways:
+  - "টেক সব ব্যবসায়ই মূল উপকরণ নয় — কখনো competitive advantage, কখনো শুধু tool।"
+  - "RemoteOK ও Gumroad-এর মতো উদাহরণ দেখায় lean tech দিয়েও বড় ব্যবসা হয়।"
+  - "প্রশ্নটা \"কোন স্ট্যাক\" নয় — ব্যবসার কোন অংশে টেক সত্যিই মূল্য তৈরি করছে।"
+faq:
+  - question: "টেক কি ব্যবসার মূল উপকরণ?"
+    answer: "সব ক্ষেত্রে নয়। অনেক ব্যবসায় টেক সহায়ক টুল; কোথাও আবার মূল পণ্যই সফটওয়্যার।"
+  - question: "ছোট টিম কি কম টেক দিয়ে ব্যবসা করতে পারে?"
+    answer: "হ্যাঁ — Levelsio-এর RemoteOK বা Gumroad-এর মতো উদাহরণ lean stack-এর শক্তি দেখায়।"
 ---
 
 দুটো সত্যিকারের ব্যবসার স্টোরী দিয়ে শুরু করি, একটি হচ্ছে [Pieter Levels(Levelsio)](https://x.com/levelsio) এর [RemoteOk](https://remoteok.com/), আরেকটি হলো [Sahil Lavingia](https://www.linkedin.com/in/sahillavingia/) এর [Gumroad](https://gumroad.com/).

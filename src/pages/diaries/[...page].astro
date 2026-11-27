@@ -9,6 +9,7 @@ import SectionHead from '../../components/SectionHead.astro';
 import PostCard from '../../components/PostCard.astro';
 import Pagination from '../../components/Pagination.astro';
 import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { PER_PAGE } from '../../consts';
 import { getPublishedPosts } from '../../utils/posts';
 import { t } from '../../utils/strings';
@@ -24,6 +25,13 @@ const { page } = Astro.props;
 const pageSuffix = page.currentPage > 1 ? ` — Page ${page.currentPage}` : '';
 const archiveTitle = `${t('allDiaries', 'en')}${pageSuffix}`;
 const archiveDesc = `${t('diariesDesc', 'en')}${pageSuffix}`;
+const breadcrumbs = [
+	{ name: 'Home', url: '/' },
+	{ name: 'Diaries', url: '/diaries/' },
+	...(page.currentPage > 1
+		? [{ name: `Page ${page.currentPage}`, url: page.url.current }]
+		: []),
+];
 ---
 
 <Base
@@ -32,12 +40,14 @@ const archiveDesc = `${t('diariesDesc', 'en')}${pageSuffix}`;
 	lang="en"
 	prevUrl={page.url.prev}
 	nextUrl={page.url.next}
+	breadcrumbs={breadcrumbs}
 >
 	<Folio />
 	<Masthead />
 	<Nav />
 
 	<main id="main">
+		<Breadcrumbs crumbs={breadcrumbs} />
 		<SectionHead label={t('allDiaries', 'en')} lang="en" />
 		<div class="archive">
 			{page.data.map((post) => <PostCard post={post} />)}

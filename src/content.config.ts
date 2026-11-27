@@ -3,7 +3,9 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 // One diary post per .md/.mdx in src/content/diaries/. `npm run build` validates
-// every post against this schema — it is the content linter (see CLAUDE.md).
+// every post against this schema — it is the content linter (see AGENTS.md /
+// CLAUDE.md). New and edited posts MUST fill keyTakeaways + faq (AEO/GEO);
+// empty defaults are a schema convenience, not a license to ship blank.
 const diaries = defineCollection({
 	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/diaries' }),
 	schema: z.object({
@@ -32,6 +34,18 @@ const diaries = defineCollection({
 		draft: z.boolean().default(false),
 		// Most posts are Bengali; English posts must opt in with lang: 'en'.
 		lang: z.enum(['bn', 'en']).default('bn'),
+		/** AEO answer box — 2–4 bullets grounded only in the body. */
+		keyTakeaways: z.array(z.string().min(8).max(220)).max(6).default([]),
+		/** AEO/GEO FAQ — visible section + FAQPage JSON-LD; grounded in the body. */
+		faq: z
+			.array(
+				z.object({
+					question: z.string().min(8).max(180),
+					answer: z.string().min(24).max(500),
+				}),
+			)
+			.max(8)
+			.default([]),
 	}),
 });
 

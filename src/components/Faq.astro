@@ -1,0 +1,64 @@
+---
+import { t } from '../utils/strings';
+import type { FaqItem } from '../utils/seo';
+
+interface Props {
+	items: FaqItem[];
+	lang?: 'bn' | 'en';
+}
+
+const { items, lang = 'bn' } = Astro.props;
+---
+
+{
+	items.length > 0 && (
+		<section class="faq" id="faq" aria-labelledby="faq-label">
+			<h2 class="faq__title" id="faq-label">
+				{t('faq', lang)}
+			</h2>
+			<div class="faq__list">
+				{items.map((item) => (
+					<details class="faq__item">
+						<summary class="faq__q">{item.question}</summary>
+						<p class="faq__a">{item.answer}</p>
+					</details>
+				))}
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.faq {
+		margin: var(--sp-6) 0 0;
+		padding-top: var(--sp-4);
+		border-top: 3px double var(--rule);
+	}
+	.faq__title {
+		font-size: var(--fs-h3);
+		margin: 0 0 var(--sp-3);
+	}
+	.faq__item {
+		border-bottom: var(--rule-hair);
+		padding: var(--sp-3) 0;
+	}
+	.faq__q {
+		cursor: pointer;
+		font-weight: 700;
+		list-style: none;
+	}
+	.faq__q::-webkit-details-marker {
+		display: none;
+	}
+	.faq__q::before {
+		content: '▸ ';
+		color: var(--accent);
+	}
+	.faq__item[open] .faq__q::before {
+		content: '▾ ';
+	}
+	.faq__a {
+		margin: var(--sp-2) 0 0;
+		color: var(--ink);
+	}
+</style>

@@ -10,8 +10,9 @@ const year = new Date().getFullYear(); // build-time stamp; advances on rebuild
 	<div class="footer__row">
 		<p class="footer__mast">{SITE.masthead}</p>
 		<p class="footer__meta meta">
-			© {SITE.established}–{year} {SITE.author} ·{' '}
-			<a href="/rss.xml">RSS</a>
+			© {SITE.established}–{year}{' '}
+			<a href="/about/">{SITE.author}</a> · <a href="/rss.xml">RSS</a> ·{' '}
+			<a href="/llms.txt">llms.txt</a>
 		</p>
 	</div>
 	<p class="footer__colophon meta">

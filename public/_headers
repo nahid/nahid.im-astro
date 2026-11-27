@@ -11,6 +11,15 @@
 /images/*
   Cache-Control: public, max-age=604800
 
+# Build-time text endpoints — charset must be explicit or browsers guess Latin-1
+# and mojibake Bengali diary titles in /llms.txt.
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/rss.xml
+  Content-Type: application/rss+xml; charset=utf-8
+
 # The type specimen is a working tool, not a page. robots.txt disallows it; this
 # keeps it out of the index even if something links straight to it.
 /dev/*

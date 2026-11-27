@@ -1,0 +1,83 @@
+---
+import { BIO, SITE } from '../consts';
+import { t } from '../utils/strings';
+
+interface Props {
+	lang?: 'bn' | 'en';
+}
+
+const { lang = 'en' } = Astro.props;
+---
+
+<aside class="author" aria-labelledby="author-label">
+	<p class="author__label label" id="author-label">{t('aboutAuthor', lang)}</p>
+	<div class="author__row">
+		<img
+			class="author__photo"
+			src={BIO.photo}
+			width="88"
+			height="88"
+			alt={SITE.author}
+			loading="lazy"
+			decoding="async"
+		/>
+		<div class="author__body">
+			<p class="author__by">
+				{t('writtenBy', lang)}{' '}
+				<a href="/about/"><strong>{SITE.author}</strong></a>
+			</p>
+			<p class="author__role meta">{BIO.role} · {BIO.location}</p>
+			<p class="author__summary">{BIO.summary}</p>
+			<p class="author__more">
+				<a href="/about/">{t('authorMore', lang)}</a>
+			</p>
+		</div>
+	</div>
+</aside>
+
+<style>
+	.author {
+		margin: var(--sp-6) 0 0;
+		padding-top: var(--sp-4);
+		border-top: var(--rule-thin);
+	}
+	.author__label {
+		margin: 0 0 var(--sp-3);
+		color: var(--faded);
+	}
+	.author__row {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--sp-4);
+		align-items: start;
+	}
+	.author__photo {
+		width: 88px;
+		height: 88px;
+		object-fit: cover;
+		filter: grayscale(1) contrast(1.05);
+		border: var(--rule-thin);
+		background: var(--paper-shade);
+	}
+	.author__by,
+	.author__role,
+	.author__summary,
+	.author__more {
+		margin: 0;
+	}
+	.author__role {
+		margin-top: var(--sp-1);
+	}
+	.author__summary {
+		margin-top: var(--sp-2);
+	}
+	.author__more {
+		margin-top: var(--sp-2);
+	}
+	@media (max-width: 28rem) {
+		.author__row {
+			grid-template-columns: 1fr;
+			justify-items: start;
+		}
+	}
+</style>
