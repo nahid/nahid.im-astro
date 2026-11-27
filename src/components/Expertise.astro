@@ -1,0 +1,61 @@
+---
+// Areas of expertise — three ruled columns matching the newspaper ledger style.
+import { EXPERTISE } from '../consts';
+---
+
+<div class="expertise">
+	{
+		EXPERTISE.map((pillar) => (
+			<section class="expertise__pillar">
+				<h3 class="expertise__title">{pillar.title}</h3>
+				<ul class="expertise__list">
+					{pillar.items.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			</section>
+		))
+	}
+</div>
+
+<style>
+	.expertise {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--sp-5);
+		max-width: var(--sheet-max);
+	}
+	@media (min-width: 48rem) {
+		.expertise {
+			grid-template-columns: 1fr 1fr 1fr;
+			column-gap: var(--sp-5);
+		}
+		.expertise__pillar + .expertise__pillar {
+			border-left: var(--rule-hair);
+			padding-left: var(--sp-5);
+		}
+	}
+	.expertise__title {
+		margin: 0 0 var(--sp-3);
+		padding-bottom: var(--sp-2);
+		border-bottom: 3px double var(--rule);
+		font-family: var(--font-display);
+		font-size: var(--fs-h3);
+		font-weight: 400;
+		line-height: 1.2;
+	}
+	.expertise__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.expertise__list li {
+		padding: var(--sp-2) 0;
+		border-top: var(--rule-hair);
+		color: var(--ink);
+	}
+	.expertise__list li:first-child {
+		border-top: none;
+		padding-top: 0;
+	}
+</style>

@@ -10,7 +10,8 @@ import PostCard from '../../components/PostCard.astro';
 import Pagination from '../../components/Pagination.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { PER_PAGE } from '../../consts';
+import EditorialSeries from '../../components/EditorialSeries.astro';
+import { PER_PAGE, SITE } from '../../consts';
 import { getPublishedPosts } from '../../utils/posts';
 import { t } from '../../utils/strings';
 
@@ -32,6 +33,7 @@ const breadcrumbs = [
 		? [{ name: `Page ${page.currentPage}`, url: page.url.current }]
 		: []),
 ];
+const showSeries = page.currentPage === 1;
 ---
 
 <Base
@@ -48,6 +50,16 @@ const breadcrumbs = [
 
 	<main id="main">
 		<Breadcrumbs crumbs={breadcrumbs} />
+		{
+			showSeries && (
+				<>
+					<SectionHead label={t('editorialSeries', 'en')} lang="en" />
+					<p class="archive__lede">{t('editorialLede', 'en')}</p>
+					<p class="archive__brand meta">{SITE.tagline} — {SITE.brandHeadline}</p>
+					<EditorialSeries />
+				</>
+			)
+		}
 		<SectionHead label={t('allDiaries', 'en')} lang="en" />
 		<div class="archive">
 			{page.data.map((post) => <PostCard post={post} />)}
@@ -65,6 +77,14 @@ const breadcrumbs = [
 </Base>
 
 <style>
+	.archive__lede {
+		max-width: var(--measure);
+		margin: 0 0 var(--sp-3);
+		color: var(--faded);
+	}
+	.archive__brand {
+		margin: 0 0 var(--sp-5);
+	}
 	.archive {
 		display: grid;
 		gap: 0;

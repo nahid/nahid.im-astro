@@ -8,7 +8,17 @@ import Footer from '../components/Footer.astro';
 import SectionHead from '../components/SectionHead.astro';
 import SocialBar from '../components/SocialBar.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { ACHIEVEMENTS, BIO, KNOWS_ABOUT_DISPLAY, OPEN_SOURCE, SITE } from '../consts';
+import Expertise from '../components/Expertise.astro';
+import Experiments from '../components/Experiments.astro';
+import OpenSource from '../components/OpenSource.astro';
+import {
+	ACHIEVEMENTS,
+	BIO,
+	GITHUB_PROFILE,
+	KNOWS_ABOUT_DISPLAY,
+	OPEN_SOURCE,
+	SITE,
+} from '../consts';
 import { t } from '../utils/strings';
 
 const breadcrumbs = [
@@ -48,6 +58,7 @@ const topics = KNOWS_ABOUT_DISPLAY;
 			/>
 			<div class="about__body">
 				<h1>{BIO.name}</h1>
+				<p class="about__headline">{SITE.brandHeadline}</p>
 				<p class="about__role label">{BIO.role}</p>
 
 				<p class="about__lede">
@@ -64,6 +75,10 @@ const topics = KNOWS_ABOUT_DISPLAY;
 						<dd>CTO &amp; Co-founder, JoulesLabs</dd>
 					</div>
 					<div>
+						<dt>Focus</dt>
+						<dd>AI Engineering · Enterprise AI · Software Architecture</dd>
+					</div>
+					<div>
 						<dt>Based in</dt>
 						<dd>{BIO.location}</dd>
 					</div>
@@ -78,7 +93,7 @@ const topics = KNOWS_ABOUT_DISPLAY;
 							{OPEN_SOURCE.slice(0, 3)
 								.map((p) => p.name)
 								.join(', ')}
-							), BASIS National ICT Award (2019), and AI-era engineering practice at
+							), BASIS National ICT Award (2019), and practical AI engineering at
 							JoulesLabs.
 						</dd>
 					</div>
@@ -94,45 +109,52 @@ const topics = KNOWS_ABOUT_DISPLAY;
 
 				<p>
 					Hi, I&rsquo;m <strong>Nahid Bin Azhar</strong> (also known as{' '}
-					<strong>Mehedi Hasan Nahid</strong>) — a CTO, co-founder, software engineer,
-					and open-source contributor from Bangladesh.
+					<strong>Mehedi Hasan Nahid</strong>) — a software engineer, technology
+					entrepreneur, and the <strong>CTO &amp; Co-founder of JoulesLabs</strong>.
 				</p>
 				<p>
-					For more than 12 years, I&rsquo;ve been building software that solves
-					real-world problems. My career began as a software engineer, where I had the
-					opportunity to work across a wide range of technologies, architectures, and
-					industries. Over time, my focus shifted beyond writing code to building
-					products, leading teams, and creating experiences that people genuinely enjoy
-					using.
+					For more than <strong>15 years</strong>, I&rsquo;ve built software across
+					backend systems, product development, and engineering leadership. My
+					foundation is software engineering and software architecture: designing
+					reliable systems, integrating platforms, and shipping products people can
+					depend on.
 				</p>
 				<p>
-					Today, I&rsquo;m the <strong>CTO &amp; Co-founder of JoulesLabs</strong>, where
-					we&rsquo;re building SaaS products with a strong focus on Shopify and
-					AI-powered experiences. I enjoy turning complex technical challenges into
-					simple, reliable solutions — whether that means designing scalable backend
-					systems, integrating with external platforms, or applying large language models
-					and retrieval-augmented generation (RAG) to build intelligent, context-aware
-					applications. My passion lies in creating products that customers love while
-					improving the developer experience for the teams building them.
+					Along the way I contributed deeply to the <strong>PHP and Laravel</strong>{' '}
+					ecosystem — open-source packages that developers still use — and founded a
+					technology company where architecture, product judgment, and delivery meet
+					every day.
 				</p>
 				<p>
-					Throughout my career, I&rsquo;ve worked with technologies including Laravel,
-					TypeScript, Go, Node.js, Docker, Kubernetes, Redis, PostgreSQL, MySQL, and
-					modern cloud infrastructure. While I enjoy exploring new tools, I believe great
-					software is built on solid engineering principles rather than any particular
-					technology stack.
+					My move into <strong>AI Engineering and Enterprise AI</strong> is a
+					continuation of that same craft, not a reinvention. I apply engineering
+					discipline to practical intelligent systems: retrieval-augmented generation,
+					hybrid search, agent tooling, and the infrastructure that makes AI usable in
+					real business workflows. I am a practitioner building solutions — not an
+					academic AI researcher.
 				</p>
 				<p>
-					Open source has played a defining role in my journey. I believe the best way to
-					learn is by building, sharing, and collaborating with others. I&rsquo;m proud to
-					be recognized as one of the top PHP open-source contributors in Bangladesh, and
-					I continue to contribute to projects that help developers build better
-					software.
+					At JoulesLabs I work at the intersection of software architecture, AI
+					engineering, and technology strategy — turning complex problems into systems
+					that hold up in production.
+				</p>
+				<p>
+					Throughout my career I&rsquo;ve worked with Laravel, TypeScript, Go, Node.js,
+					Docker, Kubernetes, Redis, PostgreSQL, MySQL, and modern cloud infrastructure.
+					Great software still rests on solid engineering principles more than on any
+					single stack.
+				</p>
+				<p>
+					Open source remains a defining part of my identity. Packages such as Talk,
+					JSONQ, QArray, Presento, Permit, and GoHTTP grew from the same habit of
+					building, sharing, and collaborating. I&rsquo;m proud to be recognized among
+					Bangladesh&rsquo;s top PHP open-source contributors, and I continue to give
+					back where I can.
 				</p>
 				<p>
 					In 2019, I was honored to receive the{' '}
 					<strong>BASIS National ICT Award</strong> — a milestone that reinforced my
-					commitment to creating technology with real-world impact.
+					commitment to technology with real-world impact.
 				</p>
 
 				<h2 class="about__sub">Selected milestones</h2>
@@ -148,18 +170,28 @@ const topics = KNOWS_ABOUT_DISPLAY;
 
 				<p>
 					Outside of work, I enjoy mentoring developers, exploring emerging technologies,
-					and continuously learning. I also love cooking — a hobby that reminds me a lot
-					of software engineering: both reward curiosity, experimentation, and careful
-					attention to detail.
+					and cooking — a hobby that rewards the same curiosity and careful attention
+					software demands.
 				</p>
 				<p>
-					Whether I&rsquo;m architecting distributed systems, contributing to open
-					source, or building the next product at JoulesLabs, my goal remains the same: to
-					create technology that people genuinely enjoy using, and that makes
-					developers&rsquo; lives a little easier.
+					Whether I&rsquo;m designing systems, contributing to open source, or building
+					intelligent products at JoulesLabs, the goal stays the same:{' '}
+					<strong>{SITE.brandStatement}</strong>
 				</p>
 			</div>
 		</div>
+
+		<SectionHead label={t('expertise', 'en')} lang="en" />
+		<p class="about__section-lede">{t('expertiseLede', 'en')}</p>
+		<Expertise />
+
+		<SectionHead label={t('experiments', 'en')} lang="en" />
+		<p class="about__section-lede">{t('experimentsLede', 'en')}</p>
+		<Experiments />
+
+		<SectionHead label={t('openSource', 'en')} lang="en" href={GITHUB_PROFILE} />
+		<p class="about__section-lede">{t('openSourceLede', 'en')}</p>
+		<OpenSource />
 
 		<SectionHead label={t('elsewhere', 'en')} lang="en" />
 		<SocialBar />
@@ -191,6 +223,13 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	   well past a readable measure for a page this long. */
 	.about__body {
 		max-width: 42rem;
+	}
+	.about__headline {
+		margin: 0 0 var(--sp-2);
+		font-family: var(--font-display);
+		font-size: var(--fs-h2);
+		line-height: 1.2;
+		color: var(--accent);
 	}
 	.about__role {
 		margin-top: 0;
@@ -248,6 +287,11 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	.about__milestones li + li {
 		margin-top: var(--sp-2);
 	}
+	.about__section-lede {
+		max-width: var(--measure);
+		margin: 0 0 var(--sp-5);
+		color: var(--faded);
+	}
 	@media (max-width: 40rem) {
 		.about__grid {
 			grid-template-columns: 1fr;
@@ -262,6 +306,7 @@ const topics = KNOWS_ABOUT_DISPLAY;
 			width: 100%;
 		}
 		.about__body h1,
+		.about__headline,
 		.about__role {
 			text-align: center;
 		}

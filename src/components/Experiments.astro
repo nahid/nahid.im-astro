@@ -1,0 +1,70 @@
+---
+// Projects & experiments — clippings in the same spirit as OpenSource, with a
+// status line so unfinished work is never implied as production.
+import { EXPERIMENTS } from '../consts';
+---
+
+<ul class="exp">
+	{
+		EXPERIMENTS.map((p) => (
+			<li>
+				<article class="exp__card">
+					<span class="exp__head">
+						<span class="exp__name">{p.name}</span>
+						<span class="exp__status label">{p.status}</span>
+					</span>
+					<p class="exp__desc">{p.description}</p>
+				</article>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.exp {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--sp-4);
+		max-width: var(--sheet-max);
+	}
+	.exp__card {
+		display: grid;
+		gap: var(--sp-2);
+		height: 100%;
+		padding: var(--sp-4);
+		border: var(--rule-hair);
+		color: var(--ink);
+	}
+	.exp__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: var(--sp-3);
+		flex-wrap: wrap;
+	}
+	.exp__name {
+		font-family: var(--font-display);
+		font-size: var(--fs-h3);
+		line-height: 1.1;
+	}
+	.exp__status {
+		flex: none;
+		color: var(--paper);
+		background: var(--faded);
+		padding: 0.56em 0.55em 0.16em;
+		line-height: 1;
+		text-indent: var(--letterspace-label);
+	}
+	.exp__desc {
+		margin: 0;
+		color: var(--faded);
+	}
+	@media (max-width: 40rem) {
+		.exp {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

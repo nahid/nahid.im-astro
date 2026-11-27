@@ -1,0 +1,51 @@
+---
+// Recurring series framing for The Alien Dispatch — editorial messaging only.
+import { EDITORIAL_SERIES } from '../consts';
+---
+
+<ul class="series">
+	{
+		EDITORIAL_SERIES.map((s) => (
+			<li class="series__row">
+				<span class="series__name">{s.name}</span>
+				<span class="series__desc">{s.description}</span>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.series {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		max-width: var(--sheet-max);
+	}
+	.series__row {
+		display: grid;
+		grid-template-columns: minmax(10rem, 14rem) 1fr;
+		gap: var(--sp-4);
+		align-items: baseline;
+		padding: var(--sp-3) 0;
+		border-top: var(--rule-hair);
+	}
+	.series__row:first-child {
+		border-top: none;
+	}
+	.series__name {
+		font-family: var(--font-display);
+		font-size: var(--fs-body);
+		color: var(--accent);
+		line-height: var(--lh-latin);
+	}
+	.series__desc {
+		margin: 0;
+		color: var(--ink);
+	}
+	@media (max-width: 40rem) {
+		.series__row {
+			grid-template-columns: 1fr;
+			gap: var(--sp-1);
+		}
+	}
+</style>
