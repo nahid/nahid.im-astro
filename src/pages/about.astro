@@ -1,6 +1,5 @@
 ---
-// About page. Long-form copy will grow during migration; Phase 1 ships a
-// Bengali-first lede so the typography is reviewable.
+// About page — author entity hub for SEO / AEO / GEO citation.
 import Base from '../layouts/Base.astro';
 import Folio from '../components/Folio.astro';
 import Masthead from '../components/Masthead.astro';
@@ -8,25 +7,92 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SectionHead from '../components/SectionHead.astro';
 import SocialBar from '../components/SocialBar.astro';
-import { BIO } from '../consts';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { ACHIEVEMENTS, BIO, KNOWS_ABOUT_DISPLAY, OPEN_SOURCE, SITE } from '../consts';
 import { t } from '../utils/strings';
+
+const breadcrumbs = [
+	{ name: 'Home', url: '/' },
+	{ name: 'About', url: '/about/' },
+];
+
+// Re-export knows-about labels for the visible facts list (English page).
+const topics = KNOWS_ABOUT_DISPLAY;
 ---
 
-<Base title="About" lang="en" description={t('aboutDesc', 'en')}>
+<Base
+	title="About"
+	lang="en"
+	description={t('aboutDesc', 'en')}
+	profile
+	breadcrumbs={breadcrumbs}
+	ogImageAlt={`${SITE.author} portrait`}
+>
 	<Folio />
 	<Masthead />
 	<Nav />
 
 	<main id="main" class="about" lang="en">
+		<Breadcrumbs crumbs={breadcrumbs} />
 		<SectionHead label={t('about', 'en')} lang="en" />
 
 		<div class="about__grid">
-			<img class="about__photo" src={BIO.photo} width="220" height="220" alt={BIO.name} />
+			<img
+				class="about__photo"
+				src={BIO.photo}
+				width="220"
+				height="220"
+				alt={BIO.name}
+				fetchpriority="high"
+				decoding="async"
+			/>
 			<div class="about__body">
 				<h1>{BIO.name}</h1>
 				<p class="about__role label">{BIO.role}</p>
 
 				<p class="about__lede">
+					<strong>{BIO.summary}</strong>
+				</p>
+
+				<dl class="about__facts">
+					<div>
+						<dt>Also known as</dt>
+						<dd>{BIO.alternateName}</dd>
+					</div>
+					<div>
+						<dt>Role</dt>
+						<dd>CTO &amp; Co-founder, JoulesLabs</dd>
+					</div>
+					<div>
+						<dt>Based in</dt>
+						<dd>{BIO.location}</dd>
+					</div>
+					<div>
+						<dt>Writes about</dt>
+						<dd>{topics.join(' · ')}</dd>
+					</div>
+					<div>
+						<dt>Known for</dt>
+						<dd>
+							Open-source PHP packages (
+							{OPEN_SOURCE.slice(0, 3)
+								.map((p) => p.name)
+								.join(', ')}
+							), BASIS National ICT Award (2019), and AI-era engineering practice at
+							JoulesLabs.
+						</dd>
+					</div>
+					<div>
+						<dt>Contact</dt>
+						<dd>
+							<a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+							{' · '}
+							<a href="/contact/">Contact page</a>
+						</dd>
+					</div>
+				</dl>
+
+				<p>
 					Hi, I&rsquo;m <strong>Nahid Bin Azhar</strong> (also known as{' '}
 					<strong>Mehedi Hasan Nahid</strong>) — a CTO, co-founder, software engineer,
 					and open-source contributor from Bangladesh.
@@ -68,6 +134,18 @@ import { t } from '../utils/strings';
 					<strong>BASIS National ICT Award</strong> — a milestone that reinforced my
 					commitment to creating technology with real-world impact.
 				</p>
+
+				<h2 class="about__sub">Selected milestones</h2>
+				<ul class="about__milestones">
+					{
+						ACHIEVEMENTS.map((a) => (
+							<li>
+								<strong>{a.year}</strong> — {a.text}
+							</li>
+						))
+					}
+				</ul>
+
 				<p>
 					Outside of work, I enjoy mentoring developers, exploring emerging technologies,
 					and continuously learning. I also love cooking — a hobby that reminds me a lot
@@ -135,6 +213,41 @@ import { t } from '../utils/strings';
 	.about__body strong {
 		font-weight: 700;
 	}
+	.about__facts {
+		margin: 0 0 var(--sp-5);
+		padding: var(--sp-4);
+		border: var(--rule-thin);
+		background: var(--paper-shade);
+		display: grid;
+		gap: var(--sp-3);
+	}
+	.about__facts div {
+		display: grid;
+		grid-template-columns: 8.5rem 1fr;
+		gap: var(--sp-3);
+	}
+	.about__facts dt {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: var(--fs-meta);
+		letter-spacing: var(--letterspace-label);
+		text-transform: uppercase;
+		color: var(--faded);
+	}
+	.about__facts dd {
+		margin: 0;
+	}
+	.about__sub {
+		font-size: var(--fs-h3);
+		margin: var(--sp-5) 0 var(--sp-3);
+	}
+	.about__milestones {
+		margin: 0 0 var(--sp-5);
+		padding-left: 1.2em;
+	}
+	.about__milestones li + li {
+		margin-top: var(--sp-2);
+	}
 	@media (max-width: 40rem) {
 		.about__grid {
 			grid-template-columns: 1fr;
@@ -151,6 +264,10 @@ import { t } from '../utils/strings';
 		.about__body h1,
 		.about__role {
 			text-align: center;
+		}
+		.about__facts div {
+			grid-template-columns: 1fr;
+			gap: var(--sp-1);
 		}
 		/* Justified text needs a wide-enough column to avoid rivers; a phone
 		   column is not one. */

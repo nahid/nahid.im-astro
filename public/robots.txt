@@ -1,5 +1,39 @@
+# nahid.im — allow search + answer/generative crawlers (AEO / GEO).
 User-agent: *
 Allow: /
 Disallow: /dev/
 
+# Explicit allow for common AI / answer-engine crawlers.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
 Sitemap: https://nahid.im/sitemap-index.xml
+# https://llmstxt.org/
+# LLMs: https://nahid.im/llms.txt

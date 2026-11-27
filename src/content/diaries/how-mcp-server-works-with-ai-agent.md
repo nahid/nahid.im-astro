@@ -11,7 +11,21 @@ tags:
 heroImage: "/images/20250629_2114_MCP-Server-Banner_simple_compose_01jyy3zpxmepv8ta9wvqc96ppd.webp"
 heroImageAlt: "MCP সার্ভার ও AI Agent নিয়ে ব্যানার চিত্র"
 lang: bn
+
+keyTakeaways:
+  - "MCP (Model Context Protocol) LLM/Agent-কে বাইরের tool ও service-এর সাথে যুক্ত করার একটি মানসম্মত উপায়।"
+  - "MCP Server tool expose করে; Agent সেগুলো discover ও call করতে পারে।"
+  - "নিজের ডোমেইন টুল MCP দিয়ে দিলে Agent শুধু চ্যাট নয়, বাস্তব কাজও করতে পারে।"
+faq:
+  - question: "MCP Server কী?"
+    answer: "Model Context Protocol অনুযায়ী চলা সার্ভার যা AI Agent-কে বাইরের টুল, ডাটা বা সার্ভিস ব্যবহার করতে দেয়।"
+  - question: "MCP কেন দরকার?"
+    answer: "প্রতিটি টুলের জন্য আলাদা এক-অফ ইন্টিগ্রেশনের বদলে মানসম্মতভাবে Agent-কে capability দেয়া যায়।"
+  - question: "MCP দিয়ে Agent কী করে?"
+    answer: "সার্ভারের tool list পায়, প্রয়োজনমতো call করে, ফলাফল নিজের reasoning-এ ব্যবহার করে।"
 ---
+
+**MCP (Model Context Protocol) Server** হলো এমন একটি সার্ভার যা AI Agent বা LLM-কে বাইরের tool ও service ব্যবহার করতে দেয় — মানসম্মতভাবে, আলাদা আলাদা এক-অফ হ্যাক ছাড়া।
 
 আলহামদুলিল্লাহ, আজকে নিজের স্বল্প জ্ঞান দিয়ে লিখতে বসেছি MCP(Model Context Protocol) Server নিয়ে। এই লেখায় আমরা জানার চেষ্টা করো MCP সার্ভার আসলে কি জিনিস, এটা কি সমস্যার সমাধান করছে এবং এটি কিভাবে AI Agnet এর সাথে কাজ করে? তো চলুন কথা আর দীর্ঘ্য না করে মূল বিষয়ে চলে যাই।
 

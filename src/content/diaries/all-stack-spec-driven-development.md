@@ -11,7 +11,21 @@ tags:
 heroImage: "/images/all-stack-spec-driven-banner.webp"
 heroImageAlt: "All-stack ও Spec-driven development নিয়ে ব্যানার চিত্র"
 lang: bn
+
+keyTakeaways:
+  - "JoulesLabs-এ নতুন All-stack রোল — একজন ডেভেলপার Backend, Frontend, Database, Infrastructure, Security, QA ও client communication দেখবেন।"
+  - "Vibe coding বাদ দিয়ে Spec-driven agentic development চালু; OpenSpec দিয়ে feature-কে ছোট commit-এর মতো ভাঙা হয়।"
+  - "R&D-তে একজন .NET ডেভেলপার Laravel ও NextJS প্রজেক্ট parallel সম্পন্ন করেন, হাতে কোড না লিখেও product confidence ধরে রাখেন।"
+faq:
+  - question: "All-stack ডেভেলপার কাকে বলে?"
+    answer: "All-stack মানে একজন ডেভেলপারই Backend, Frontend, Database design, Infrastructure, Security audit, QA ও client communication দেখবেন — framework ও language agnostic।"
+  - question: "Vibe coding কেন বন্ধ করা হচ্ছে?"
+    answer: "Findings হচ্ছে vibe coding আর Spec-driven development-এর পার্থক্য চোখে পড়ার মতো; AI control করতে না পারলে ভুল বাড়ে, তাই strict spec ও harness দিয়ে কাজ চালানো হচ্ছে।"
+  - question: "OpenSpec কী কাজে লাগে?"
+    answer: "OpenSpec-এ প্রতিটি feature ছোট করে নেয়া হয়, ফলে review, context ধরা ও Git commit readable রাখা সহজ হয়।"
 ---
+
+**All-stack** মানে একজন ডেভেলপারই Backend থেকে Frontend, Database, Infrastructure, Security, QA আর client communication পর্যন্ত দেখবেন — আর আমরা সেটা vibe coding দিয়ে নয়, Spec-driven agentic development দিয়ে চালাচ্ছি।
 
 আপনারা অনেকেই জানেন, আমরা JoulesLabs-এ ইতিমধ্যেই আমাদের development আর business strategy AI-তে move করেছি। তারই ধারাবাহিকতায় হাউজে একটা নতুন রোল introduce করেছি। নাম দিয়েছি **All-stack**।
 

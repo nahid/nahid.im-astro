@@ -32,6 +32,18 @@ const diaries = defineCollection({
 		draft: z.boolean().default(false),
 		// Most posts are Bengali; English posts must opt in with lang: 'en'.
 		lang: z.enum(['bn', 'en']).default('bn'),
+		/** Short bullets for AEO answer boxes — keep claims grounded in the body. */
+		keyTakeaways: z.array(z.string().min(8).max(220)).max(6).default([]),
+		/** FAQ pairs → visible section + FAQPage JSON-LD for answer engines. */
+		faq: z
+			.array(
+				z.object({
+					question: z.string().min(8).max(180),
+					answer: z.string().min(24).max(500),
+				}),
+			)
+			.max(8)
+			.default([]),
 	}),
 });
 

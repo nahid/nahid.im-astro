@@ -40,13 +40,18 @@ export const STRINGS = {
 	},
 	backHome: { bn: 'প্রচ্ছদে ফিরুন', en: 'Back to the front page' },
 	homeDesc: {
-		bn: 'নাহিদ বিন আজহারের ব্যক্তিগত ডিসপ্যাচ — সফটওয়্যার প্রকৌশল, উদ্যোক্তা জীবন আর কৌতূহলের বাংলা নোট।',
-		en: 'The personal dispatch of Nahid Bin Azhar — Bangla notes on software engineering, running a company, and staying curious.',
+		bn: 'নাহিদ বিন আজহারের The Alien Dispatch — সফটওয়্যার আর্কিটেকচার, PHP, Laravel, AI engineering ও JoulesLabs নিয়ে বাংলা নোট।',
+		en: 'The Alien Dispatch by Nahid Bin Azhar — software architecture, PHP, Laravel, AI engineering, and building at JoulesLabs from Dhaka.',
 	},
 	aboutDesc: {
-		bn: 'নাহিদ বিন আজহার সম্পর্কে — সফটওয়্যার আর্কিটেক্ট, JoulesLabs-এর সিটিও ও সহপ্রতিষ্ঠাতা।',
-		en: 'About Nahid Bin Azhar — software architect, CTO & co-founder of JoulesLabs, filing dispatches from Dhaka.',
+		bn: 'নাহিদ বিন আজহার (মেহেদী হাসান নাহিদ) — সফটওয়্যার আর্কিটেক্ট, JoulesLabs-এর CTO ও সহপ্রতিষ্ঠাতা, ঢাকা থেকে PHP, Laravel ও AI engineering নিয়ে লেখেন।',
+		en: 'Who is Nahid Bin Azhar (Mehedi Hasan Nahid)? Software architect, CTO & co-founder of JoulesLabs in Dhaka — PHP, Laravel, AI engineering, and open source.',
 	},
+	keyTakeaways: { bn: 'মূল কথা', en: 'Key takeaways' },
+	faq: { bn: 'প্রশ্নোত্তর', en: 'FAQ' },
+	aboutAuthor: { bn: 'লেখক পরিচিতি', en: 'About the author' },
+	writtenBy: { bn: 'লিখেছেন', en: 'Written by' },
+	authorMore: { bn: 'পরিচিতি পড়ুন', en: 'Read the full profile' },
 	contactDesc: {
 		bn: 'নাহিদ বিন আজহারের সঙ্গে যোগাযোগ করুন — প্রতিটি বার্তা পড়া হয়।',
 		en: 'Send a dispatch to Nahid Bin Azhar — every signal reaches the desk and every signal is read.',

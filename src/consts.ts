@@ -9,7 +9,7 @@ export const SITE = {
 	/** <title> suffix and RSS/OG site name. */
 	title: 'The Alien Dispatch — Nahid Bin Azhar',
 	description:
-		'Dispatches on software, business, and the occasional experiment — by Nahid Bin Azhar.',
+		'The Alien Dispatch by Nahid Bin Azhar (Mehedi Hasan Nahid) — Bangla and English notes on software architecture, PHP, Laravel, AI engineering, and building products at JoulesLabs from Dhaka.',
 	/** Folio strip furniture. */
 	kicker: 'Multiverse Edition',
 	tagline: 'The Alien Dispatch',
@@ -36,15 +36,19 @@ export const NAV = [
 /** Short bio shown on the homepage and About lede. */
 export const BIO = {
 	name: 'Nahid Bin Azhar',
+	/** Legal / alternate public name used on LinkedIn and paperwork. */
+	alternateName: 'Mehedi Hasan Nahid',
 	role: 'Software architect · CTO & co-founder, JoulesLabs',
 	location: 'Dhaka, Bangladesh',
+	/** One-line entity answer for AEO / About ledes. */
+	summary:
+		'Nahid Bin Azhar (also Mehedi Hasan Nahid) is a software architect, open-source contributor, and the CTO & co-founder of JoulesLabs in Dhaka, Bangladesh.',
 	/** One entry per paragraph — Bio.astro renders each as its own <p>. Keep it a
 	 *  list, not one string with newlines: HTML collapses \n, so a single string
 	 *  would set the whole bio as one block. */
 	blurb: [
 		'I’m Nahid Bin Azhar - a software engineer, CTO & Co-founder at JoulesLabs, and an alien exploring the universe of technology.',
 		'I build products, experiment with AI, contribute to open source, and solve real-world problems through code. My spaceship runs on curiosity, creativity, and a mission to create technology people genuinely love.',
-	
 		'Still exploring. Still learning. Still building.',
 	],
 	/** Portrait lives in public/images/; grayscale is applied in CSS, not baked in.
@@ -104,6 +108,18 @@ export const OPEN_SOURCE = [
 		stars: 66,
 		url: 'https://github.com/nahid/gohttp',
 	},
+] as const;
+
+/** Topics shown on About and reused by JSON-LD knowsAbout (AEO entity clarity). */
+export const KNOWS_ABOUT_DISPLAY = [
+	'Software architecture',
+	'PHP',
+	'Laravel',
+	'AI engineering',
+	'Spec-driven development',
+	'Open source',
+	'SaaS',
+	'System design',
 ] as const;
 
 /** GitHub profile — linked from the open-source section head. */
