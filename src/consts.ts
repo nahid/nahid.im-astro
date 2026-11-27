@@ -47,7 +47,7 @@ export const BIO = {
 	location: 'Dhaka, Bangladesh',
 	/** One-line entity answer for AEO / About ledes. */
 	summary:
-		'Nahid Bin Azhar (also Mehedi Hasan Nahid) is CTO & Co-founder of JoulesLabs, focused on AI Engineering, Enterprise AI, and Software Architecture.',
+		'Nahid Bin Azhar (also Mehedi Hasan Nahid) is CTO & Co\u2011founder of JoulesLabs, focused on AI Engineering, Enterprise AI, and Software Architecture.',
 	/** One entry per paragraph — Bio.astro renders each as its own <p>. Keep it a
 	 *  list, not one string with newlines: HTML collapses \n, so a single string
 	 *  would set the whole bio as one block. */

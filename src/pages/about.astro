@@ -72,11 +72,19 @@ const topics = KNOWS_ABOUT_DISPLAY;
 					</div>
 					<div>
 						<dt>Role</dt>
-						<dd>CTO &amp; Co-founder, JoulesLabs</dd>
+						<dd>
+							CTO &amp; Co&#8209;founder, JoulesLabs
+						</dd>
 					</div>
 					<div>
 						<dt>Focus</dt>
-						<dd>AI Engineering · Enterprise AI · Software Architecture</dd>
+						<dd>
+							<ul class="about__chips">
+								<li>AI Engineering</li>
+								<li>Enterprise AI</li>
+								<li>Software Architecture</li>
+							</ul>
+						</dd>
 					</div>
 					<div>
 						<dt>Based in</dt>
@@ -84,12 +92,28 @@ const topics = KNOWS_ABOUT_DISPLAY;
 					</div>
 					<div>
 						<dt>Writes about</dt>
-						<dd>{topics.join(' · ')}</dd>
+						<dd>
+							<ul class="about__chips">
+								{
+									/* Skip the three Focus chips already listed above. */
+									topics
+										.filter(
+											(topic) =>
+												![
+													'AI Engineering',
+													'Enterprise AI',
+													'Software Architecture',
+												].includes(topic),
+										)
+										.map((topic) => <li>{topic}</li>)
+								}
+							</ul>
+						</dd>
 					</div>
 					<div>
 						<dt>Known for</dt>
 						<dd>
-							Open-source PHP packages (
+							Open&#8209;source PHP packages (
 							{OPEN_SOURCE.slice(0, 3)
 								.map((p) => p.name)
 								.join(', ')}
@@ -99,9 +123,8 @@ const topics = KNOWS_ABOUT_DISPLAY;
 					</div>
 					<div>
 						<dt>Contact</dt>
-						<dd>
+						<dd class="about__contact">
 							<a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-							{' · '}
 							<a href="/contact/">Contact page</a>
 						</dd>
 					</div>
@@ -110,7 +133,7 @@ const topics = KNOWS_ABOUT_DISPLAY;
 				<p>
 					Hi, I&rsquo;m <strong>Nahid Bin Azhar</strong> (also known as{' '}
 					<strong>Mehedi Hasan Nahid</strong>) — a software engineer, technology
-					entrepreneur, and the <strong>CTO &amp; Co-founder of JoulesLabs</strong>.
+					entrepreneur, and the <strong>CTO &amp; Co&#8209;founder of JoulesLabs</strong>.
 				</p>
 				<p>
 					For more than <strong>15 years</strong>, I&rsquo;ve built software across
@@ -162,7 +185,8 @@ const topics = KNOWS_ABOUT_DISPLAY;
 					{
 						ACHIEVEMENTS.map((a) => (
 							<li>
-								<strong>{a.year}</strong> — {a.text}
+								<span class="about__milestone-year">{a.year}</span>
+								<span class="about__milestone-text">{a.text}</span>
 							</li>
 						))
 					}
@@ -206,7 +230,7 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	}
 	.about__grid {
 		display: grid;
-		grid-template-columns: auto 1fr;
+		grid-template-columns: auto minmax(0, 1fr);
 		gap: var(--sp-6);
 		align-items: start;
 		max-width: var(--sheet-max);
@@ -223,6 +247,8 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	   well past a readable measure for a page this long. */
 	.about__body {
 		max-width: 42rem;
+		min-width: 0;
+		overflow-wrap: break-word;
 	}
 	.about__headline {
 		margin: 0 0 var(--sp-2);
@@ -260,11 +286,13 @@ const topics = KNOWS_ABOUT_DISPLAY;
 		background: var(--paper-shade);
 		display: grid;
 		gap: var(--sp-3);
+		min-width: 0;
 	}
 	.about__facts div {
 		display: grid;
-		grid-template-columns: 8.5rem 1fr;
+		grid-template-columns: 8.5rem minmax(0, 1fr);
 		gap: var(--sp-3);
+		min-width: 0;
 	}
 	.about__facts dt {
 		margin: 0;
@@ -276,17 +304,57 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	}
 	.about__facts dd {
 		margin: 0;
+		min-width: 0;
+		overflow-wrap: break-word;
+	}
+	.about__chips {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sp-2);
+	}
+	.about__chips li {
+		margin: 0;
+		padding: 0.2em 0.45em 0.05em;
+		border: var(--rule-hair);
+		line-height: 1.3;
+		white-space: nowrap;
+	}
+	.about__contact {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sp-1) var(--sp-4);
 	}
 	.about__sub {
 		font-size: var(--fs-h3);
 		margin: var(--sp-5) 0 var(--sp-3);
 	}
 	.about__milestones {
+		list-style: none;
 		margin: 0 0 var(--sp-5);
-		padding-left: 1.2em;
+		padding: 0;
 	}
-	.about__milestones li + li {
-		margin-top: var(--sp-2);
+	.about__milestones li {
+		display: grid;
+		grid-template-columns: 4.5rem minmax(0, 1fr);
+		gap: var(--sp-3);
+		align-items: baseline;
+		padding: var(--sp-3) 0;
+		border-top: var(--rule-hair);
+	}
+	.about__milestones li:first-child {
+		border-top: none;
+		padding-top: 0;
+	}
+	.about__milestone-year {
+		font-family: var(--font-display);
+		color: var(--accent);
+		text-align: right;
+	}
+	.about__milestone-text {
+		min-width: 0;
 	}
 	.about__section-lede {
 		max-width: var(--measure);
@@ -295,44 +363,69 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	}
 	@media (max-width: 40rem) {
 		.about__grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 			justify-items: center;
-			text-align: center;
 			gap: var(--sp-4);
 		}
 		.about__photo {
 			margin: 0 auto;
-			width: 160px;
-			height: 160px;
+			width: min(160px, 42vw);
+			height: auto;
+			aspect-ratio: 1;
 		}
 		.about__body {
-			text-align: left;
+			text-align: start;
 			width: 100%;
 			min-width: 0;
 		}
-		.about__body h1,
-		.about__headline,
-		.about__role {
+		/* Beat `.about__grid p { text-align: … }` — higher specificity required. */
+		.about__body > h1,
+		.about__grid p.about__headline,
+		.about__grid p.about__role {
 			text-align: center;
 		}
 		.about__headline {
 			font-size: clamp(1.25rem, 6vw, var(--fs-h2));
 		}
 		.about__role {
-			letter-spacing: 0.08em;
+			letter-spacing: 0.06em;
 			line-height: 1.45;
+		}
+		.about__lede::first-letter {
+			font-size: 2.1em;
 		}
 		.about__facts {
 			padding: var(--sp-3);
+			width: 100%;
+			box-sizing: border-box;
 		}
 		.about__facts div {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 			gap: var(--sp-1);
 		}
+		.about__facts dt {
+			letter-spacing: 0.1em;
+		}
+		.about__contact {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--sp-2);
+		}
+		.about__milestones li {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--sp-1);
+		}
+		.about__milestone-year {
+			text-align: left;
+		}
 		/* Justified text needs a wide-enough column to avoid rivers; a phone
-		   column is not one. */
+		   column is not one. Keep prose start-aligned; header lines stay centered
+		   via the more-specific rules above. */
 		.about__grid p {
 			text-align: start;
+		}
+		.about__body p {
+			line-height: 1.65;
 		}
 	}
 </style>

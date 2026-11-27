@@ -37,14 +37,18 @@ import { EDITORIAL_SERIES } from '../consts';
 		font-size: var(--fs-body);
 		color: var(--accent);
 		line-height: var(--lh-latin);
+		overflow-wrap: break-word;
+		min-width: 0;
 	}
 	.series__desc {
 		margin: 0;
 		color: var(--ink);
+		min-width: 0;
+		overflow-wrap: break-word;
 	}
 	@media (max-width: 40rem) {
 		.series__row {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 			gap: var(--sp-1);
 		}
 	}

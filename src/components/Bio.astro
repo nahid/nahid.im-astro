@@ -93,19 +93,21 @@ import { BIO, SITE } from '../consts';
 	}
 	@media (max-width: 34rem) {
 		.bio {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 			justify-items: center;
 			text-align: center;
 			gap: var(--sp-4);
 		}
 		.bio__photo {
-			width: 140px;
-			height: 140px;
+			width: min(140px, 38vw);
+			height: auto;
+			aspect-ratio: 1;
 		}
 		.bio__body {
-			text-align: left;
+			text-align: start;
 			width: 100%;
 			min-width: 0;
+			overflow-wrap: break-word;
 		}
 		.bio__name,
 		.bio__headline,
@@ -117,7 +119,7 @@ import { BIO, SITE } from '../consts';
 			font-size: clamp(1.25rem, 6vw, var(--fs-h2));
 		}
 		.bio__role {
-			letter-spacing: 0.08em;
+			letter-spacing: 0.06em;
 			line-height: 1.45;
 		}
 	}
