@@ -8,6 +8,8 @@ tags:
   - all-stack
   - spec-driven
   - development
+heroImage: "/images/all-stack-spec-driven-banner.webp"
+heroImageAlt: "All-stack ও Spec-driven development নিয়ে ব্যানার চিত্র"
 lang: bn
 ---
 
