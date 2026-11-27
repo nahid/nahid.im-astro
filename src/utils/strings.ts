@@ -21,10 +21,10 @@ export const STRINGS = {
 		bn: 'এন্টারপ্রাইজ এআই, এআই ইঞ্জিনিয়ারিং ও সফটওয়্যার আর্কিটেকচার — তিন স্তম্ভে সাজানো আগ্রহ।',
 		en: 'Three pillars: Enterprise AI, AI Engineering, and Software Architecture.',
 	},
-	experiments: { bn: 'প্রকল্প ও পরীক্ষা', en: 'Projects & Experiments' },
-	experimentsLede: {
-		bn: 'চলমান অনুসন্ধান — উৎপাদন বাস্তবায়ন নয়, যেখানে স্ট্যাটাস বলে না।',
-		en: 'Active explorations — not production implementations unless the status says otherwise.',
+	research: { bn: 'গবেষণা ও অনুসন্ধান', en: 'Research & Exploration' },
+	researchLede: {
+		bn: 'চলমান গবেষণা — উৎপাদন বাস্তবায়ন হিসেবে দাবি নয়।',
+		en: 'Active research — not claimed as a production implementation.',
 	},
 	editorialSeries: { bn: 'সম্পাদকীয় সিরিজ', en: 'Dispatch Series' },
 	editorialLede: {

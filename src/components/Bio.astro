@@ -57,6 +57,7 @@ import { BIO, SITE } from '../consts';
 	}
 	.bio__role {
 		margin: 0;
+		overflow-wrap: break-word;
 	}
 	.bio__location {
 		margin: var(--sp-1) 0 var(--sp-3);
@@ -95,13 +96,29 @@ import { BIO, SITE } from '../consts';
 			grid-template-columns: 1fr;
 			justify-items: center;
 			text-align: center;
+			gap: var(--sp-4);
+		}
+		.bio__photo {
+			width: 140px;
+			height: 140px;
 		}
 		.bio__body {
 			text-align: left;
 			width: 100%;
+			min-width: 0;
 		}
-		.bio__name {
+		.bio__name,
+		.bio__headline,
+		.bio__role,
+		.bio__location {
 			text-align: center;
+		}
+		.bio__headline {
+			font-size: clamp(1.25rem, 6vw, var(--fs-h2));
+		}
+		.bio__role {
+			letter-spacing: 0.08em;
+			line-height: 1.45;
 		}
 	}
 </style>

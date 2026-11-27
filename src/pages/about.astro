@@ -9,7 +9,7 @@ import SectionHead from '../components/SectionHead.astro';
 import SocialBar from '../components/SocialBar.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Expertise from '../components/Expertise.astro';
-import Experiments from '../components/Experiments.astro';
+import Research from '../components/Research.astro';
 import OpenSource from '../components/OpenSource.astro';
 import {
 	ACHIEVEMENTS,
@@ -185,9 +185,9 @@ const topics = KNOWS_ABOUT_DISPLAY;
 		<p class="about__section-lede">{t('expertiseLede', 'en')}</p>
 		<Expertise />
 
-		<SectionHead label={t('experiments', 'en')} lang="en" />
-		<p class="about__section-lede">{t('experimentsLede', 'en')}</p>
-		<Experiments />
+		<SectionHead label={t('research', 'en')} lang="en" />
+		<p class="about__section-lede">{t('researchLede', 'en')}</p>
+		<Research />
 
 		<SectionHead label={t('openSource', 'en')} lang="en" href={GITHUB_PROFILE} />
 		<p class="about__section-lede">{t('openSourceLede', 'en')}</p>
@@ -236,6 +236,7 @@ const topics = KNOWS_ABOUT_DISPLAY;
 		padding-bottom: var(--sp-3);
 		border-bottom: 3px double var(--rule);
 		font-weight: bold;
+		overflow-wrap: break-word;
 	}
 	.about__grid p {
 		text-align: justify;
@@ -297,18 +298,32 @@ const topics = KNOWS_ABOUT_DISPLAY;
 			grid-template-columns: 1fr;
 			justify-items: center;
 			text-align: center;
+			gap: var(--sp-4);
 		}
 		.about__photo {
 			margin: 0 auto;
+			width: 160px;
+			height: 160px;
 		}
 		.about__body {
 			text-align: left;
 			width: 100%;
+			min-width: 0;
 		}
 		.about__body h1,
 		.about__headline,
 		.about__role {
 			text-align: center;
+		}
+		.about__headline {
+			font-size: clamp(1.25rem, 6vw, var(--fs-h2));
+		}
+		.about__role {
+			letter-spacing: 0.08em;
+			line-height: 1.45;
+		}
+		.about__facts {
+			padding: var(--sp-3);
 		}
 		.about__facts div {
 			grid-template-columns: 1fr;

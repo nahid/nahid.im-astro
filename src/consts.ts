@@ -154,31 +154,13 @@ export const EXPERTISE = [
 	},
 ] as const;
 
-/** Explorations and initiatives — not production claims unless status says so. */
-export const EXPERIMENTS = [
+/** Research & exploration — not production claims unless status says so. */
+export const RESEARCH = [
 	{
-		name: 'DeshIntel',
-		status: 'Exploration',
-		description:
-			'AI-powered news intelligence exploration focused on Bangla content, using scraping, language models, embeddings, PostgreSQL, and hybrid search.',
-	},
-	{
-		name: 'AgentContextOS',
-		status: 'Exploration',
-		description:
-			'Exploration of persistent context and memory middleware for AI coding agents.',
-	},
-	{
-		name: 'Bengali Speech Intelligence',
+		name: 'Meeting Sense',
 		status: 'Research',
 		description:
-			'Research into Bengali speech recognition, speaker diarization, dataset collection, and model fine-tuning.',
-	},
-	{
-		name: 'MCP & Agent Systems',
-		status: 'Exploration',
-		description:
-			'Exploration of Model Context Protocol, tool-connected agents, and AI system integration.',
+			'Research into multilingual meeting intelligence — speech transcription, code-switched Bangla–English understanding, and turning conversations into usable structured knowledge.',
 	},
 ] as const;
 

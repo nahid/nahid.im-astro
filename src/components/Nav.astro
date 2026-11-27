@@ -34,7 +34,7 @@ const isCurrent = (href: string) =>
 	}
 	.nav__list {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		justify-content: center;
 		gap: 0;
 		margin: 0;
@@ -50,6 +50,7 @@ const isCurrent = (href: string) =>
 		letter-spacing: var(--letterspace-label);
 		text-decoration: none;
 		color: var(--ink);
+		white-space: nowrap;
 	}
 	.nav__list li + li .nav__link {
 		border-left: var(--rule-hair);
@@ -62,9 +63,24 @@ const isCurrent = (href: string) =>
 		text-decoration: underline;
 		text-underline-offset: 4px;
 	}
-	@media (max-width: 30rem) {
+	/* Phone: equal columns so CONTACT never orphans on a second row. */
+	@media (max-width: 40rem) {
+		.nav__list {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			width: 100%;
+		}
 		.nav__link {
-			padding: var(--sp-2) var(--sp-3);
+			padding: var(--sp-2) var(--sp-1);
+			font-size: 0.72rem;
+			letter-spacing: 0.08em;
+			text-align: center;
+		}
+	}
+	@media (max-width: 22rem) {
+		.nav__link {
+			letter-spacing: 0.04em;
+			font-size: 0.68rem;
 		}
 	}
 </style>
