@@ -1,0 +1,75 @@
+---
+// Research & exploration — newspaper clipping style; status makes scope explicit.
+import { RESEARCH } from '../consts';
+---
+
+<ul class="research">
+	{
+		RESEARCH.map((p) => (
+			<li>
+				<article class="research__card">
+					<span class="research__head">
+						<span class="research__name">{p.name}</span>
+						<span class="research__status label">{p.status}</span>
+					</span>
+					<p class="research__desc">{p.description}</p>
+				</article>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.research {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--sp-4);
+		max-width: var(--sheet-max);
+	}
+	.research__card {
+		display: grid;
+		gap: var(--sp-2);
+		height: 100%;
+		padding: var(--sp-4);
+		border: var(--rule-hair);
+		color: var(--ink);
+	}
+	.research__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: var(--sp-3);
+		flex-wrap: wrap;
+	}
+	.research__name {
+		font-family: var(--font-display);
+		font-size: var(--fs-h3);
+		line-height: 1.1;
+		overflow-wrap: break-word;
+	}
+	.research__status {
+		flex: none;
+		color: var(--paper);
+		background: var(--faded);
+		padding: 0.56em 0.55em 0.16em;
+		line-height: 1;
+		text-indent: var(--letterspace-label);
+	}
+	.research__desc {
+		margin: 0;
+		color: var(--faded);
+	}
+	@media (max-width: 40rem) {
+		.research__card {
+			padding: var(--sp-3);
+		}
+		.research__head {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--sp-2);
+		}
+	}
+</style>

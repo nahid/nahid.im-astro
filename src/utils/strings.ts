@@ -14,7 +14,22 @@ export const STRINGS = {
 	openSource: { bn: 'ওপেন সোর্স', en: 'Open Source' },
 	openSourceLede: {
 		bn: 'খোলা আকাশে পাঠানো সংকেত — এক দশকের পিএইচপি ও গো প্যাকেজ, যে কেউ কুড়িয়ে নিতে পারে।',
-		en: 'Signals sent into the open — a decade of PHP and Go packages, free for any crew to pick up.',
+		en: 'Signals sent into the open — a decade of PHP and Go packages (Talk, JSONQ, QArray, Presento, Permit, GoHTTP), free for any crew to pick up.',
+	},
+	expertise: { bn: 'দক্ষতার ক্ষেত্র', en: 'Areas of Expertise' },
+	expertiseLede: {
+		bn: 'এন্টারপ্রাইজ এআই, এআই ইঞ্জিনিয়ারিং ও সফটওয়্যার আর্কিটেকচার — তিন স্তম্ভে সাজানো আগ্রহ।',
+		en: 'Three pillars: Enterprise AI, AI Engineering, and Software Architecture.',
+	},
+	research: { bn: 'গবেষণা ও অনুসন্ধান', en: 'Research & Exploration' },
+	researchLede: {
+		bn: 'চলমান গবেষণা — উৎপাদন বাস্তবায়ন হিসেবে দাবি নয়।',
+		en: 'Active research — not claimed as a production implementation.',
+	},
+	editorialSeries: { bn: 'সম্পাদকীয় সিরিজ', en: 'Dispatch Series' },
+	editorialLede: {
+		bn: 'The Alien Dispatch পাঁচটি পুনরাবৃত্ত সিরিজের চারপাশে সাজানো — বিদ্যমান দিনলিপিগুলো অপরিবর্তিত।',
+		en: 'The Alien Dispatch is organized around five recurring series. Existing articles keep their URLs and categories.',
 	},
 	elsewhere: { bn: 'অন্যত্র', en: 'Elsewhere' },
 	readMore: { bn: 'পুরোটা পড়ুন', en: 'Read the dispatch' },
@@ -40,12 +55,12 @@ export const STRINGS = {
 	},
 	backHome: { bn: 'প্রচ্ছদে ফিরুন', en: 'Back to the front page' },
 	homeDesc: {
-		bn: 'নাহিদ বিন আজহারের The Alien Dispatch — সফটওয়্যার আর্কিটেকচার, PHP, Laravel, AI engineering ও JoulesLabs নিয়ে বাংলা নোট।',
-		en: 'The Alien Dispatch by Nahid Bin Azhar — software architecture, PHP, Laravel, AI engineering, and building at JoulesLabs from Dhaka.',
+		bn: 'নাহিদ বিন আজহার — CTO ও সহপ্রতিষ্ঠাতা, AI Engineering, Enterprise AI ও Software Architecture নিয়ে Building Intelligent Systems.',
+		en: 'Nahid Bin Azhar is a CTO, software engineer, and technology entrepreneur focused on AI Engineering, Enterprise AI, and Software Architecture.',
 	},
 	aboutDesc: {
-		bn: 'নাহিদ বিন আজহার (মেহেদী হাসান নাহিদ) — সফটওয়্যার আর্কিটেক্ট, JoulesLabs-এর CTO ও সহপ্রতিষ্ঠাতা, ঢাকা থেকে PHP, Laravel ও AI engineering নিয়ে লেখেন।',
-		en: 'Who is Nahid Bin Azhar (Mehedi Hasan Nahid)? Software architect, CTO & co-founder of JoulesLabs in Dhaka — PHP, Laravel, AI engineering, and open source.',
+		bn: 'নাহিদ বিন আজহার (মেহেদী হাসান নাহিদ) — JoulesLabs-এর CTO ও সহপ্রতিষ্ঠাতা; AI Engineering, Enterprise AI ও Software Architecture।',
+		en: 'Nahid Bin Azhar (Mehedi Hasan Nahid) — CTO & Co-founder of JoulesLabs, focused on AI Engineering, Enterprise AI, and Software Architecture.',
 	},
 	keyTakeaways: { bn: 'মূল কথা', en: 'Key takeaways' },
 	faq: { bn: 'প্রশ্নোত্তর', en: 'FAQ' },
@@ -57,8 +72,8 @@ export const STRINGS = {
 		en: 'Send a dispatch to Nahid Bin Azhar — every signal reaches the desk and every signal is read.',
 	},
 	diariesDesc: {
-		bn: 'সব ডায়েরি — সফটওয়্যার, ব্যবসা আর পরীক্ষা-নিরীক্ষা নিয়ে নাহিদ বিন আজহারের লেখা।',
-		en: 'Every dispatch by Nahid Bin Azhar — on software, business, and the occasional experiment.',
+		bn: 'The Alien Dispatch — এন্টারপ্রাইজ এআই, এআই আর্কিটেকচার, বাস্তব জগতের এআই ও CTO নোট নিয়ে নাহিদ বিন আজহারের লেখা।',
+		en: 'The Alien Dispatch by Nahid Bin Azhar — Enterprise AI, AI architecture, real-world AI practice, and notes from a CTO.',
 	},
 	notFoundDesc: {
 		bn: 'এই ঠিকানায় সংবাদদাতার কোনো প্রতিবেদন নেই।',

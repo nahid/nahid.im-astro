@@ -62,16 +62,19 @@ import { ACHIEVEMENTS } from '../consts';
 			border-top: none;
 		}
 	}
-	/* Small phones: reclaim width for the text by narrowing the year gutter. */
+	/* Phone: stack year above text so the measure isn't crushed beside a gutter. */
 	@media (max-width: 30rem) {
 		.ach__row {
-			grid-template-columns: 3rem 1fr;
+			grid-template-columns: 1fr;
+			gap: var(--sp-1);
 		}
 		.ach__year {
-			padding-right: var(--sp-3);
+			text-align: left;
+			padding-right: 0;
+			border-right: none;
 		}
 		.ach__text {
-			padding-left: var(--sp-3);
+			padding-left: 0;
 		}
 	}
 </style>

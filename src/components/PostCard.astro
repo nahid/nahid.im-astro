@@ -69,4 +69,16 @@ const href = `/diaries/${post.id}/`;
 	.card__meta {
 		margin: 0;
 	}
+	/* Phone: keep date and CTA from fighting for one cramped line. */
+	@media (max-width: 40rem) {
+		.card__meta {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--sp-1);
+		}
+		.card__meta > span[aria-hidden='true'] {
+			display: none;
+		}
+	}
 </style>

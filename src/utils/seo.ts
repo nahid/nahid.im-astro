@@ -36,7 +36,7 @@ export function buildPerson(site: URL | string | undefined) {
 			url: absoluteUrl(BIO.photo, site),
 			caption: SITE.author,
 		},
-		jobTitle: 'CTO & Co-founder',
+		jobTitle: 'CTO & Co-founder | AI Engineering & Enterprise AI | Software Architecture',
 		worksFor: { '@id': ORG_ID },
 		homeLocation: {
 			'@type': 'Place',
@@ -66,6 +66,17 @@ export function buildPerson(site: URL | string | undefined) {
 		},
 		// Soft self-reference so home and about share one entity.
 		identifier: home,
+		// Brand / positioning signals for AEO without inventing credentials.
+		disambiguatingDescription: SITE.brandStatement,
+		hasOccupation: {
+			'@type': 'Occupation',
+			name: 'CTO & Co-founder',
+			skills: [...KNOWS_ABOUT_DISPLAY],
+			occupationLocation: {
+				'@type': 'City',
+				name: 'Dhaka',
+			},
+		},
 	};
 }
 
@@ -87,7 +98,7 @@ export function buildWebSite(site: URL | string | undefined, inLanguage: string)
 		'@type': 'WebSite',
 		'@id': WEBSITE_ID,
 		name: SITE.title,
-		alternateName: [SITE.masthead, SITE.tagline, 'nahid.im'],
+		alternateName: [SITE.masthead, SITE.tagline, SITE.brandHeadline, 'nahid.im'],
 		url: absoluteUrl('/', site),
 		description: SITE.description,
 		inLanguage,

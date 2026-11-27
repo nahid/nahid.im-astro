@@ -52,12 +52,23 @@ import { SOCIALS } from '../consts';
 		border-bottom-color: var(--accent);
 	}
 
-	@media (max-width: 23.4375rem) {
+	/* Phone: two-column grid — no dangling mid-row dots when labels wrap. */
+	@media (max-width: 40rem) {
 		.social {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
 			gap: var(--sp-3);
+			justify-items: stretch;
 		}
 		.social__item {
-			gap: var(--sp-3);
+			justify-content: center;
+			gap: 0;
+		}
+		.social__item:not(:last-child)::after {
+			content: none;
+		}
+		.social__link {
+			letter-spacing: 0.1em;
 		}
 	}
 </style>

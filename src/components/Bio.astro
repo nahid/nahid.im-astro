@@ -1,6 +1,6 @@
 ---
 // Home bio block: portrait (grayscale) beside name/role/blurb.
-import { BIO } from '../consts';
+import { BIO, SITE } from '../consts';
 ---
 
 <div class="bio">
@@ -9,6 +9,7 @@ import { BIO } from '../consts';
 	</div>
 	<div class="bio__body">
 		<p class="bio__name">{BIO.name}</p>
+		<p class="bio__headline">{SITE.brandHeadline}</p>
 		<p class="bio__role label">{BIO.role}</p>
 		<p class="bio__location meta">{BIO.location}</p>
 		<div class="bio__blurb">
@@ -47,8 +48,16 @@ import { BIO } from '../consts';
 		line-height: 1.1;
 		margin: 0 0 var(--sp-2);
 	}
+	.bio__headline {
+		margin: 0 0 var(--sp-2);
+		font-family: var(--font-display);
+		font-size: var(--fs-h2);
+		line-height: 1.2;
+		color: var(--accent);
+	}
 	.bio__role {
 		margin: 0;
+		overflow-wrap: break-word;
 	}
 	.bio__location {
 		margin: var(--sp-1) 0 var(--sp-3);
@@ -75,7 +84,7 @@ import { BIO } from '../consts';
 		padding: 0.05em 0.1em 0 0;
 		color: var(--accent);
 	}
-	/* "Still exploring. Still learning. Still building." — a sign-off, set like one. */
+	/* Sign-off line — set like one. */
 	.bio__blurb p:last-child {
 		font-family: var(--font-display);
 		color: var(--accent);
@@ -84,16 +93,34 @@ import { BIO } from '../consts';
 	}
 	@media (max-width: 34rem) {
 		.bio {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 			justify-items: center;
 			text-align: center;
+			gap: var(--sp-4);
+		}
+		.bio__photo {
+			width: min(140px, 38vw);
+			height: auto;
+			aspect-ratio: 1;
 		}
 		.bio__body {
-			text-align: left;
+			text-align: start;
 			width: 100%;
+			min-width: 0;
+			overflow-wrap: break-word;
 		}
-		.bio__name {
+		.bio__name,
+		.bio__headline,
+		.bio__role,
+		.bio__location {
 			text-align: center;
+		}
+		.bio__headline {
+			font-size: clamp(1.25rem, 6vw, var(--fs-h2));
+		}
+		.bio__role {
+			letter-spacing: 0.06em;
+			line-height: 1.45;
 		}
 	}
 </style>

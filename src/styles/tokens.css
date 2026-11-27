@@ -59,6 +59,8 @@
 	/* — Layout — */
 	--sheet-max: 72rem; /* broadsheet content width */
 	--measure: 34rem; /* comfortable single-column reading measure */
-	--gutter: clamp(1rem, 4vw, 2.5rem);
+	/* Floor at 0.875rem so 375px phones keep readable side air without
+	   starving the 4-up nav of horizontal measure. */
+	--gutter: clamp(0.875rem, 4vw, 2.5rem);
 	--focus-ring: 2px solid var(--accent);
 }

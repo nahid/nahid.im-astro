@@ -8,7 +8,17 @@ import Footer from '../components/Footer.astro';
 import SectionHead from '../components/SectionHead.astro';
 import SocialBar from '../components/SocialBar.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { ACHIEVEMENTS, BIO, KNOWS_ABOUT_DISPLAY, OPEN_SOURCE, SITE } from '../consts';
+import Expertise from '../components/Expertise.astro';
+import Research from '../components/Research.astro';
+import OpenSource from '../components/OpenSource.astro';
+import {
+	ACHIEVEMENTS,
+	BIO,
+	GITHUB_PROFILE,
+	KNOWS_ABOUT_DISPLAY,
+	OPEN_SOURCE,
+	SITE,
+} from '../consts';
 import { t } from '../utils/strings';
 
 const breadcrumbs = [
@@ -48,6 +58,7 @@ const topics = KNOWS_ABOUT_DISPLAY;
 			/>
 			<div class="about__body">
 				<h1>{BIO.name}</h1>
+				<p class="about__headline">{SITE.brandHeadline}</p>
 				<p class="about__role label">{BIO.role}</p>
 
 				<p class="about__lede">
@@ -61,7 +72,19 @@ const topics = KNOWS_ABOUT_DISPLAY;
 					</div>
 					<div>
 						<dt>Role</dt>
-						<dd>CTO &amp; Co-founder, JoulesLabs</dd>
+						<dd>
+							CTO &amp; Co&#8209;founder, JoulesLabs
+						</dd>
+					</div>
+					<div>
+						<dt>Focus</dt>
+						<dd>
+							<ul class="about__chips">
+								<li>AI Engineering</li>
+								<li>Enterprise AI</li>
+								<li>Software Architecture</li>
+							</ul>
+						</dd>
 					</div>
 					<div>
 						<dt>Based in</dt>
@@ -69,24 +92,39 @@ const topics = KNOWS_ABOUT_DISPLAY;
 					</div>
 					<div>
 						<dt>Writes about</dt>
-						<dd>{topics.join(' · ')}</dd>
+						<dd>
+							<ul class="about__chips">
+								{
+									/* Skip the three Focus chips already listed above. */
+									topics
+										.filter(
+											(topic) =>
+												![
+													'AI Engineering',
+													'Enterprise AI',
+													'Software Architecture',
+												].includes(topic),
+										)
+										.map((topic) => <li>{topic}</li>)
+								}
+							</ul>
+						</dd>
 					</div>
 					<div>
 						<dt>Known for</dt>
 						<dd>
-							Open-source PHP packages (
+							Open&#8209;source PHP packages (
 							{OPEN_SOURCE.slice(0, 3)
 								.map((p) => p.name)
 								.join(', ')}
-							), BASIS National ICT Award (2019), and AI-era engineering practice at
+							), BASIS National ICT Award (2019), and practical AI engineering at
 							JoulesLabs.
 						</dd>
 					</div>
 					<div>
 						<dt>Contact</dt>
-						<dd>
+						<dd class="about__contact">
 							<a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-							{' · '}
 							<a href="/contact/">Contact page</a>
 						</dd>
 					</div>
@@ -94,45 +132,52 @@ const topics = KNOWS_ABOUT_DISPLAY;
 
 				<p>
 					Hi, I&rsquo;m <strong>Nahid Bin Azhar</strong> (also known as{' '}
-					<strong>Mehedi Hasan Nahid</strong>) — a CTO, co-founder, software engineer,
-					and open-source contributor from Bangladesh.
+					<strong>Mehedi Hasan Nahid</strong>) — a software engineer, technology
+					entrepreneur, and the <strong>CTO &amp; Co&#8209;founder of JoulesLabs</strong>.
 				</p>
 				<p>
-					For more than 12 years, I&rsquo;ve been building software that solves
-					real-world problems. My career began as a software engineer, where I had the
-					opportunity to work across a wide range of technologies, architectures, and
-					industries. Over time, my focus shifted beyond writing code to building
-					products, leading teams, and creating experiences that people genuinely enjoy
-					using.
+					For more than <strong>15 years</strong>, I&rsquo;ve built software across
+					backend systems, product development, and engineering leadership. My
+					foundation is software engineering and software architecture: designing
+					reliable systems, integrating platforms, and shipping products people can
+					depend on.
 				</p>
 				<p>
-					Today, I&rsquo;m the <strong>CTO &amp; Co-founder of JoulesLabs</strong>, where
-					we&rsquo;re building SaaS products with a strong focus on Shopify and
-					AI-powered experiences. I enjoy turning complex technical challenges into
-					simple, reliable solutions — whether that means designing scalable backend
-					systems, integrating with external platforms, or applying large language models
-					and retrieval-augmented generation (RAG) to build intelligent, context-aware
-					applications. My passion lies in creating products that customers love while
-					improving the developer experience for the teams building them.
+					Along the way I contributed deeply to the <strong>PHP and Laravel</strong>{' '}
+					ecosystem — open-source packages that developers still use — and founded a
+					technology company where architecture, product judgment, and delivery meet
+					every day.
 				</p>
 				<p>
-					Throughout my career, I&rsquo;ve worked with technologies including Laravel,
-					TypeScript, Go, Node.js, Docker, Kubernetes, Redis, PostgreSQL, MySQL, and
-					modern cloud infrastructure. While I enjoy exploring new tools, I believe great
-					software is built on solid engineering principles rather than any particular
-					technology stack.
+					My move into <strong>AI Engineering and Enterprise AI</strong> is a
+					continuation of that same craft, not a reinvention. I apply engineering
+					discipline to practical intelligent systems: retrieval-augmented generation,
+					hybrid search, agent tooling, and the infrastructure that makes AI usable in
+					real business workflows. I am a practitioner building solutions — not an
+					academic AI researcher.
 				</p>
 				<p>
-					Open source has played a defining role in my journey. I believe the best way to
-					learn is by building, sharing, and collaborating with others. I&rsquo;m proud to
-					be recognized as one of the top PHP open-source contributors in Bangladesh, and
-					I continue to contribute to projects that help developers build better
-					software.
+					At JoulesLabs I work at the intersection of software architecture, AI
+					engineering, and technology strategy — turning complex problems into systems
+					that hold up in production.
+				</p>
+				<p>
+					Throughout my career I&rsquo;ve worked with Laravel, TypeScript, Go, Node.js,
+					Docker, Kubernetes, Redis, PostgreSQL, MySQL, and modern cloud infrastructure.
+					Great software still rests on solid engineering principles more than on any
+					single stack.
+				</p>
+				<p>
+					Open source remains a defining part of my identity. Packages such as Talk,
+					JSONQ, QArray, Presento, Permit, and GoHTTP grew from the same habit of
+					building, sharing, and collaborating. I&rsquo;m proud to be recognized among
+					Bangladesh&rsquo;s top PHP open-source contributors, and I continue to give
+					back where I can.
 				</p>
 				<p>
 					In 2019, I was honored to receive the{' '}
 					<strong>BASIS National ICT Award</strong> — a milestone that reinforced my
-					commitment to creating technology with real-world impact.
+					commitment to technology with real-world impact.
 				</p>
 
 				<h2 class="about__sub">Selected milestones</h2>
@@ -140,7 +185,8 @@ const topics = KNOWS_ABOUT_DISPLAY;
 					{
 						ACHIEVEMENTS.map((a) => (
 							<li>
-								<strong>{a.year}</strong> — {a.text}
+								<span class="about__milestone-year">{a.year}</span>
+								<span class="about__milestone-text">{a.text}</span>
 							</li>
 						))
 					}
@@ -148,18 +194,28 @@ const topics = KNOWS_ABOUT_DISPLAY;
 
 				<p>
 					Outside of work, I enjoy mentoring developers, exploring emerging technologies,
-					and continuously learning. I also love cooking — a hobby that reminds me a lot
-					of software engineering: both reward curiosity, experimentation, and careful
-					attention to detail.
+					and cooking — a hobby that rewards the same curiosity and careful attention
+					software demands.
 				</p>
 				<p>
-					Whether I&rsquo;m architecting distributed systems, contributing to open
-					source, or building the next product at JoulesLabs, my goal remains the same: to
-					create technology that people genuinely enjoy using, and that makes
-					developers&rsquo; lives a little easier.
+					Whether I&rsquo;m designing systems, contributing to open source, or building
+					intelligent products at JoulesLabs, the goal stays the same:{' '}
+					<strong>{SITE.brandStatement}</strong>
 				</p>
 			</div>
 		</div>
+
+		<SectionHead label={t('expertise', 'en')} lang="en" />
+		<p class="about__section-lede">{t('expertiseLede', 'en')}</p>
+		<Expertise />
+
+		<SectionHead label={t('research', 'en')} lang="en" />
+		<p class="about__section-lede">{t('researchLede', 'en')}</p>
+		<Research />
+
+		<SectionHead label={t('openSource', 'en')} lang="en" href={GITHUB_PROFILE} />
+		<p class="about__section-lede">{t('openSourceLede', 'en')}</p>
+		<OpenSource />
 
 		<SectionHead label={t('elsewhere', 'en')} lang="en" />
 		<SocialBar />
@@ -174,7 +230,7 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	}
 	.about__grid {
 		display: grid;
-		grid-template-columns: auto 1fr;
+		grid-template-columns: auto minmax(0, 1fr);
 		gap: var(--sp-6);
 		align-items: start;
 		max-width: var(--sheet-max);
@@ -191,12 +247,22 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	   well past a readable measure for a page this long. */
 	.about__body {
 		max-width: 42rem;
+		min-width: 0;
+		overflow-wrap: break-word;
+	}
+	.about__headline {
+		margin: 0 0 var(--sp-2);
+		font-family: var(--font-display);
+		font-size: var(--fs-h2);
+		line-height: 1.2;
+		color: var(--accent);
 	}
 	.about__role {
 		margin-top: 0;
 		padding-bottom: var(--sp-3);
 		border-bottom: 3px double var(--rule);
 		font-weight: bold;
+		overflow-wrap: break-word;
 	}
 	.about__grid p {
 		text-align: justify;
@@ -220,11 +286,13 @@ const topics = KNOWS_ABOUT_DISPLAY;
 		background: var(--paper-shade);
 		display: grid;
 		gap: var(--sp-3);
+		min-width: 0;
 	}
 	.about__facts div {
 		display: grid;
-		grid-template-columns: 8.5rem 1fr;
+		grid-template-columns: 8.5rem minmax(0, 1fr);
 		gap: var(--sp-3);
+		min-width: 0;
 	}
 	.about__facts dt {
 		margin: 0;
@@ -236,43 +304,129 @@ const topics = KNOWS_ABOUT_DISPLAY;
 	}
 	.about__facts dd {
 		margin: 0;
+		min-width: 0;
+		overflow-wrap: break-word;
+	}
+	.about__chips {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sp-2);
+	}
+	.about__chips li {
+		margin: 0;
+		padding: 0.2em 0.45em 0.05em;
+		border: var(--rule-hair);
+		line-height: 1.3;
+		max-width: 100%;
+		overflow-wrap: break-word;
+	}
+	.about__contact {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sp-1) var(--sp-4);
 	}
 	.about__sub {
 		font-size: var(--fs-h3);
 		margin: var(--sp-5) 0 var(--sp-3);
 	}
 	.about__milestones {
+		list-style: none;
 		margin: 0 0 var(--sp-5);
-		padding-left: 1.2em;
+		padding: 0;
 	}
-	.about__milestones li + li {
-		margin-top: var(--sp-2);
+	.about__milestones li {
+		display: grid;
+		grid-template-columns: 4.5rem minmax(0, 1fr);
+		gap: var(--sp-3);
+		align-items: baseline;
+		padding: var(--sp-3) 0;
+		border-top: var(--rule-hair);
+	}
+	.about__milestones li:first-child {
+		border-top: none;
+		padding-top: 0;
+	}
+	.about__milestone-year {
+		font-family: var(--font-display);
+		color: var(--accent);
+		text-align: right;
+	}
+	.about__milestone-text {
+		min-width: 0;
+	}
+	.about__section-lede {
+		max-width: var(--measure);
+		margin: 0 0 var(--sp-5);
+		color: var(--faded);
 	}
 	@media (max-width: 40rem) {
 		.about__grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 			justify-items: center;
-			text-align: center;
+			gap: var(--sp-4);
 		}
 		.about__photo {
 			margin: 0 auto;
+			width: min(160px, 42vw);
+			height: auto;
+			aspect-ratio: 1;
 		}
 		.about__body {
-			text-align: left;
+			text-align: start;
 			width: 100%;
+			min-width: 0;
 		}
-		.about__body h1,
-		.about__role {
+		/* Beat `.about__grid p { text-align: … }` — higher specificity required. */
+		.about__body > h1,
+		.about__grid p.about__headline,
+		.about__grid p.about__role {
 			text-align: center;
 		}
+		.about__headline {
+			font-size: clamp(1.25rem, 6vw, var(--fs-h2));
+		}
+		.about__role {
+			letter-spacing: 0.06em;
+			line-height: 1.45;
+		}
+		.about__lede::first-letter {
+			font-size: 2.1em;
+		}
+		.about__facts {
+			padding: var(--sp-3);
+			width: 100%;
+			box-sizing: border-box;
+		}
 		.about__facts div {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 			gap: var(--sp-1);
 		}
+		.about__facts dt {
+			letter-spacing: 0.1em;
+		}
+		.about__contact {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--sp-2);
+		}
+		.about__milestones li {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--sp-1);
+		}
+		.about__milestone-year {
+			text-align: left;
+		}
 		/* Justified text needs a wide-enough column to avoid rivers; a phone
-		   column is not one. */
+		   column is not one. Keep prose start-aligned; header lines stay centered
+		   via the more-specific rules above. */
 		.about__grid p {
 			text-align: start;
+		}
+		.about__body p {
+			line-height: 1.65;
 		}
 	}
 </style>

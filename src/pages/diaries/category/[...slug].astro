@@ -11,7 +11,12 @@ import PostCard from '../../../components/PostCard.astro';
 import Footer from '../../../components/Footer.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import { SITE } from '../../../consts';
-import { allCategorySlugs, categoryLabel, descendants } from '../../../utils/categories';
+import {
+	allCategorySlugs,
+	categoryDescription,
+	categoryLabel,
+	descendants,
+} from '../../../utils/categories';
 import { getPublishedPosts } from '../../../utils/posts';
 
 export const getStaticPaths = (async () => {
@@ -27,7 +32,10 @@ export const getStaticPaths = (async () => {
 
 const { slug, posts } = Astro.props;
 const labelEn = categoryLabel(slug, 'en');
-const categoryDesc = `Dispatches by ${SITE.author} on ${labelEn} — software, AI, and engineering notes from The Alien Dispatch.`;
+const editorial = categoryDescription(slug);
+const categoryDesc =
+	editorial ??
+	`Dispatches by ${SITE.author} on ${labelEn} — AI Engineering, Enterprise AI, and software notes from The Alien Dispatch.`;
 const breadcrumbs = [
 	{ name: 'Home', url: '/' },
 	{ name: 'Diaries', url: '/diaries/' },
@@ -43,6 +51,7 @@ const breadcrumbs = [
 	<main id="main">
 		<Breadcrumbs crumbs={breadcrumbs} />
 		<SectionHead label={labelEn} lang="en" />
+		{editorial && <p class="category__lede">{editorial}</p>}
 		{
 			posts.length > 0 ? (
 				<div class="archive">
@@ -60,6 +69,11 @@ const breadcrumbs = [
 </Base>
 
 <style>
+	.category__lede {
+		max-width: var(--measure);
+		margin: 0 0 var(--sp-5);
+		color: var(--faded);
+	}
 	.archive > :global(.card) {
 		border-top: var(--rule-hair);
 	}
