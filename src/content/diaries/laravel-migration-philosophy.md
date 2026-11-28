@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/1_09lcqAWOw_ky_8GOYvCGvA.webp"
 heroImageAlt: "লারাভেল মাইগ্রেশন নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Explains the philosophy behind Laravel migrations — more than a table-building tool."
 keyTakeaways:
   - "Laravel Migration শুধু টেবিল বানানোর শর্টকাট নয় — schema পরিবর্তনের ইতিহাস ও টিম ওয়ার্কফ্লো।"
   - "সঠিক উদ্দেশ্য না বুঝলে Migration ভুলভাবে ব্যবহার হয়; এটা versioned database change।"

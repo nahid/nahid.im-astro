@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/Productivity-Development-Apps-Blog-Banner-V2-1.webp"
 heroImageAlt: "দৈনন্দিন প্রোডাক্টিভিটি অ্যাপ নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "A hands-on list of the author's daily productivity and software development apps and tools."
 keyTakeaways:
   - "দৈনন্দিন ডেভেলপমেন্টের জন্য লেখকের ব্যবহৃত অ্যাপ ও টুলের হাতেকলমে তালিকা।"
   - "টুল বাছাই ব্যক্তিগত workflow-এর ওপর নির্ভর করে — কপি করা নয়, মিলিয়ে নেয়া।"

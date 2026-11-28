@@ -11,6 +11,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Expertise from '../components/Expertise.astro';
 import Research from '../components/Research.astro';
 import OpenSource from '../components/OpenSource.astro';
+import SpeakingMedia from '../components/SpeakingMedia.astro';
 import {
 	ACHIEVEMENTS,
 	BIO,
@@ -216,6 +217,10 @@ const topics = KNOWS_ABOUT_DISPLAY;
 		<SectionHead label={t('openSource', 'en')} lang="en" href={GITHUB_PROFILE} />
 		<p class="about__section-lede">{t('openSourceLede', 'en')}</p>
 		<OpenSource />
+
+		<SectionHead label={t('speaking', 'en')} lang="en" />
+		<p class="about__section-lede">{t('speakingLede', 'en')}</p>
+		<SpeakingMedia />
 
 		<SectionHead label={t('elsewhere', 'en')} lang="en" />
 		<SocialBar />

@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/Gemini_Generated_Image_i3v99xi3v99xi3v9.webp"
 heroImageAlt: "AI ও সফটওয়্যার ইন্ডাস্ট্রির ভবিষ্যৎ নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "A middle-ground analysis of the AI bubble versus reality and how software industry work is shifting."
 keyTakeaways:
   - "AI software industry বদলাচ্ছে, কিন্তু সব claim বাবল নয় আবার সব স্বপ্নও বাস্তব নয় — মধ্যপন্থা দরকার।"
   - "ডেভেলপারদের কাজ কোড লেখা থেকে বেশি করে orchestration, judgment ও domain design-এ সরে যাচ্ছে।"

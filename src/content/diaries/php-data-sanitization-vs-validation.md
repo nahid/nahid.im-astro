@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/20250604_1640_PHP-Input-Security_simple_compose_01jwx8c37mewz8fg3zq641thd9.webp"
 heroImageAlt: "PHP ডাটা Sanitization ও Validation নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Clarifies the difference between sanitization and validation when handling user input safely in PHP."
 keyTakeaways:
   - "Sanitization ইনপুট পরিষ্কার করে; Validation বলে ইনপুট গ্রহণযোগ্য কি না — দুটো আলাদা কাজ।"
   - "নিরাপদ PHP অ্যাপে দুটোই দরকার, একটাকে অন্যটার বিকল্প ভাবা ভুল।"

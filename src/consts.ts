@@ -206,6 +206,56 @@ export const KNOWS_ABOUT_DISPLAY = [
 /** GitHub profile — linked from the open-source section head. */
 export const GITHUB_PROFILE = 'https://github.com/nahid';
 
+/** Speaking & media — verified public appearances (newest first). Used on
+ *  About / home and mirrored into /llms.txt for AI-agent discovery. */
+export const SPEAKING_MEDIA = [
+	{
+		title: 'CGPA or Portfolio? What do companies expect from you in the AI era?',
+		event: 'Career Crackerz Podcast — Programming Hero',
+		type: 'Podcast',
+		year: '2026',
+		href: 'https://www.youtube.com/watch?v=NeRnnnRP1c0',
+		description:
+			'Podcast conversation on hiring expectations, portfolios, and learning to program in the AI era.',
+	},
+	{
+		title: 'The Future of Software Engineering: AI, Product Development & Career Growth',
+		event: 'HeroUnion 2.0 — Independent University, Bangladesh (IUB)',
+		type: 'Panel',
+		year: '2026',
+		href: 'https://www.linkedin.com/posts/nahidophia_i-had-the-opportunity-to-attend-and-speak-activity-7474446023696744448-4WwM',
+		description:
+			'Panel discussion with industry leaders for 700+ students on AI, product, and career growth.',
+	},
+	{
+		title: 'AI in Software Development: Partner, Not Rival',
+		event: 'Chattagram IT Fairs — World Trade Center, Chattagram',
+		type: 'Talk',
+		year: '2025',
+		href: 'https://www.linkedin.com/posts/nahidophia_chattagramitfairs-futureofdevelopment-activity-7287506843499667456-CJM4',
+		description:
+			'Talk for CS students on using AI as a productivity partner without abandoning core engineering skills.',
+	},
+	{
+		title: "Don't Believe Your Facade | Know the Magic Behind It",
+		event: 'Laravel Meetup 2024 — East West University, Dhaka',
+		type: 'Talk',
+		year: '2024',
+		href: 'https://www.linkedin.com/posts/nahidophia_yesterdays-laravel-meetup-2024-event-hosted-activity-7170102279323275264-vJjr',
+		description:
+			'Laravel Bangladesh meetup talk on how Facades work under the hood.',
+	},
+	{
+		title: 'Developers Healthy and Productive Lifestyle',
+		event: 'JoulesLabs internal developer session',
+		type: 'Session',
+		year: '2023',
+		href: '/diaries/become-a-productive-developer/',
+		description:
+			'Internal session on developer productivity; written up as a diary dispatch.',
+	},
+] as const;
+
 /** Social links for the SocialBar. Order = display order. */
 export const SOCIALS = [
 	{ label: 'GitHub', href: 'https://github.com/nahid' },

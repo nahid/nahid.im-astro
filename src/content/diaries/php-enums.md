@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/Introducewith-PHP-enum.webp"
 heroImageAlt: "PHP Enum নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Introduces PHP 8.1 enums and shows how to use the mature Enum feature with practical examples."
 keyTakeaways:
   - "PHP 8.1-এ Enum একটি প্রথম-শ্রেণির টাইপ — নির্দিষ্ট মানের সেটকে type-safe রাখে।"
   - "Magic string/number-এর বদলে Enum কোডের উদ্দেশ্য স্পষ্ট করে।"

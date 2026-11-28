@@ -78,6 +78,8 @@ Not geographic SEO.
    - `title`, `description` (≤200 chars, entity-clear: who/what/why), `pubDate`,
      `category`, `tags`, `lang` (`bn` default; English posts set `lang: en`)
    - `heroImage` + `heroImageAlt` when an image exists (path under `public/images/`, ASCII)
+   - **`summaryEn`**: short English topic line (≤220 chars) for `/llms.txt` and
+     global AEO — required for Bengali posts so English queries can match
    - **`keyTakeaways`**: 2–4 bullets, grounded only in claims already in the body
      (max 6, each ≤220 chars). Renders as the “মূল কথা / Key takeaways” box.
    - **`faq`**: 2–4 `{ question, answer }` pairs grounded in the body (max 8).
@@ -101,7 +103,9 @@ author card → `/about/`, enriched `BlogPosting` JSON-LD. Do not strip these.
   in `src/consts.ts`): answer-first summary, facts list, milestones, `sameAs` socials.
   If bio facts change, update `consts.ts` and About together — never only one place.
 - **`/llms.txt`** (`src/pages/llms.txt.ts`): keep working; it is generated at build
-  from published posts. Do not delete. `public/_headers` must keep
+  from published posts plus Expertise, Open Source, Achievements, and Speaking &
+  Media from `src/consts.ts`. Diaries include Bengali description + `summaryEn`.
+  Do not delete. `public/_headers` must keep
   `Content-Type: text/plain; charset=utf-8` for `/llms.txt`.
 - **`public/robots.txt`**: allow search + common AI/answer crawlers; keep Sitemap and
   the llms.txt pointer. Do not blanket-`Disallow` GPTBot / ClaudeBot / PerplexityBot

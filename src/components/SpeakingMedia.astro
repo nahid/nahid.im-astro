@@ -1,0 +1,93 @@
+---
+// Speaking & media — ruled clippings with type label + external/internal link.
+import { SPEAKING_MEDIA } from '../consts';
+---
+
+<ul class="speak">
+	{
+		SPEAKING_MEDIA.map((s) => {
+			const external = s.href.startsWith('http');
+			return (
+				<li>
+					<a
+						class="speak__item"
+						href={s.href}
+						{...(external ? { rel: 'me noopener', target: '_blank' } : {})}
+					>
+						<span class="speak__meta meta">
+							<span class="speak__type label">{s.type}</span>
+							<span class="speak__year">{s.year}</span>
+						</span>
+						<span class="speak__title">{s.title}</span>
+						<span class="speak__event">{s.event}</span>
+						<span class="speak__desc">{s.description}</span>
+					</a>
+				</li>
+			);
+		})
+	}
+</ul>
+
+<style>
+	.speak {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0;
+		max-width: var(--sheet-max);
+	}
+	.speak__item {
+		display: grid;
+		gap: var(--sp-2);
+		padding: var(--sp-4) 0;
+		border-top: var(--rule-hair);
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.speak > li:first-child .speak__item {
+		border-top: none;
+		padding-top: 0;
+	}
+	.speak__meta {
+		display: flex;
+		align-items: baseline;
+		gap: var(--sp-3);
+		flex-wrap: wrap;
+	}
+	.speak__type {
+		color: var(--paper);
+		background: var(--faded);
+		padding: 0.56em 0.55em 0.16em;
+		line-height: 1;
+		text-indent: var(--letterspace-label);
+	}
+	.speak__year {
+		color: var(--accent);
+		font-family: var(--font-display);
+	}
+	.speak__title {
+		font-family: var(--font-display);
+		font-size: var(--fs-h3);
+		line-height: 1.2;
+		overflow-wrap: break-word;
+	}
+	.speak__item:hover .speak__title {
+		text-decoration: underline;
+		text-decoration-color: var(--accent);
+	}
+	.speak__event {
+		color: var(--faded);
+		font-style: italic;
+	}
+	.speak__desc {
+		max-width: var(--measure);
+		color: var(--ink);
+	}
+	@media (max-width: 40rem) {
+		.speak__item {
+			padding-block: var(--sp-3);
+		}
+	}
+</style>

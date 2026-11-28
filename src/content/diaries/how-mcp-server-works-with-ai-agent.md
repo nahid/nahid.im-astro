@@ -11,7 +11,7 @@ tags:
 heroImage: "/images/20250629_2114_MCP-Server-Banner_simple_compose_01jyy3zpxmepv8ta9wvqc96ppd.webp"
 heroImageAlt: "MCP সার্ভার ও AI Agent নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Explains Model Context Protocol (MCP) servers and how they connect AI agents and LLMs to external tools."
 keyTakeaways:
   - "MCP (Model Context Protocol) LLM/Agent-কে বাইরের tool ও service-এর সাথে যুক্ত করার একটি মানসম্মত উপায়।"
   - "MCP Server tool expose করে; Agent সেগুলো discover ও call করতে পারে।"
