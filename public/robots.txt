@@ -37,3 +37,4 @@ Allow: /
 Sitemap: https://nahid.im/sitemap-index.xml
 # https://llmstxt.org/
 # LLMs: https://nahid.im/llms.txt
+# Full diary bodies: https://nahid.im/llms-full.txt

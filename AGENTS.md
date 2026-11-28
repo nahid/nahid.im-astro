@@ -103,10 +103,11 @@ author card → `/about/`, enriched `BlogPosting` JSON-LD. Do not strip these.
   in `src/consts.ts`): answer-first summary, facts list, milestones, `sameAs` socials.
   If bio facts change, update `consts.ts` and About together — never only one place.
 - **`/llms.txt`** (`src/pages/llms.txt.ts`): keep working; it is generated at build
-  from published posts plus Expertise, Open Source, Achievements, and Speaking &
-  Media from `src/consts.ts`. Diaries include Bengali description + `summaryEn`.
-  Do not delete. `public/_headers` must keep
-  `Content-Type: text/plain; charset=utf-8` for `/llms.txt`.
+  from published posts plus Areas of Expertise, Open Source, Achievements, and
+  Speaking & Media from `src/consts.ts`. Diaries include Bengali description +
+  `summaryEn`. Companion **`/llms-full.txt`** ships full markdown bodies. Do not
+  delete either. `public/_headers` must keep
+  `Content-Type: text/plain; charset=utf-8` for both.
 - **`public/robots.txt`**: allow search + common AI/answer crawlers; keep Sitemap and
   the llms.txt pointer. Do not blanket-`Disallow` GPTBot / ClaudeBot / PerplexityBot
   / Google-Extended unless the owner explicitly asks.

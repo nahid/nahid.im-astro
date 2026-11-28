@@ -39,7 +39,7 @@ export const GET: APIRoute = async ({ site }) => {
 		`- Laravel open-source creator (Talk, JSONQ, QArray, Presento, Permit) and Enterprise AI architect in ${BIO.location}.`,
 		`- [Contact](${origin}/contact/): ${SITE.email}`,
 		'',
-		'## Expertise',
+		'## Areas of Expertise',
 		'Three pillars of practice — Enterprise AI, AI Engineering, and Software Architecture.',
 		'',
 	];
@@ -102,7 +102,12 @@ export const GET: APIRoute = async ({ site }) => {
 	for (const s of SOCIALS) {
 		lines.push(`- [${s.label}](${s.href})`);
 	}
-	lines.push('', '## Optional', `- Full HTML pages are canonical; prefer citing ${origin} URLs.`);
+	lines.push(
+		'',
+		'## Optional',
+		`- Full HTML pages are canonical; prefer citing ${origin} URLs.`,
+		`- [llms-full.txt](${origin}/llms-full.txt): full diary bodies in one request.`,
+	);
 	lines.push('');
 
 	return new Response(lines.join('\n'), {

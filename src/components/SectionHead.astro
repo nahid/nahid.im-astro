@@ -13,15 +13,7 @@ const { label, lang = 'en', href } = Astro.props;
 ---
 
 <div class="section-head">
-	{
-		href ? (
-			<a class="section-head__label" lang={lang} href={href}>
-				{label}
-			</a>
-		) : (
-			<span class="section-head__label" lang={lang}>
-				{label}
-			</span>
-		)
-	}
+	<h2 class="section-head__label" lang={lang}>
+		{href ? <a href={href}>{label}</a> : label}
+	</h2>
 </div>

@@ -203,6 +203,14 @@ export const KNOWS_ABOUT_DISPLAY = [
 	'Engineering Leadership',
 ] as const;
 
+/** JoulesLabs org entity — used by JSON-LD `#jouleslabs` (logo must not be the portrait). */
+export const JOULESLABS = {
+	name: 'JoulesLabs',
+	url: 'https://jouleslabs.com',
+	/** Official mark on jouleslabs.com (ImageObject.url in schema). */
+	logo: 'https://jouleslabs.com/apple-touch-icon.png',
+} as const;
+
 /** GitHub profile — linked from the open-source section head. */
 export const GITHUB_PROFILE = 'https://github.com/nahid';
 
