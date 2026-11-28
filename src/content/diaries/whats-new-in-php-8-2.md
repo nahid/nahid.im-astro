@@ -9,7 +9,7 @@ tags:
 heroImage: "/images/Whats-New-In-PHP-8.2-Banner.webp"
 heroImageAlt: "What's New in PHP 8.2 নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Walkthrough of notable PHP 8.2 features, including readonly classes and important type changes."
 keyTakeaways:
   - "PHP 8.2-এ readonly class, নতুন type ও কয়েকটি deprecationসহ গুরুত্বপূর্ণ পরিবর্তন এসেছে।"
   - "আপগ্রেডের আগে নতুন ফিচার ও ভাঙা পরিবর্তন দুটোই দেখা দরকার।"

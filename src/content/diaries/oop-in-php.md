@@ -7,7 +7,7 @@ tags:
   - oop
   - php
 lang: bn
-
+summaryEn: "Introduction to object-oriented programming in PHP: classes, objects, and why OOP matters."
 keyTakeaways:
   - "PHP OOP-এর ভিত্তি Class ও Object — ডাটা ও আচরণ এক জায়গায় রাখার উপায়।"
   - "OOP কোড সংগঠন ও reuse-এর জন্য; শুধু syntax মুখস্থ করা নয়।"

@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/Gemini_Generated_Image_crhafycrhafycrha.webp"
 heroImageAlt: "AI যুগে লেগাসি অ্যাপ্লিকেশন নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Frames legacy application codebases as a major opportunity in the AI era, not only a source of despair."
 keyTakeaways:
   - "বিশ্বের প্রায় ৭০% অ্যাপ্লিকেশন legacy — রাতারাতি AI দিয়ে rewrite বাস্তবসম্মত নয়।"
   - "Legacy-তে documentation gap, hidden dependency ও critical business logic থাকায় \"if it ain't broke, don't fix it\" প্রায়শই সঠিক।"

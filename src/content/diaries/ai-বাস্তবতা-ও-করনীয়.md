@@ -11,7 +11,7 @@ tags:
 heroImage: "/images/ChatGPT-Image-May-11-2026-05_22_42-PM.webp"
 heroImageAlt: "AI: বাস্তবতা ও করণীয় নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Contrasts Prompt vs Context Engineering and what developers should actually learn as AI becomes everyday tooling."
 keyTakeaways:
   - "Prompt Engineering শেখার মতো স্কিল নয়; Context Engineering মানে Agent-কে কাজের পুরো context দেয়া — সেটা ডোমেইন নলেজ ছাড়া হয় না।"
   - "AI যুগে Fullstack-এর জায়গায় Allstack দরকার: Design থেকে DevOps পর্যন্ত depth সহ জ্ঞান।"

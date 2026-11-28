@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/assets_task_01jz5fa71ge769akn2351fhrn7_1751456860_img_1.webp"
 heroImageAlt: "ব্যবসায় প্রযুক্তির ভূমিকা নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Asks whether technology is core to a business or merely a tool, using RemoteOK and Gumroad as case studies."
 keyTakeaways:
   - "টেক সব ব্যবসায়ই মূল উপকরণ নয় — কখনো competitive advantage, কখনো শুধু tool।"
   - "RemoteOK ও Gumroad-এর মতো উদাহরণ দেখায় lean tech দিয়েও বড় ব্যবসা হয়।"

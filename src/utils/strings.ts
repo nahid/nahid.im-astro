@@ -31,6 +31,11 @@ export const STRINGS = {
 		bn: 'The Alien Dispatch পাঁচটি পুনরাবৃত্ত সিরিজের চারপাশে সাজানো — বিদ্যমান দিনলিপিগুলো অপরিবর্তিত।',
 		en: 'The Alien Dispatch is organized around five recurring series. Existing articles keep their URLs and categories.',
 	},
+	speaking: { bn: 'বক্তৃতা ও মিডিয়া', en: 'Speaking & Media' },
+	speakingLede: {
+		bn: 'পডকাস্ট, বিশ্ববিদ্যালয় সেশন ও টেক টক — শুধু ব্লগ নয়, ইন্ডাস্ট্রি স্পিকিংও।',
+		en: 'Podcasts, university sessions, and tech talks — industry speaking beyond the dispatch desk.',
+	},
 	elsewhere: { bn: 'অন্যত্র', en: 'Elsewhere' },
 	readMore: { bn: 'পুরোটা পড়ুন', en: 'Read the dispatch' },
 	byline: { bn: 'লিখেছেন নাহিদ বিন আজহার', en: 'By Nahid Bin Azhar' },

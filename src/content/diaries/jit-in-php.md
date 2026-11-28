@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/JIT-PHP.webp"
 heroImageAlt: "PHP-তে JIT কম্পাইলার নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Explains PHP's Just-In-Time (JIT) compiler, how it works, and its impact on performance."
 keyTakeaways:
   - "PHP 8-এর JIT (Just-In-Time) কম্পাইলার হট কোডকে মেশিন কোডে নামিয়ে পারফরম্যান্স বাড়াতে পারে।"
   - "সব ওয়েব অ্যাপে নাটকীয় লাভ নয় — CPU-ভারী কাজ ও কনফিগ অনুযায়ী ফল আলাদা।"

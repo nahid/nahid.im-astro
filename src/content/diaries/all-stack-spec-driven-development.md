@@ -11,7 +11,7 @@ tags:
 heroImage: "/images/all-stack-spec-driven-banner.webp"
 heroImageAlt: "All-stack ও Spec-driven development নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Discusses transitioning from vibe coding to spec-driven agentic development and a new All-stack role at JoulesLabs."
 keyTakeaways:
   - "JoulesLabs-এ নতুন All-stack রোল — একজন ডেভেলপার Backend, Frontend, Database, Infrastructure, Security, QA ও client communication দেখবেন।"
   - "Vibe coding বাদ দিয়ে Spec-driven agentic development চালু; OpenSpec দিয়ে feature-কে ছোট commit-এর মতো ভাঙা হয়।"

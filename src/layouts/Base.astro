@@ -67,7 +67,6 @@ const pageTitle = title ? `${title} — ${SITE.masthead}` : SITE.title;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogLocale = lang === 'bn' ? 'bn_BD' : 'en_US';
 const altLocale = lang === 'bn' ? 'en_US' : 'bn_BD';
-const inLanguage = ogLocale.replace('_', '-');
 const ogType = article ? 'article' : profile ? 'profile' : 'website';
 const ogImageUrl = new URL(ogImage ?? SITE.ogImage, Astro.site).href;
 const imageAlt = ogImageAlt ?? pageTitle;
@@ -85,7 +84,7 @@ const jsonLd: Record<string, unknown> = {
 	'@graph': [
 		buildPerson(Astro.site),
 		buildOrganization(Astro.site),
-		buildWebSite(Astro.site, inLanguage),
+		buildWebSite(Astro.site),
 		...(breadcrumbs.length ? [buildBreadcrumbs(breadcrumbs, Astro.site)] : []),
 		...(profile
 			? [buildProfilePage({ site: Astro.site, canonical, description })]

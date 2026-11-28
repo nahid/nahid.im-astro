@@ -10,7 +10,7 @@ tags:
 heroImage: "/images/productive-developer-blog-banner-v1-1.webp"
 heroImageAlt: "প্রোডাক্টিভ ডেভেলপার হবার উপায় নিয়ে ব্যানার চিত্র"
 lang: bn
-
+summaryEn: "Practical habits for developer productivity, drawn from a JoulesLabs internal session and personal experience."
 keyTakeaways:
   - "প্রোডাক্টিভিটি মানে বেশি ঘণ্টা কোড করা নয় — ফোকাস, অভ্যাস ও পরিবেশ ঠিক করা।"
   - "ছোট, টেকসই রুটিন বড় \"productivity hack\"-এর চেয়ে বেশি কাজ দেয়।"

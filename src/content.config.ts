@@ -41,6 +41,12 @@ const diaries = defineCollection({
 		draft: z.boolean().default(false),
 		// Most posts are Bengali; English posts must opt in with lang: 'en'.
 		lang: z.enum(['bn', 'en']).default('bn'),
+		/** English topic line for /llms.txt + global AEO (required for bn posts). */
+		summaryEn: z
+			.string()
+			.transform((s) => s.replace(/[\s\u2028\u2029]+/gu, ' ').trim())
+			.pipe(z.string().min(24).max(220))
+			.optional(),
 		/** AEO answer box — 2–4 bullets grounded only in the body. */
 		keyTakeaways: z.array(z.string().min(8).max(220)).max(6).default([]),
 		/** AEO/GEO FAQ — visible section + FAQPage JSON-LD; grounded in the body. */

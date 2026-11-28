@@ -4,6 +4,7 @@
 import {
 	ACHIEVEMENTS,
 	BIO,
+	JOULESLABS,
 	KNOWS_ABOUT_DISPLAY,
 	OPEN_SOURCE,
 	SITE,
@@ -80,20 +81,27 @@ export function buildPerson(site: URL | string | undefined) {
 	};
 }
 
-export function buildOrganization(site: URL | string | undefined) {
+export function buildOrganization(_site?: URL | string | undefined) {
 	return {
 		'@type': 'Organization',
 		'@id': ORG_ID,
-		name: 'JoulesLabs',
-		url: 'https://jouleslabs.com',
-		logo: absoluteUrl(BIO.photo, site),
+		name: JOULESLABS.name,
+		url: JOULESLABS.url,
+		logo: {
+			'@type': 'ImageObject',
+			url: JOULESLABS.logo,
+			caption: JOULESLABS.name,
+		},
 		founder: { '@id': PERSON_ID },
 		employee: { '@id': PERSON_ID },
-		sameAs: ['https://jouleslabs.com'],
+		sameAs: [JOULESLABS.url],
 	};
 }
 
-export function buildWebSite(site: URL | string | undefined, inLanguage: string) {
+/** Site speaks both English and Bengali; page-level inLanguage stays on BlogPosting. */
+export const SITE_IN_LANGUAGES = ['en-US', 'bn-BD'] as const;
+
+export function buildWebSite(site: URL | string | undefined) {
 	return {
 		'@type': 'WebSite',
 		'@id': WEBSITE_ID,
@@ -101,7 +109,7 @@ export function buildWebSite(site: URL | string | undefined, inLanguage: string)
 		alternateName: [SITE.masthead, SITE.tagline, SITE.brandHeadline, 'nahid.im'],
 		url: absoluteUrl('/', site),
 		description: SITE.description,
-		inLanguage,
+		inLanguage: [...SITE_IN_LANGUAGES],
 		publisher: { '@id': PERSON_ID },
 		author: { '@id': PERSON_ID },
 		copyrightHolder: { '@id': PERSON_ID },
