@@ -9,8 +9,15 @@ import { z } from 'astro/zod';
 const diaries = defineCollection({
 	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/diaries' }),
 	schema: z.object({
-		title: z.string(),
-		description: z.string().max(200),
+		// Collapse whitespace so RSS / llms.txt / cards never inherit trailing
+		// newlines from YAML that would glue adjacent list entries together.
+		title: z
+			.string()
+			.transform((s) => s.replace(/[\s\u2028\u2029]+/gu, ' ').trim()),
+		description: z
+			.string()
+			.transform((s) => s.replace(/[\s\u2028\u2029]+/gu, ' ').trim())
+			.pipe(z.string().max(200)),
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		category: z.enum([

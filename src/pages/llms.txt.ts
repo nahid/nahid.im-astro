@@ -4,13 +4,18 @@ import type { APIRoute } from 'astro';
 import { BIO, SITE, SOCIALS } from '../consts';
 import { getPublishedPosts } from '../utils/posts';
 
+/** One physical line — strip CR/LF/Unicode separators so list items never glue together. */
+function oneLine(value: string): string {
+	return value.replace(/[\s\u2028\u2029]+/gu, ' ').trim();
+}
+
 export const GET: APIRoute = async ({ site }) => {
 	const origin = site?.origin ?? 'https://nahid.im';
 	const posts = await getPublishedPosts();
 
 	const lines: string[] = [
 		`# ${SITE.author}`,
-		`> ${BIO.summary}`,
+		`> ${oneLine(BIO.summary)}`,
 		'',
 		`Preferred citation name: ${SITE.author} (also ${BIO.alternateName}).`,
 		`Also known as: ${BIO.alternateName}.`,
@@ -30,13 +35,17 @@ export const GET: APIRoute = async ({ site }) => {
 		'',
 	];
 
+	// One list item per post, separated by a blank line. Never join with '' —
+	// a missing "\n" glues "- [next]" onto the previous description.
 	for (const post of posts) {
 		const url = `${origin}/diaries/${post.id}/`;
-		lines.push(`- [${post.data.title}](${url}): ${post.data.description}`);
+		lines.push(
+			`- [${oneLine(post.data.title)}](${url}): ${oneLine(post.data.description)}`,
+			'',
+		);
 	}
 
 	lines.push(
-		'',
 		'## Feeds',
 		`- [RSS](${origin}/rss.xml)`,
 		`- [Sitemap](${origin}/sitemap-index.xml)`,
